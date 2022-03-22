@@ -40,15 +40,8 @@ public class Spider extends Monster {
     private int monsterDirection(){
         return ThreadLocalRandom.current().nextInt(0, 1);
     }
-    private boolean isCollisionLeft() {
-        Cell nextCell = cell.getNeighbor(cell.getX() - 1, cell.getY());
-        return nextCell.getType() == CellType.WALL;
-    }
 
-    private boolean isCollisionRight() {
-        Cell nextCell = cell.getNeighbor(cell.getX() + 1, cell.getY());
-        return nextCell.getType() == CellType.WALL;
-    }
+
 
     @Override
     public String getTileName() {
