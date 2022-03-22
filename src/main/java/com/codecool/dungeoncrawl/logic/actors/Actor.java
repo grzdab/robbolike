@@ -15,8 +15,9 @@ public abstract class Actor implements Drawable {
     private final List<Monster> monsters;
 
 
-    public Actor(Cell cell) {
+    public Actor(Cell cell, List<Monster> monsters) {
         this.cell = cell;
+        this.monsters = monsters;
         this.cell.setActor(this);
     }
 

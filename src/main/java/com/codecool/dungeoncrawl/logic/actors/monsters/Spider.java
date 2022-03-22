@@ -1,7 +1,7 @@
 package com.codecool.dungeoncrawl.logic.actors.monsters;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.CellType;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,18 +13,52 @@ public class Spider extends Monster {
         super(cell);
     }
 
+    public void move() {
+        int direction = monsterDirection();
+        switch (direction) {
+            case 0:
+                Cell nextCell = cell.getNeighbor(cell.getX() - 1, cell.getY());
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+                if (isCollisionLeft()) {
+                    direction = 1;
+                    move();
+                }
+            case 1:
+                nextCell = cell.getNeighbor(cell.getX() + 1, cell.getY());
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+                if (isCollisionRight()) {
+                    direction = 0;
+                    move();
+                }
+        }
+    }
+
+    private int monsterDirection(){
+        return ThreadLocalRandom.current().nextInt(0, 1);
+    }
+    private boolean isCollisionLeft() {
+        Cell nextCell = cell.getNeighbor(cell.getX() - 1, cell.getY());
+        return nextCell.getType() == CellType.WALL;
+    }
+
+    private boolean isCollisionRight() {
+        Cell nextCell = cell.getNeighbor(cell.getX() + 1, cell.getY());
+        return nextCell.getType() == CellType.WALL;
+    }
 
     @Override
     public String getTileName() {
         return "spider";
     }
+}
 
-    @Override
-    public void move(int dx, int dy) {
-        super.move(dx, dy);
-    }
 
-    //    @Override
+
+//    @Override
 //    public void move(int dx, int dy) {
 //        int direction = ThreadLocalRandom.current().nextInt(0,1);
 //        switch (direction){
@@ -44,4 +78,4 @@ public class Spider extends Monster {
 //        }
 //
 //    }
-}
+
