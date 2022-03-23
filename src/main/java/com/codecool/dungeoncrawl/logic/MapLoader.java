@@ -36,6 +36,9 @@ public class MapLoader {
                         case '#':
                             cell.setType(CellType.WALL);
                             break;
+                        case 'r':
+                            cell.setType(CellType.ROCK);
+                            break;
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
@@ -76,7 +79,6 @@ public class MapLoader {
     }
 
     public static void monstersMove() {
-        //ogsarnać direction żeby wywoływało się raz na poczatku
         for (Monster monster : monsters) {
             monster.moveMonster();
         }

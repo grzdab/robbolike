@@ -11,8 +11,7 @@ public class Spider extends Monster {
         super(cell, health, attack, defence, direction);
     }
 
-    public void moveMonster(int direction) {
-//        int direction = monsterDirection();
+    public void moveMonster() {
         if (isCollisionLeft()) {
             direction = 1;
         }

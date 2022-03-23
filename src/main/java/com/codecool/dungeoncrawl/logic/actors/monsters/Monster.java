@@ -21,26 +21,26 @@ public abstract class Monster extends Actor {
 
     public boolean isCollisionLeft() {
         Cell nextCell = cell.getNeighbor(- 1, 0);
-        return nextCell.getType() == CellType.WALL ||
+        return nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ||
                 nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
                 nextCell.getType() == CellType.MONSTER_SKELETON;
     }
 
     public boolean isCollisionRight() {
         Cell nextCell = cell.getNeighbor(1, 0);
-        return nextCell.getType() == CellType.WALL ||
+        return nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ||
                 nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
                 nextCell.getType() == CellType.MONSTER_SKELETON;
     }
     public boolean isCollisionUp() {
         Cell nextCell = cell.getNeighbor(0, 1);
-        return nextCell.getType() == CellType.WALL ||
+        return nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ||
                 nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
                 nextCell.getType() == CellType.MONSTER_SKELETON;
     }
     public boolean isCollisionDown() {
         Cell nextCell = cell.getNeighbor(0, -1);
-        return nextCell.getType() == CellType.WALL ||
+        return nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ||
                 nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
                 nextCell.getType() == CellType.MONSTER_SKELETON;
     }
