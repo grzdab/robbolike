@@ -41,15 +41,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 10, 0));
+                            monsters.add(new Skeleton(cell, 10, 1, 0));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 10, 10, 0));
+                            monsters.add(new Bear(cell, 50, 10, 0));
                             break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 10, 10, 0));
+                            monsters.add(new Spider(cell, 25, 5, 0));
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);
