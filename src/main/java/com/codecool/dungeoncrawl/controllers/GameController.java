@@ -72,6 +72,7 @@ public class GameController<T> {
     }
 
     private void refresh() {
+        MapLoader.monstersMove();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < map.getWidth(); x++) {
@@ -102,7 +103,7 @@ public class GameController<T> {
             public void run() {
                 refresh();
             }
-        }, 0, 2000);
+        }, 0, 1500);
     }
 }
 
