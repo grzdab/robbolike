@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
@@ -47,6 +48,12 @@ public class GameController<T> {
         // System.out.println(canvas);
         context = canvas.getGraphicsContext2D();
         // System.out.println(context);
+    }
+
+    @FXML
+    void restoreRootFocus(MouseEvent event) {
+        Scene scene = canvas.getScene();
+        scene.getRoot().requestFocus();
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {

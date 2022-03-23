@@ -77,7 +77,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <TableView fx:id="tbInventory" prefHeight="247.0" prefWidth="158.0">
+            <TableView fx:id="tbInventory" onMouseClicked="#restoreRootFocus" prefHeight="247.0" prefWidth="158.0">
               <columns>
                 <TableColumn fx:id="clItems" editable="false" prefWidth="199.88057855073703" sortable="false" text="Iterms" />
               </columns>
