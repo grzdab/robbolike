@@ -1,13 +1,19 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.actors.Skeleton;
-import com.codecool.dungeoncrawl.logic.items.Sword;
+import com.codecool.dungeoncrawl.logic.actors.*
+import com.codecool.dungeoncrawl.logic.items.*
+
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MapLoader {
+    public static List<Monster> monsters = new ArrayList<>();
+
     public static GameMap loadMap() {
         InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
         Scanner scanner = new Scanner(is);
@@ -34,7 +40,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            monsters.add(new Skeleton(cell));
+                            break;
+                        case 'b':
+                            cell.setType(CellType.FLOOR);
+                            monsters.add(new Bear(cell));
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            monsters.add(new Spider(cell));
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);
@@ -56,4 +70,11 @@ public class MapLoader {
         return map;
     }
 
+    public static void monstersMove() {
+        //ogsarnać direction żeby wywoływało się raz na poczatku
+        int direction = Bear.monsterDirection();
+        for (Monster monster : monsters) {
+            monster.moveMonster(direction);
+        }
+    }
 }
