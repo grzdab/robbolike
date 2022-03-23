@@ -103,7 +103,7 @@ public class GameController<T> {
             public void run() {
                 refresh();
             }
-        }, 0, 1500);
+        }, 0, 250);
     }
 }
 
