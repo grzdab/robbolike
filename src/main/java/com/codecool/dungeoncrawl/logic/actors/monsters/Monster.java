@@ -5,26 +5,34 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Monster extends Actor {
     private static final List<Monster> monsters = null;
-    Cell cell;
 
     public Monster(Cell cell) {
-        super(cell, monsters);
+        super(cell);
     }
 
 
-    public void move() {
+    public void moveMonster(int direction) {
     }
 
-    private boolean isCollisionLeft() {
-        Cell nextCell = cell.getNeighbor(cell.getX() - 1, cell.getY());
+    public boolean isCollisionLeft() {
+        Cell nextCell = cell.getNeighbor(- 1, 0);
         return nextCell.getType() == CellType.WALL;
     }
 
-    private boolean isCollisionRight() {
-        Cell nextCell = cell.getNeighbor(cell.getX() + 1, cell.getY());
+    public boolean isCollisionRight() {
+        Cell nextCell = cell.getNeighbor(1, 0);
+        return nextCell.getType() == CellType.WALL;
+    }
+    public boolean isCollisionUp() {
+        Cell nextCell = cell.getNeighbor(0, 1);
+        return nextCell.getType() == CellType.WALL;
+    }
+    public boolean isCollisionDown() {
+        Cell nextCell = cell.getNeighbor(0, -1);
         return nextCell.getType() == CellType.WALL;
     }
 }
