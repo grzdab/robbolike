@@ -8,8 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Spider extends Monster {
     private int health = 10;
 
-    public Spider(Cell cell, int health, int attack) {
-        super(cell, health, attack);
+    public Spider(Cell cell, int health, int attack, int defence) {
+        super(cell, health, attack, defence);
     }
 
     public void moveMonster(int direction) {

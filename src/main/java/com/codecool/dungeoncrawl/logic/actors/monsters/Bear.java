@@ -7,8 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
 
-    public Bear(Cell cell, int health, int attack) {
-        super(cell, health, attack);
+    public Bear(Cell cell, int health, int attack, int defence) {
+        super(cell, health, attack, defence);
     }
 
     public void moveMonster(int direction) {
