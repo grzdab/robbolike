@@ -41,15 +41,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell));
+                            monsters.add(new Skeleton(cell, 10, 1, 0));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell));
+                            monsters.add(new Bear(cell, 50, 10, 0));
                             break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell));
+                            monsters.add(new Spider(cell, 25, 5, 0));
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);
@@ -60,7 +60,7 @@ public class MapLoader {
 //                            new Key(cell);
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell));
+                            map.setPlayer(new Player(cell, 10, 10, 10, 10));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
