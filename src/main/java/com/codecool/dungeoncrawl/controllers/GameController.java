@@ -15,6 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameController<T> {
     GameMap map = MapLoader.loadMap();
     @FXML
@@ -76,6 +79,8 @@ public class GameController<T> {
                 Cell cell = map.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
@@ -91,6 +96,13 @@ public class GameController<T> {
         // System.out.println(scene);
         scene.getRoot().requestFocus();
         scene.setOnKeyPressed(this::onKeyPressed);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                refresh();
+            }
+        }, 0, 2000);
     }
 }
 
