@@ -6,8 +6,9 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
-    public Bear(Cell cell) {
-        super(cell);
+
+    public Bear(Cell cell, int health, int attack) {
+        super(cell, health, attack);
     }
 
     public void moveMonster(int direction) {
