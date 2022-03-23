@@ -50,7 +50,7 @@ public class GameController<T> {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        // System.out.println("Key pressed");
+      //   System.out.println("Key pressed");
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);

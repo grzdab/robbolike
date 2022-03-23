@@ -6,7 +6,8 @@ public enum CellType {
     WALL("wall"),
     MONSTER_SPIDER("spider"),
     MONSTER_BEAR("bear"),
-    MONSTER_SKELETON("skeleton");
+    MONSTER_SKELETON("skeleton"),
+    MONSTER_BOSS("boss");
 
     private final String tileName;
 

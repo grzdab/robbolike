@@ -62,6 +62,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell, 10, 10, 10, 10));
                             break;
+                        case 'B':
+                            cell.setType(CellType.FLOOR);
+                            monsters.add(new Boss(cell, 100, 20, 0));
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
