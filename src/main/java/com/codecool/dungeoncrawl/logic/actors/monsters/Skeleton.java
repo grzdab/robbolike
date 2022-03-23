@@ -4,8 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 
 public class Skeleton extends Monster {
-    public Skeleton(Cell cell,int health, int attack, int defence) {
-        super(cell, health, attack, defence);
+    public Skeleton(Cell cell,int health, int attack, int defence, int direction) {
+        super(cell, health, attack, defence, direction);
     }
 
     @Override

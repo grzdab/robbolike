@@ -7,22 +7,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
 
-    public Bear(Cell cell, int health, int attack, int defence) {
-        super(cell, health, attack, defence);
+    public Bear(Cell cell, int health, int attack, int defence,int direction) {
+        super(cell, health, attack, defence, direction);
     }
 
-    public void moveMonster(int direction) {
-        if (isCollisionLeft()) {
-            direction = 1;
-        }
-        if (isCollisionRight()) {
-            direction = 0;
-        }
-        if (isCollisionUp()) {
-            direction = 2;
-        }
-        if (isCollisionDown()) {
-            direction = 3;
+    @Override
+    public void moveMonster() {
+        if (isCollisionLeft() || isCollisionRight() || isCollisionUp() || isCollisionDown()) {
+            direction = Bear.monsterDirection();
+            while (isCollisionLeft() || isCollisionRight() || isCollisionUp() || isCollisionDown()){
+                direction = Bear.monsterDirection();
+            }
         }
         switch (direction) {
             case 0:

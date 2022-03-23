@@ -8,13 +8,15 @@ import java.util.List;
 
 public abstract class Monster extends Actor {
     private static final List<Monster> monsters = null;
+    protected int direction;
 
-    public Monster(Cell cell, int health, int attack, int defence) {
+    public Monster(Cell cell, int health, int attack, int defence, int direction) {
         super(cell, health, attack, defence);
+        this.direction = direction;
     }
 
 
-    public void moveMonster(int direction) {
+    public void moveMonster() {
     }
 
     public boolean isCollisionLeft() {

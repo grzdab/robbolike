@@ -3,8 +3,8 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Boss extends Monster{
-    public Boss(Cell cell, int health, int attack, int defence) {
-        super(cell, health, attack, defence);
+    public Boss(Cell cell, int health, int attack, int defence, int direction) {
+        super(cell, health, attack, defence, direction);
     }
 
     @Override
