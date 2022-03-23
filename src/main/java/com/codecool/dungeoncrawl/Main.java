@@ -57,7 +57,7 @@ public class Main extends Application {
             public void run() {
                 refresh();
             }
-        }, 0, 2000);
+        }, 0, 250);
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
     }
