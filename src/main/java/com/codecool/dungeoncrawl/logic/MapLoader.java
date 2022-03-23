@@ -2,9 +2,9 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
+import com.codecool.dungeoncrawl.logic.actors.*
+import com.codecool.dungeoncrawl.logic.items.*
+
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -50,6 +50,13 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Spider(cell));
                             break;
+                        case 't':
+                            cell.setType(CellType.FLOOR);
+                            new Sword(cell);
+                            break;
+//                        case 'k':
+//                            cell.setType(CellType.FLOOR);
+//                            new Key(cell);
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
