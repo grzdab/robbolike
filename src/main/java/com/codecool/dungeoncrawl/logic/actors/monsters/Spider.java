@@ -14,6 +14,12 @@ public class Spider extends Monster {
 
     public void moveMonster(int direction) {
 //        int direction = monsterDirection();
+        if (isCollisionLeft()) {
+            direction = 1;
+        }
+        if (isCollisionRight()) {
+            direction = 0;
+        }
             switch (direction) {
                 case 0:
                     Cell nextCell = cell.getNeighbor(- 1, 0);
@@ -27,12 +33,6 @@ public class Spider extends Monster {
                     nextCell.setActor(this);
                     cell = nextCell;
                     break;
-            }
-            if (isCollisionLeft()) {
-                direction = 1;
-            }
-            if (isCollisionRight()) {
-                direction = 0;
             }
     }
 

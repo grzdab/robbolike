@@ -11,6 +11,18 @@ public class Bear extends Monster {
     }
 
     public void moveMonster(int direction) {
+        if (isCollisionLeft()) {
+            direction = 1;
+        }
+        if (isCollisionRight()) {
+            direction = 0;
+        }
+        if (isCollisionUp()) {
+            direction = 2;
+        }
+        if (isCollisionDown()) {
+            direction = 3;
+        }
         switch (direction) {
             case 0:
                 Cell nextCell = cell.getNeighbor(- 1, 0);
@@ -36,19 +48,6 @@ public class Bear extends Monster {
                 nextCell.setActor(this);
                 cell = nextCell;
                 break;
-
-        }
-        if (isCollisionLeft()) {
-            direction = 1;
-        }
-        if (isCollisionRight()) {
-            direction = 0;
-        }
-        if (isCollisionUp()) {
-            direction = 2;
-        }
-        if (isCollisionDown()) {
-            direction = 3;
         }
     }
 
