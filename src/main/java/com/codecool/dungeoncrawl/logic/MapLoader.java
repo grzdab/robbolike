@@ -64,7 +64,8 @@ public class MapLoader {
     }
 
     public static void monstersMove() {
-        int direction = Spider.monsterDirection();
+        //ogsarnać direction żeby wywoływało się raz na poczatku
+        int direction = Bear.monsterDirection();
         for (Monster monster : monsters) {
             monster.moveMonster(direction);
         }
