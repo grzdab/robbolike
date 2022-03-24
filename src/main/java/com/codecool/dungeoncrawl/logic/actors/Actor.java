@@ -8,6 +8,8 @@ import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 import javafx.application.Platform;
 
+import java.util.Objects;
+
 public abstract class Actor implements Drawable {
     protected volatile Cell cell;
     protected volatile int health;
@@ -35,6 +37,10 @@ public abstract class Actor implements Drawable {
             if (this instanceof Player)
             {
                 ((Player) this).getInventory().addItem(nextCell.getItem());
+                if(Objects.equals(nextCell.getItem().getTileName(), "key"))
+                {
+                    System.out.println("Added key");
+                }
             }
             takeItem(nextCell.getItem());
 //            editStats(nextCell);

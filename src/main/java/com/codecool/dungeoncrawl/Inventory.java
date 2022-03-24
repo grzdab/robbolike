@@ -34,6 +34,7 @@ public class Inventory {
         }
         else
         {
+            System.out.println("Added " + item.getTileName());
             nameIds.put(item.getTileName(), nextId);
             nextId++;
             InventoryItem newItem = new InventoryItem(item.getTileName(), 0); // item.getPts()
@@ -89,9 +90,6 @@ public class Inventory {
                 inventory.remove(object);
                 moveNameIdsUp(nameIds.get(item.getTileName()));
                 nextId--;
-            }
-            else {
-                inventory.set(nameIds.get(item.getTileName()), object);
             }
         }
     }
