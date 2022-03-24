@@ -43,6 +43,11 @@ public class Tiles {
         tileMap.put("crate", new Tile(3, 5)); //c
         tileMap.put("bomb", new Tile(13, 31)); //b
         tileMap.put("sword", new Tile(4, 31)); // s
+        tileMap.put("axe", new Tile(6, 29)); // a
+        tileMap.put("bow", new Tile(8, 28)); // b
+        tileMap.put("breastplate", new Tile(4, 23)); // e
+        tileMap.put("helmet", new Tile(2, 22)); // h
+        tileMap.put("shield", new Tile(5, 26)); // i
         tileMap.put("boss", new Tile(25,8)); // B
     }
 
