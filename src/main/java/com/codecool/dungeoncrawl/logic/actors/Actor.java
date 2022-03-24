@@ -1,15 +1,11 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
-import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.logic.items.Helmet;
-import com.codecool.dungeoncrawl.logic.items.Item;
-import com.codecool.dungeoncrawl.logic.items.Key;
+import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.GameMap;
-import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
@@ -20,6 +16,7 @@ public abstract class Actor implements Drawable {
     private int defence;
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
+    private Item item;
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -28,9 +25,6 @@ public abstract class Actor implements Drawable {
         this.attack = attack;
         this.defence = defence;
     }
-
-
-
 
     public void move(int dx, int dy) {
         if (health > 0) {
@@ -85,11 +79,6 @@ public abstract class Actor implements Drawable {
 //        }
 //    }
 
-    public void fight(Actor actor1, Actor actor2) {
-        while (isAlive(actor1, actor2)) {
-            if (!isDefence(actor1, actor2)) {
-                actor2.setHealth(actor2.getHealth() - actor1.getAttack());
-                if (!isAlive(actor1, actor2)) {
     public void fight(Actor attacker, Actor defender) {
         System.out.println("FIGHT!");
         while (true) {
@@ -102,7 +91,6 @@ public abstract class Actor implements Drawable {
                     System.out.println("Defender is dead!");
                     if (defender instanceof Monster) {
                         defender.removeActorFromMap();
-
                         // MapLoader.monsters.remove(defender);
                         // MapLoader.removeMonster((Monster)defender);
                         defender.removeActorFromMap();
@@ -125,9 +113,9 @@ public abstract class Actor implements Drawable {
                     if (attacker instanceof Monster) {
 //                        MapLoader.monsters.remove(attacker);
 //                        attacker.getCell().setActor(null);
-                        attacker.removeActorFromMap();
+//                        attacker.removeActorFromMap();
                         cell.setType(CellType.FLOOR);
-                        new Helmet(cell);
+                        new Coin(cell);
                        //  MapLoader.removeMonster((Monster)attacker);
                         attacker.removeActorFromMap();
                     } else if (attacker instanceof Player) {
@@ -158,6 +146,36 @@ public abstract class Actor implements Drawable {
 
         return true;
     }
+//    private void randomItem(Actor attacker) {
+//        attacker.removeActorFromMap();
+//        int items  = item.randomItem();
+//        switch (items) {
+//            case 0:
+//                cell.setType(CellType.FLOOR);
+//                new Axe(cell);
+//                break;
+//            case 1:
+//                cell.setType(CellType.FLOOR);
+//                new Bow(cell);
+//                break;
+//            case 2:
+//                cell.setType(CellType.FLOOR);
+//                new Breastplate(cell);
+//                break;
+//            case 3:
+//                cell.setType(CellType.FLOOR);
+//                new Helmet(cell);
+//                break;
+//            case 4:
+//                cell.setType(CellType.FLOOR);
+//                new Shield(cell);
+//                break;
+//            case 5:
+//                cell.setType(CellType.FLOOR);
+//                new Sword(cell);
+//                break;
+//        }
+//    }
 
     private boolean checkCollision(Object object, int x, int y) {
 
@@ -188,16 +206,10 @@ public abstract class Actor implements Drawable {
                     }
                 }
             }
-
-
-
-
-
         } else {
             System.out.println(object.getClass().getName());
             System.out.println("Another obstacle");
         }
-
         return true;
     }
 

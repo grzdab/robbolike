@@ -50,6 +50,7 @@ public class Tiles {
         tileMap.put("helmet", new Tile(2, 22)); // h
         tileMap.put("shield", new Tile(5, 26)); // i
         tileMap.put("boss", new Tile(25,8)); // B
+        tileMap.put("coin", new Tile(22,4));//$
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
