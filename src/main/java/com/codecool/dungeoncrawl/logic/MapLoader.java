@@ -107,6 +107,9 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection()));
                             break;
+                        case 'g':
+                            cell.setType(CellType.GATE);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
