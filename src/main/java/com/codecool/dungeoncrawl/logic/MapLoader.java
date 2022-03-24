@@ -49,7 +49,7 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));
                             break;
-                        case 'B':
+                        case 'M':
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
                             break;
