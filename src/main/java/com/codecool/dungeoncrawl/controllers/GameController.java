@@ -57,7 +57,7 @@ public class GameController<T> {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        // System.out.println("Key pressed");
+      //   System.out.println("Key pressed");
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
@@ -89,6 +89,8 @@ public class GameController<T> {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getObstacle() != null) {
+                    Tiles.drawTile(context, cell.getObstacle(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
@@ -110,7 +112,7 @@ public class GameController<T> {
             public void run() {
                 refresh();
             }
-        }, 0, 1500);
+        }, 0, 700);
     }
 }
 

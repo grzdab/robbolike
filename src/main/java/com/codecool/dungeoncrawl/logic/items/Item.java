@@ -11,16 +11,9 @@ public abstract class Item implements Drawable {
         this.cell.setItem(this);
     }
 
-    public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setItem(null);
-        nextCell.setItem(this);
-        cell = nextCell;
+    protected Item() {
     }
 
-//    public int getHealth() {
-//        return health;
-//    }
 
     public Cell getCell() {
         return cell;

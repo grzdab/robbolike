@@ -23,15 +23,27 @@ public class Tiles {
     }
 
     static {
-        tileMap.put("empty", new Tile(0, 0));
-        tileMap.put("wall", new Tile(10, 17));
-        tileMap.put("floor", new Tile(2, 0));
-        tileMap.put("player", new Tile(27, 0));
+        tileMap.put("player", new Tile(27, 0)); //@
 
-        tileMap.put("skeleton", new Tile(29, 6));
-        tileMap.put("spider", new Tile(28,5));
-        tileMap.put("bear", new Tile(30,8));
-        tileMap.put("sword", new Tile(4, 31));
+        tileMap.put("empty", new Tile(0, 0)); //
+        tileMap.put("wall", new Tile(10, 17)); //#
+        tileMap.put("floor", new Tile(2, 0)); //.
+        tileMap.put("rock", new Tile(2,11)); // r
+
+
+        tileMap.put("skeleton", new Tile(29, 6)); //S
+        tileMap.put("spider", new Tile(28,5)); // P
+        tileMap.put("bear", new Tile(30,8)); // M
+
+        tileMap.put("teleport", new Tile(19, 18)); //t
+        tileMap.put("exit", new Tile(17, 31)); //e
+        tileMap.put("pistol", new Tile(5, 31)); //p
+        tileMap.put("door", new Tile(3, 3)); // d
+        tileMap.put("key", new Tile(17, 23)); //k
+        tileMap.put("crate", new Tile(3, 5)); //c
+        tileMap.put("bomb", new Tile(13, 31)); //b
+        tileMap.put("sword", new Tile(4, 31)); // s
+        tileMap.put("boss", new Tile(25,8)); // B
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
