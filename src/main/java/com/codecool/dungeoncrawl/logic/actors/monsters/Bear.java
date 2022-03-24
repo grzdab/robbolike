@@ -23,11 +23,11 @@ public class Bear extends Monster {
 
         if (isCollisionLeft()) {
                 direction = collisionLeft.get(randomIndex);
-                if (isCollisionUp()) {
-                    direction = collisionUp.get(randomIndex);
-                } else if (isCollisionDown()) {
-                    direction = collisionDown.get(randomIndex);
-                }
+//                if (isCollisionUp()) {
+//                    direction = collisionUp.get(randomIndex);
+//                } else if (isCollisionDown()) {
+//                    direction = collisionDown.get(randomIndex);
+//                }
             System.out.println("colisionLeft");
         }
         if (isCollisionRight()) {
