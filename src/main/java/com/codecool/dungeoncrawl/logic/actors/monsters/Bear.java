@@ -23,25 +23,21 @@ public class Bear extends Monster {
 
         if (!isCollisionLeft()) {
             possibleDirections.add(0);
-            System.out.println("colisionLeft");
         } else {
             colistion = true;
         }
         if (!isCollisionRight()) {
             possibleDirections.add(1);
-            System.out.println("colisionR");
         } else {
         colistion = true;
     }
         if (!isCollisionUp()) {
             possibleDirections.add(3);
-            System.out.println("colisionUp");
         } else {
             colistion = true;
         }
         if (!isCollisionDown()) {
             possibleDirections.add(2);
-            System.out.println("colisionDown");
         } else {
             colistion = true;
         }
