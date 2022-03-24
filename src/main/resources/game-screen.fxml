@@ -45,12 +45,12 @@
             </HBox>
             <HBox prefHeight="42.0" prefWidth="201.0">
                <children>
-                  <Label fx:id="healthTitle" prefHeight="39.0" prefWidth="178.0" text="   HP:">
+                  <Label fx:id="healthTitle" prefHeight="39.0" prefWidth="99.0" text="   HP:">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label fx:id="healthValue" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="100">
+                  <Label fx:id="healthValue" alignment="CENTER" prefHeight="39.0" prefWidth="103.0" text="100">
                      <font>
                         <Font size="27.0" />
                      </font>

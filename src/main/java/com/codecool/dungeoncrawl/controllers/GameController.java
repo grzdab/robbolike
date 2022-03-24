@@ -108,6 +108,9 @@ public class GameController {
             }
         }
         healthValue.setText("" + map.getPlayer().getHealth());
+        defenceValue.setText("" + map.getPlayer().getDefence());
+        attackValue.setText("" + map.getPlayer().getAttack());
+        expValue.setText("" + map.getPlayer().getExp());
     }
 
     public void handleGameStart(WindowEvent windowEvent) {
