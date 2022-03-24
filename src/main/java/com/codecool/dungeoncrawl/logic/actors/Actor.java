@@ -190,23 +190,38 @@ public abstract class Actor implements Drawable {
             }
             return false;
         } else if (object instanceof Crate) {
-            if (!((Crate) object).move(x,y)) {
-                return false;
-            }
+            return ((Crate) object).move(x, y);
         } else if (object instanceof Teleport) {
-            Cell thisTeleport = ((Teleport) object).getCell();
+//            Cell thisTeleport = ((Teleport) object).getCell();
             Cell[][] map = GameMap.getMap();
-            int thisX = thisTeleport.getX();
-            int thisY = thisTeleport.getY();
-            for (int mapY = 0;mapY < GameMap.getHeight(); mapY++ ) {
-                for (int mapX = 0; mapX < GameMap.getWidth(); mapX++) {
-                    if (map[mapY][mapX].getX() == thisX && map[mapY][mapX].getY() == thisY) {
-                        System.out.println("To ten teleport");
-                        break;
-                    }
-                }
+//            int thisX = thisTeleport.??.getX();
+            int thisX = getCell().getX();
+//            System.out.println(thisX);
+            int thisY = getCell().getY();
+//            int thisY = thisTeleport.??.getY();
+//            System.out.println(thisY);
+            ((Player) this).removeActorFromMap();
+            if ((thisX == 6 || thisX == 5) && (thisY == 15 || thisY == 16)) {
+                cell.setX(14);
+                cell.setY(6);
+            } else {
+                cell.setX(5);
+                cell.setY(16);
             }
-        } else {
+            ((Player) this).cell.setType(CellType.FLOOR);
+            return true;
+        }
+
+//                    .removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY))
+//            for (int mapY = 0;mapY < GameMap.getHeight(); mapY++ ) {
+//                for (int mapX = 0; mapX < GameMap.getWidth(); mapX++) {
+//                    if (map[mapY][mapX].getX() == thisX && map[mapY][mapX].getY() == thisY) {
+//                        System.out.println("To ten teleport");
+//                        break;
+//                    }
+//                }
+//            }
+    else {
             System.out.println(object.getClass().getName());
             System.out.println("Another obstacle");
         }
