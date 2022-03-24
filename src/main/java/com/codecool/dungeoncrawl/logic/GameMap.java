@@ -27,11 +27,15 @@ public class GameMap {
     public static Cell[][] getMap() {return cells;}
 
     public void setPlayer(Player player) {
-        this.player = player;
+        GameMap.player = player;
     }
 
     public static Player getPlayer() {
         return player;
+    }
+
+    public static void removePlayer() {
+        player = null;
     }
 
     public static int getWidth() {

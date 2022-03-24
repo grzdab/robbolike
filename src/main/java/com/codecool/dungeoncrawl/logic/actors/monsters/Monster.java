@@ -22,6 +22,7 @@ public abstract class Monster extends Actor {
     public void moveMonster() {
     }
 
+
     public boolean isCollisionLeft() {
         Cell nextCell = cell.getNeighbor(- 1, 0);
         return nextCell.getType() != CellType.FLOOR || nextCell.getObstacle() != null || nextCell.getActor() != null;
@@ -59,4 +60,6 @@ public abstract class Monster extends Actor {
     public void move(int dx, int dy) {
         super.move(dx, dy);
     }
+
+
 }

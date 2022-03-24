@@ -13,12 +13,12 @@ import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MapLoader {
-    public static List<Monster> monsters = new ArrayList<>();
+    public static volatile List<Monster> monsters = new CopyOnWriteArrayList<>();
 
     public static GameMap loadMap() {
         InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
@@ -101,7 +101,7 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 100, 10, 10, 10));
+                            map.setPlayer(new Player(cell, 100, 100, 100, 0));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
@@ -121,7 +121,23 @@ public class MapLoader {
 
     public static void monstersMove() {
         for (Monster monster : monsters) {
-            monster.moveMonster();
+            if(monster.getHealth() <= 0)
+            {
+                removeMonster(monster);
+                System.out.println("Dead monster!");
+                System.out.println("Try to move");
+                System.out.println(monster.getCell().getType());
+            }
+            else {
+                monster.moveMonster();
+            }
         }
+    }
+
+    public static void removeMonster(Monster monster) {
+        monsters.remove(monster);
+        monster.removeActorFromMap();
+        System.out.println("Dead monster!");
+        System.out.println(monster.getCell().getType());
     }
 }

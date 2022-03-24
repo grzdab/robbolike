@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.Tiles;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -69,23 +70,25 @@ public class GameController {
 
     private void onKeyPressed(KeyEvent keyEvent) {
       //   System.out.println("Key pressed");
-        switch (keyEvent.getCode()) {
-            case UP:
-                map.getPlayer().move(0, -1);
-                refresh();
-                break;
-            case DOWN:
-                map.getPlayer().move(0, 1);
-                refresh();
-                break;
-            case LEFT:
-                map.getPlayer().move(-1, 0);
-                refresh();
-                break;
-            case RIGHT:
-                map.getPlayer().move(1,0);
-                refresh();
-                break;
+        if (map.getPlayer() != null) {
+            switch (keyEvent.getCode()) {
+                case UP:
+                    map.getPlayer().move(0, -1);
+                    refresh();
+                    break;
+                case DOWN:
+                    map.getPlayer().move(0, 1);
+                    refresh();
+                    break;
+                case LEFT:
+                    map.getPlayer().move(-1, 0);
+                    refresh();
+                    break;
+                case RIGHT:
+                    map.getPlayer().move(1, 0);
+                    refresh();
+                    break;
+            }
         }
     }
 
@@ -107,10 +110,12 @@ public class GameController {
                 }
             }
         }
-        healthValue.setText("" + map.getPlayer().getHealth());
-        defenceValue.setText("" + map.getPlayer().getDefence());
-        attackValue.setText("" + map.getPlayer().getAttack());
-        expValue.setText("" + map.getPlayer().getExp());
+        Platform.runLater(() -> {
+            healthValue.setText("" + map.getPlayer().getHealth());
+            defenceValue.setText("" + map.getPlayer().getDefence());
+            attackValue.setText("" + map.getPlayer().getAttack());
+            expValue.setText("" + map.getPlayer().getExp());
+        });
     }
 
     public void handleGameStart(WindowEvent windowEvent) {

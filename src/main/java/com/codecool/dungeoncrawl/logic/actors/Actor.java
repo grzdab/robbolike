@@ -1,22 +1,16 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.*;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
-import com.codecool.dungeoncrawl.logic.obstacles.Obstacle;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 
-import java.util.List;
-
 public abstract class Actor implements Drawable {
-    protected Cell cell;
-    private int health;
+    protected volatile Cell cell;
+    private volatile int health;
     private int defence;
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
@@ -33,53 +27,94 @@ public abstract class Actor implements Drawable {
 
 
     public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
+        if (health > 0) {
+            Cell nextCell = cell.getNeighbor(dx, dy);
 
-        if (nextCell.getType() == CellType.WALL) {
-            System.out.println("CANT WALK THROUGH THE WALLS!");
-            return;
-        } else if (nextCell.getItem() != null) {
-            if (this instanceof Player)
-            {
-                ((Player) this).getInventory().addItem(nextCell.getItem());
+            if (nextCell.getType() == CellType.WALL) {
+                System.out.println("CANT WALK THROUGH THE WALLS!");
+                return;
+            } else if (nextCell.getItem() != null) {
+                if (this instanceof Player) {
+                    ((Player) this).getInventory().addItem(nextCell.getItem());
+                }
+                takeItem(nextCell.getItem());
+            } else if (nextCell.getObstacle() != null) {
+                if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;
+                ;
+            } else if (nextCell.getActor() != null) {
+                checkCollision(nextCell.getActor(), dx, dy);
+                return;
             }
-            takeItem(nextCell.getItem());
-        } else if (nextCell.getObstacle() != null) {
-            if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;;
-        } else if (nextCell.getActor() != null) {
-            checkCollision(nextCell.getActor(), dx, dy);
-            return;
-        }
 
-        cell.setActor(null);
-        if (takeItem(nextCell.getItem())) {
-            cell.setItem(null);
+            cell.setActor(null);
+            if (takeItem(nextCell.getItem())) {
+                cell.setItem(null);
+            }
+            nextCell.setActor(this);
+            cell = nextCell;
         }
-        nextCell.setActor(this);
-        cell = nextCell;
+        else {
+            System.out.println("Dead monster!");
+            System.out.println("DOESN'T MOVE");
+            System.out.println(getCell().getType());
+        }
     }
 
     public void fight(Actor attacker, Actor defender) {
         System.out.println("FIGHT!");
         while (true) {
+            System.out.println("Attacker: " + attacker);
+            System.out.println("Defender: " + defender);
             if (!isDefence(attacker, defender)) {
                 defender.setHealth(defender.getHealth() - attacker.getAttack());
+                System.out.println("Defender health: " + defender.getHealth());
                 if (isDead(defender)) {
-                    break;
-                } else if (!isDefence(defender, attacker)) {
-                    attacker.setHealth((attacker.getHealth() - attacker.getAttack()));
-                    if (isDead(attacker)) {
-                        break;
+                    System.out.println("Defender is dead!");
+                    if (defender instanceof Monster) {
+                        defender.removeActorFromMap();
+                        // MapLoader.monsters.remove(defender);
+                        // MapLoader.removeMonster((Monster)defender);
+                        defender.removeActorFromMap();
+                    } else if (defender instanceof Player) {
+//                        defender.getCell().setType(CellType.EMPTY);
+//                        defender.getCell().setActor(null);
+                        defender.removeActorFromMap();
+                        GameMap.removePlayer();
+                        defender.removeActorFromMap();
                     }
+                    break;
+                }
+            }
+
+            if (!isDefence(defender, attacker)) {
+                attacker.setHealth((attacker.getHealth() - defender.getAttack()));
+                System.out.println("Attacker health: " + attacker.getHealth());
+                if (isDead(attacker)) {
+                    System.out.println("Attacker is dead");
+                    if (attacker instanceof Monster) {
+//                        MapLoader.monsters.remove(attacker);
+//                        attacker.getCell().setActor(null);
+                        attacker.removeActorFromMap();
+                       //  MapLoader.removeMonster((Monster)attacker);
+                        attacker.removeActorFromMap();
+                    } else if (attacker instanceof Player) {
+//                        attacker.getCell().setActor(null);
+//                        attacker.getCell().setType(CellType.EMPTY);
+                        attacker.removeActorFromMap();
+                        GameMap.removePlayer();
+                        attacker.removeActorFromMap();
+                    }
+                    break;
                 }
             }
         }
     }
+
     public boolean isDead(Actor actor){
-        return actor.getHealth() <= 0;
+        return actor.health <= 0;
     }
     public boolean isDefence(Actor actor1, Actor actor2){
-        return actor1.getDefence() > actor2.getAttack();
+        return actor2.getDefence() > actor1.getAttack();
     }
     private boolean takeItem(Item item) {
 
@@ -126,6 +161,7 @@ public abstract class Actor implements Drawable {
 
 
         } else {
+            System.out.println(object.getClass().getName());
             System.out.println("Another obstacle");
         }
 
@@ -167,4 +203,10 @@ public abstract class Actor implements Drawable {
     public int getY() {
         return cell.getY();
     }
+
+    public void removeActorFromMap() {
+        this.cell.setActor(null);
+        // cell.setType(CellType.FLOOR);
+    }
+
 }
