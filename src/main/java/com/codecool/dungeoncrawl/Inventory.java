@@ -46,23 +46,15 @@ public class Inventory {
     private void moveNameIdsUp(int removedId)
     {
         //int i = removedId;
-        for (int i = removedId; i < nameIds.size(); ++i) {
-            int replacingId = i;
-            int replacedId = replacingId + 1;
-            String replacedName = null;
+        for (int i = removedId; i < nameIds.size() - 1; ++i) {
+            int movedId = i + 1;
+            // String replacedName = null;
             String replacingName = null;
             for (Map.Entry<String, Integer> entry : nameIds.entrySet()) {
 
-                if (entry.getValue() == replacingId) {
-                    replacedName = entry.getKey();
-                }
-                if (entry.getValue() == replacedId) {
+                if (entry.getValue() == movedId) {
                     replacingName = entry.getKey();
-                }
-
-                if(replacedName != null && replacingName != null)
-                {
-                    nameIds.put(replacingName, replacingId);
+                    nameIds.put(replacingName, i);
                     break;
                 }
             }
@@ -90,6 +82,10 @@ public class Inventory {
                 inventory.remove(object);
                 moveNameIdsUp(nameIds.get(item.getTileName()));
                 nextId--;
+            }
+            else {
+                // inventory.remove(object);
+                inventory.set(nameIds.get(item.getTileName()), object);
             }
         }
     }

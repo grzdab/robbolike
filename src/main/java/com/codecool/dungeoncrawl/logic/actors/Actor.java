@@ -30,8 +30,8 @@ public abstract class Actor implements Drawable {
         if (health > 0) {
             Cell nextCell = cell.getNeighbor(dx, dy);
 
-        if (nextCell.getType() == CellType.WALL) {
-            System.out.println("CANT WALK THROUGH THE WALLS!");
+        if (nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ) {
+            System.out.println("CANT WALK THROUGH THE WALLS OR ROCK!");
             return;
         } else if (nextCell.getItem() != null) {
             if (this instanceof Player)
