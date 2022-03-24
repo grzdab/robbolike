@@ -41,6 +41,10 @@ public abstract class Actor implements Drawable {
             System.out.println("CANT WALK THROUGH THE WALLS!");
             return;
         } else if (nextCell.getItem() != null) {
+            if (this instanceof Player)
+            {
+                ((Player) this).getInventory().addItem(nextCell.getItem());
+            }
             takeItem(nextCell.getItem());
         } else if (nextCell.getObstacle() != null) {
             if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;;
@@ -93,8 +97,9 @@ public abstract class Actor implements Drawable {
     private boolean checkCollision(Object object, int x, int y) {
 
         if (object instanceof Door) {
-            if (hasKey) {
+            if (((Player) this).getInventory().hasItem("key")) {
                 ((Door) object).open();
+                ((Player) this).getInventory().removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY)));
                 hasKey = false;
                 return true;
             } else {

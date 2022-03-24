@@ -29,6 +29,7 @@ public class Tiles {
         tileMap.put("wall", new Tile(10, 17)); //#
         tileMap.put("floor", new Tile(2, 0)); //.
         tileMap.put("rock", new Tile(2,11)); // r
+        tileMap.put("gate", new Tile(18,10)); //g
 
 
         tileMap.put("skeleton", new Tile(29, 6)); //S

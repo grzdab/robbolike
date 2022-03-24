@@ -1,9 +1,11 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
+import com.codecool.dungeoncrawl.Inventory;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 
 public class Player extends Actor {
+    private final Inventory inventory = new Inventory();
     private int exp;
     public Player(Cell cell, int health, int attack, int defence, int exp) {
         super(cell, health, attack, defence);
@@ -20,5 +22,9 @@ public class Player extends Actor {
 
     public void setExp(int exp) {
         this.exp = exp;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

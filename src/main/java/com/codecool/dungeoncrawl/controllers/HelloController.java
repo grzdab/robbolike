@@ -28,7 +28,7 @@ public class HelloController {
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("Dungeon Crawl");
             stage.setScene(scene);
-            GameController<Object> gameController = fxmlLoader.getController();
+            GameController gameController = fxmlLoader.getController();
             stage.setOnShown(gameController::handleGameStart);
             stage.show();
             Stage oldStage = (Stage) gameTitle.getScene().getWindow();
