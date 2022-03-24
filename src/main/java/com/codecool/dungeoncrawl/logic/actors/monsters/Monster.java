@@ -21,19 +21,23 @@ public abstract class Monster extends Actor {
     }
     public boolean isCollisionLeft() {
         Cell nextCell = cell.getNeighbor(- 1, 0);
-        return nextCell.getType() != CellType.FLOOR || nextCell.getObstacle() != null || nextCell.getActor() != null;
+        return nextCell.getType() != CellType.FLOOR || nextCell.getObstacle() != null || nextCell.getActor() != null
+                || nextCell.getItem() != null;
     }
     public boolean isCollisionRight() {
         Cell nextCell = cell.getNeighbor(1, 0);
-        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null;
+        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null
+                || nextCell.getItem() != null;
     }
     public boolean isCollisionUp() {
         Cell nextCell = cell.getNeighbor(0, 1);
-        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null;
+        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null
+                || nextCell.getItem() != null;
     }
     public boolean isCollisionDown() {
         Cell nextCell = cell.getNeighbor(0, -1);
-        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null;
+        return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null
+                || nextCell.getItem() != null;
     }
     public boolean isReadyToFight() {
         return isReadyToFightLeft() || isReadyToFightRight() || isReadyToFightUp() || isReadyToFightDown();
