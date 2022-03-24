@@ -5,13 +5,13 @@ public class Inventory {
     private Integer numberOfItems;
     private String itemName;
     private String typeOfItem;
-    private Integer value;
+    private Integer inventoryCount;
 
-    public Inventory(Integer itemId, Integer numberOfItems, String itemName, String typeOfItem, Integer value) {
+    public Inventory(Integer itemId, Integer numberOfItems, String itemName, String typeOfItem, Integer inventorCount) {
         this.numberOfItems = numberOfItems;
         this.itemName = itemName;
         this.typeOfItem = typeOfItem;
-        this.value = value;
+        this.inventoryCount = inventorCount;
         this.itemId = itemId;
     }
 
@@ -27,8 +27,8 @@ public class Inventory {
         return typeOfItem;
     }
 
-    public Integer getValue() {
-        return value;
+    public Integer getInventoryCount() {
+        return inventoryCount;
     }
 
     public Integer getItemId() {
@@ -47,8 +47,8 @@ public class Inventory {
         this.typeOfItem = typeOfItem;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
+    public void setInventoryCount(Integer inventoryCount) {
+        this.inventoryCount = inventoryCount;
     }
 
     public void setItemId(Integer itemId) {
