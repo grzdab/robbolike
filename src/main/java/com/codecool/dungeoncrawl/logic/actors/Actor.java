@@ -4,18 +4,10 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.GameMap;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
-import com.codecool.dungeoncrawl.logic.items.Item;
-import com.codecool.dungeoncrawl.logic.items.Key;
+import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
-import com.codecool.dungeoncrawl.logic.obstacles.Obstacle;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
-
-import java.util.List;
 
 public abstract class Actor implements Drawable {
     protected Cell cell;
@@ -46,6 +38,7 @@ public abstract class Actor implements Drawable {
                 ((Player) this).getInventory().addItem(nextCell.getItem());
             }
             takeItem(nextCell.getItem());
+//            editStats(nextCell);
         } else if (nextCell.getObstacle() != null) {
             if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;;
         } else if (nextCell.getActor() != null) {
@@ -60,6 +53,24 @@ public abstract class Actor implements Drawable {
         nextCell.setActor(this);
         cell = nextCell;
     }
+
+//    private void editStats(Cell nextCell) {
+//        Item item = nextCell.getItem();// na pewno do przerobienia
+//        String itemTitle = item.getTileName();
+//        if (itemTitle == "axe") {
+//            Player.getAtack();
+//        } else if (item instanceof Bow) {
+//
+//        } else if (item instanceof Breastplate) {
+//
+//        } else if (item instanceof Helmet) {
+//
+//        } else if (item instanceof Shield) {
+//
+//        } else {
+//
+//        }
+//    }
 
     public void fight(Actor actor1, Actor actor2) {
         while (isAlive(actor1, actor2)) {
