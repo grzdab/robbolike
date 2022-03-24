@@ -37,5 +37,9 @@ public class InventoryItem {
     public void addOne() {
         this.inventoryCount++;
     }
+
+    public void removeOne() {
+        this.inventoryCount--;
+    }
 }
 

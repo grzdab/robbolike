@@ -14,6 +14,20 @@
       <Canvas fx:id="canvas" height="640.0" layoutY="24.0" width="800.0" />
       <VBox layoutX="800.0" layoutY="30.0" prefHeight="640.0" prefWidth="200.0">
          <children>
+            <HBox prefHeight="43.0" prefWidth="201.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="130.0" text="LEVEL: ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="levelValue" prefHeight="43.0" prefWidth="66.0" text="1">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <Label layoutX="10.0" layoutY="170.0" prefHeight="37.0" prefWidth="201.0" />
             <HBox prefHeight="29.0" prefWidth="201.0">
                <children>
@@ -79,11 +93,11 @@
             </Label>
             <TableView fx:id="tbInventory" onMouseClicked="#restoreRootFocus" prefHeight="247.0" prefWidth="158.0">
               <columns>
-                <TableColumn fx:id="clItems" editable="false" prefWidth="199.88057855073703" sortable="false" text="Iterms" />
+                <TableColumn fx:id="clItems" editable="false" prefWidth="124.65667724609375" sortable="false" text="Iterms" />
+                  <TableColumn fx:id="clCount" prefWidth="75.94036865234375" text="count" />
               </columns>
             </TableView>
          </children>
       </VBox>
-      <Label layoutX="828.0" layoutY="10.0" prefHeight="39.0" prefWidth="201.0" />
    </children>
 </AnchorPane>

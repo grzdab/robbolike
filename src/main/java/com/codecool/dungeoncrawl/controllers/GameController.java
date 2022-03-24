@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.controllers;
 
+import com.codecool.dungeoncrawl.InventoryItem;
 import com.codecool.dungeoncrawl.Tiles;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
@@ -11,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -19,7 +21,7 @@ import javafx.stage.WindowEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameController<T> {
+public class GameController {
     GameMap map = MapLoader.loadMap();
     @FXML
     Canvas canvas;
@@ -38,16 +40,25 @@ public class GameController<T> {
     Label defenceValue;
 
     @FXML
-    TableView<T> tbInventory;
+    Label levelValue;
 
     @FXML
-    TableColumn<T, String> clItems;
+    TableView<InventoryItem> tbInventory;
+
+    @FXML
+    TableColumn<InventoryItem, String> clItems;
+
+    @FXML
+    TableColumn<InventoryItem, Integer> clCount;
 
     @FXML
     public void initialize() {
         // System.out.println(canvas);
         context = canvas.getGraphicsContext2D();
         // System.out.println(context);
+        clItems.setCellValueFactory(new PropertyValueFactory<>("inventoryName"));
+        clCount.setCellValueFactory(new PropertyValueFactory<>("inventoryCount"));
+        tbInventory.setItems(map.getPlayer().getInventory().getInventory());
     }
 
     @FXML
