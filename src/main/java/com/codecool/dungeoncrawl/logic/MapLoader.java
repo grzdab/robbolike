@@ -37,20 +37,23 @@ public class MapLoader {
                         case '#':
                             cell.setType(CellType.WALL);
                             break;
+                        case 'r':
+                            cell.setType(CellType.ROCK);
+                            break;
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0));
+                            monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0));
+                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
                             break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0));
+                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection()));
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);
@@ -63,6 +66,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell, 10, 10, 10, 10));
                             break;
+                        case 'B':
+                            cell.setType(CellType.FLOOR);
+                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection()));
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
@@ -73,10 +80,8 @@ public class MapLoader {
     }
 
     public static void monstersMove() {
-        //ogsarnać direction żeby wywoływało się raz na poczatku
-        int direction = Bear.monsterDirection();
         for (Monster monster : monsters) {
-            monster.moveMonster(direction);
+            monster.moveMonster();
         }
     }
 }

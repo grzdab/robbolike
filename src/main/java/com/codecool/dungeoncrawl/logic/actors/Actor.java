@@ -9,8 +9,6 @@ public abstract class Actor implements Drawable {
     private int health;
     private int defence;
     private int attack;
-//    private int exp = 10;
-
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -19,7 +17,6 @@ public abstract class Actor implements Drawable {
         this.attack = attack;
         this.defence = defence;
     }
-
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
