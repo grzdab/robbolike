@@ -5,6 +5,11 @@ import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.Helmet;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.items.Key;
+import com.codecool.dungeoncrawl.logic.Cell;
+import com.codecool.dungeoncrawl.logic.CellType;
+import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
@@ -31,21 +36,22 @@ public abstract class Actor implements Drawable {
         if (health > 0) {
             Cell nextCell = cell.getNeighbor(dx, dy);
 
-            if (nextCell.getType() == CellType.WALL) {
-                System.out.println("CANT WALK THROUGH THE WALLS!");
-                return;
-            } else if (nextCell.getItem() != null) {
-                if (this instanceof Player) {
-                    ((Player) this).getInventory().addItem(nextCell.getItem());
-                }
-                takeItem(nextCell.getItem());
-            } else if (nextCell.getObstacle() != null) {
-                if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;
-                ;
-            } else if (nextCell.getActor() != null) {
-                checkCollision(nextCell.getActor(), dx, dy);
-                return;
+        if (nextCell.getType() == CellType.WALL) {
+            System.out.println("CANT WALK THROUGH THE WALLS!");
+            return;
+        } else if (nextCell.getItem() != null) {
+            if (this instanceof Player)
+            {
+                ((Player) this).getInventory().addItem(nextCell.getItem());
             }
+            takeItem(nextCell.getItem());
+//            editStats(nextCell);
+        } else if (nextCell.getObstacle() != null) {
+            if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;;
+        } else if (nextCell.getActor() != null) {
+            checkCollision(nextCell.getActor(), dx, dy);
+            return;
+        }
 
             cell.setActor(null);
             if (takeItem(nextCell.getItem())) {
@@ -61,6 +67,29 @@ public abstract class Actor implements Drawable {
         }
     }
 
+//    private void editStats(Cell nextCell) {
+//        Item item = nextCell.getItem();// na pewno do przerobienia
+//        String itemTitle = item.getTileName();
+//        if (itemTitle == "axe") {
+//            Player.getAtack();
+//        } else if (item instanceof Bow) {
+//
+//        } else if (item instanceof Breastplate) {
+//
+//        } else if (item instanceof Helmet) {
+//
+//        } else if (item instanceof Shield) {
+//
+//        } else {
+//
+//        }
+//    }
+
+    public void fight(Actor actor1, Actor actor2) {
+        while (isAlive(actor1, actor2)) {
+            if (!isDefence(actor1, actor2)) {
+                actor2.setHealth(actor2.getHealth() - actor1.getAttack());
+                if (!isAlive(actor1, actor2)) {
     public void fight(Actor attacker, Actor defender) {
         System.out.println("FIGHT!");
         while (true) {
