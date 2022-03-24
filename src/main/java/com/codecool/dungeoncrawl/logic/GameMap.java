@@ -26,7 +26,7 @@ public class GameMap {
 
     public static Cell[][] getMap() {return cells;}
 
-    public void setPlayer(Player player) {
+    public static void setPlayer(Player player) {
         GameMap.player = player;
     }
 

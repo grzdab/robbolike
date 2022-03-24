@@ -47,6 +47,9 @@ public class MapLoader {
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
+                        case '_':
+                            cell.setType(CellType.GRASS);
+                            break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));

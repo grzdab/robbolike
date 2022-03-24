@@ -52,8 +52,6 @@ public class Spider extends Monster {
         return ThreadLocalRandom.current().nextInt(0, 2);
     }
 
-
-
     @Override
     public String getTileName() {
         return "spider";
