@@ -2,11 +2,15 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.items.Item;
+import com.codecool.dungeoncrawl.logic.obstacles.Obstacle;
+import com.codecool.dungeoncrawl.logic.projectiles.Projectile;
 
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private Item item;
+    private Obstacle obstacle;
+    private Projectile projectile;
     private GameMap gameMap;
     private int x, y;
 
@@ -33,6 +37,10 @@ public class Cell implements Drawable {
         this.item = item;
     }
 
+    public void setObstacle(Obstacle obstacle) {
+        this.obstacle = obstacle;
+    }
+
     public Actor getActor() {
         return actor;
     }
@@ -41,8 +49,17 @@ public class Cell implements Drawable {
         return item;
     }
 
+    public Obstacle getObstacle() {
+        return obstacle;
+    }
+
+    public Projectile getProjectile() {
+        return projectile;
+    }
+
     public Cell getNeighbor(int dx, int dy) {
-        return gameMap.getCell(x + dx, y + dy);
+        Cell neighbor = gameMap.getCell(x + dx, y + dy);
+        return neighbor;
     }
 
     @Override
