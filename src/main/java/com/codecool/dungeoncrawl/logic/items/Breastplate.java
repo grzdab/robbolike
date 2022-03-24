@@ -2,14 +2,15 @@ package com.codecool.dungeoncrawl.logic.items;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Sword extends Item {
-    public Sword(Cell cell) {
+public class Breastplate extends Item {
+    public Breastplate(Cell cell) {
         super(cell);
-        int dmg = 5;
+        int defence = 4;
+        boolean isWeapon = false;
     }
 
     @Override
     public String getTileName() {
-        return "sword";
+        return "breastplate";
     }
 }
