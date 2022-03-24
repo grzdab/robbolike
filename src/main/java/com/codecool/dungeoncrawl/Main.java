@@ -57,7 +57,7 @@ public class Main extends Application {
             public void run() {
                 refresh();
             }
-        }, 0, 2000);
+        }, 0, 50);
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
     }
@@ -94,6 +94,8 @@ public class Main extends Application {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getObstacle() != null) {
+                    Tiles.drawTile(context, cell.getObstacle(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
