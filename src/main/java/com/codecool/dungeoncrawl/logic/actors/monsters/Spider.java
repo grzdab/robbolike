@@ -2,7 +2,10 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Spider extends Monster {
@@ -12,6 +15,9 @@ public class Spider extends Monster {
     }
 
     public void moveMonster() {
+        if (isReadyToFight()) {
+            fight(this, GameMap.getPlayer());
+        }
         if (isCollisionLeft()) {
             direction = 1;
         }

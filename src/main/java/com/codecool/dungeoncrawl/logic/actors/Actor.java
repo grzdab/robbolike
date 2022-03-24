@@ -1,9 +1,6 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
-import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.Drawable;
-import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
@@ -23,7 +20,6 @@ public abstract class Actor implements Drawable {
     private int defence;
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
-
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -57,15 +53,16 @@ public abstract class Actor implements Drawable {
         cell = nextCell;
     }
 
-    public void fight(Actor actor1, Actor actor2) {
-        while (isAlive(actor1, actor2)) {
-            if (!isDefence(actor1, actor2)) {
-                actor2.setHealth(actor2.getHealth() - actor1.getAttack());
-                if (!isAlive(actor1, actor2)) {
+    public void fight(Actor attacker, Actor defender) {
+        System.out.println("FIGHT!");
+        while (isAlive(attacker, defender)) {
+            if (!isDefence(attacker, defender)) {
+                defender.setHealth(defender.getHealth() - attacker.getAttack());
+                if (!isAlive(attacker, defender)) {
                     break;
-                } else if (!isDefence(actor2, actor1)) {
-                    actor1.setHealth((actor1.getHealth() - actor1.getAttack()));
-                    if (!isAlive(actor1, actor2)) {
+                } else if (!isDefence(defender, attacker)) {
+                    attacker.setHealth((attacker.getHealth() - attacker.getAttack()));
+                    if (!isAlive(attacker, defender)) {
                         break;
                     }
                 }
@@ -129,9 +126,6 @@ public abstract class Actor implements Drawable {
 
         return true;
     }
-
-
-
 
     public int getHealth() {
         return health;
