@@ -10,8 +10,6 @@ public class Skeleton extends Monster {
         super(cell, health, attack, defence, direction);
     }
 
-
-
     @Override
     public String getTileName() {
         return "skeleton";

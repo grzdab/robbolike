@@ -17,17 +17,12 @@ public abstract class Monster extends Actor {
         super(cell, health, attack, defence);
         this.direction = direction;
     }
-
-
     public void moveMonster() {
     }
-
-
     public boolean isCollisionLeft() {
         Cell nextCell = cell.getNeighbor(- 1, 0);
         return nextCell.getType() != CellType.FLOOR || nextCell.getObstacle() != null || nextCell.getActor() != null;
     }
-
     public boolean isCollisionRight() {
         Cell nextCell = cell.getNeighbor(1, 0);
         return nextCell.getType() != CellType.FLOOR  || nextCell.getObstacle() != null || nextCell.getActor() != null;
