@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic.actors.monsters;
 
+import com.codecool.dungeoncrawl.controllers.GameController;
 import com.codecool.dungeoncrawl.logic.Cell;
 
 
@@ -8,6 +9,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
+    GameController gameController;
 
     public Bear(Cell cell, int health, int attack, int defence,int direction) {
         super(cell, health, attack, defence, direction);
@@ -21,37 +23,38 @@ public class Bear extends Monster {
         List<Integer> collisionUp = List.of(0,1,2);
         List<Integer> collisionDown = List.of(0,1,3);
 
-        if (isCollisionLeft()) {
-                direction = collisionLeft.get(randomIndex);
-//                if (isCollisionUp()) {
-//                    direction = collisionUp.get(randomIndex);
-//                } else if (isCollisionDown()) {
-//                    direction = collisionDown.get(randomIndex);
-//                }
-            System.out.println("colisionLeft");
-        }
-        if (isCollisionRight()) {
-                direction = collisionRight.get(randomIndex);
-//            if (isCollisionUp()) {
+//        if (isCollisionLeft()) {
+//                direction = collisionLeft.get(randomIndex);
+////                if (isCollisionUp()) {
+////                    direction = collisionUp.get(randomIndex);
+////                } else if (isCollisionDown()) {
+////                    direction = collisionDown.get(randomIndex);
+////                }
+//            System.out.println("colisionLeft");
+//        }
+//        if (isCollisionRight()) {
+//                direction = collisionRight.get(randomIndex);
+////            if (isCollisionUp()) {
+////                direction = collisionUp.get(randomIndex);
+////            } else if (isCollisionDown()) {
+////                direction = collisionDown.get(randomIndex);
+////            }
+//            System.out.println("colisionR");
+//        }
+//        if (isCollisionUp()) {
 //                direction = collisionUp.get(randomIndex);
-//            } else if (isCollisionDown()) {
+////            if (isCollisionUp()) {
+////                direction = collisionUp.get(randomIndex);
+////            } else if (isCollisionDown()) {
+////                direction = collisionDown.get(randomIndex);
+////            }
+//            System.out.println("colisionUp");
+//        }
+//        if (isCollisionDown()) {
 //                direction = collisionDown.get(randomIndex);
-//            }
-            System.out.println("colisionR");
-        }
-        if (isCollisionUp()) {
-                direction = collisionUp.get(randomIndex);
-//            if (isCollisionUp()) {
-//                direction = collisionUp.get(randomIndex);
-//            } else if (isCollisionDown()) {
-//                direction = collisionDown.get(randomIndex);
-//            }
-            System.out.println("colisionUp");
-        }
-        if (isCollisionDown()) {
-                direction = collisionDown.get(randomIndex);
-            System.out.println("colisionDown");
-        }
+//            System.out.println("colisionDown");
+//        }
+        gameController.isCollision();
         switch (direction) {
             case 0:
                 Cell nextCell = cell.getNeighbor(- 1, 0);
