@@ -7,10 +7,11 @@ import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
+import javafx.application.Platform;
 
 public abstract class Actor implements Drawable {
     protected volatile Cell cell;
-    private volatile int health;
+    protected volatile int health;
     private int defence;
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
@@ -54,7 +55,7 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
         }
         else {
-            System.out.println("Dead monster!");
+            System.out.println("Dead actor!");
             System.out.println("DOESN'T MOVE");
             System.out.println(getCell().getType());
         }
@@ -70,18 +71,27 @@ public abstract class Actor implements Drawable {
                 System.out.println("Defender health: " + defender.getHealth());
                 if (isDead(defender)) {
                     System.out.println("Defender is dead!");
-                    if (defender instanceof Monster) {
-                        defender.removeActorFromMap();
-                        // MapLoader.monsters.remove(defender);
-                        // MapLoader.removeMonster((Monster)defender);
-                        defender.removeActorFromMap();
-                    } else if (defender instanceof Player) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(() ->
+                    {
+                        if (defender instanceof Monster) {
+                            //defender.removeActorFromMap();
+                            // MapLoader.monsters.remove(defender);
+                            // MapLoader.removeMonster((Monster)defender);
+                            // defender.removeActorFromMap();
+                        } else if (defender instanceof Player) {
 //                        defender.getCell().setType(CellType.EMPTY);
 //                        defender.getCell().setActor(null);
-                        defender.removeActorFromMap();
-                        GameMap.removePlayer();
-                        defender.removeActorFromMap();
-                    }
+                            defender.removeActorFromMap();
+                            GameMap.removePlayer();
+                            defender.removeActorFromMap();
+                        }
+                        // MapLoader.monstersMove();
+                    });
                     break;
                 }
             }
@@ -90,20 +100,29 @@ public abstract class Actor implements Drawable {
                 attacker.setHealth((attacker.getHealth() - defender.getAttack()));
                 System.out.println("Attacker health: " + attacker.getHealth());
                 if (isDead(attacker)) {
-                    System.out.println("Attacker is dead");
-                    if (attacker instanceof Monster) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(() ->
+                    {
+                        System.out.println("Attacker is dead");
+                        if (attacker instanceof Monster) {
 //                        MapLoader.monsters.remove(attacker);
 //                        attacker.getCell().setActor(null);
-                        attacker.removeActorFromMap();
-                       //  MapLoader.removeMonster((Monster)attacker);
-                        attacker.removeActorFromMap();
-                    } else if (attacker instanceof Player) {
+                            attacker.removeActorFromMap();
+                            //  MapLoader.removeMonster((Monster)attacker);
+                            attacker.removeActorFromMap();
+                        } else if (attacker instanceof Player) {
 //                        attacker.getCell().setActor(null);
 //                        attacker.getCell().setType(CellType.EMPTY);
-                        attacker.removeActorFromMap();
-                        GameMap.removePlayer();
-                        attacker.removeActorFromMap();
-                    }
+                            attacker.removeActorFromMap();
+                            GameMap.removePlayer();
+                            attacker.removeActorFromMap();
+                        }
+                    // MapLoader.monstersMove();
+                    });
                     break;
                 }
             }
@@ -205,7 +224,9 @@ public abstract class Actor implements Drawable {
     }
 
     public void removeActorFromMap() {
+        System.out.println("Remove Actor from map");
         this.cell.setActor(null);
+        MapLoader.monstersMove();
         // cell.setType(CellType.FLOOR);
     }
 
