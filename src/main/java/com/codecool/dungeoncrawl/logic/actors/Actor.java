@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
+import com.codecool.dungeoncrawl.logic.items.Helmet;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
@@ -72,6 +73,7 @@ public abstract class Actor implements Drawable {
                     System.out.println("Defender is dead!");
                     if (defender instanceof Monster) {
                         defender.removeActorFromMap();
+
                         // MapLoader.monsters.remove(defender);
                         // MapLoader.removeMonster((Monster)defender);
                         defender.removeActorFromMap();
@@ -95,6 +97,8 @@ public abstract class Actor implements Drawable {
 //                        MapLoader.monsters.remove(attacker);
 //                        attacker.getCell().setActor(null);
                         attacker.removeActorFromMap();
+                        cell.setType(CellType.FLOOR);
+                        new Helmet(cell);
                        //  MapLoader.removeMonster((Monster)attacker);
                         attacker.removeActorFromMap();
                     } else if (attacker instanceof Player) {
