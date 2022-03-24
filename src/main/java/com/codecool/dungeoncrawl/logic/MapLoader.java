@@ -6,6 +6,10 @@ import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.logic.items.*;
+import com.codecool.dungeoncrawl.logic.actors.monsters.*;
+import com.codecool.dungeoncrawl.logic.obstacles.Crate;
+import com.codecool.dungeoncrawl.logic.obstacles.Door;
+import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 
 
 import java.io.InputStream;
@@ -43,25 +47,38 @@ public class MapLoader {
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
-                        case 's':
+                        case 'S':
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));
                             break;
-                        case 'b':
+                        case 'M':
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
                             break;
-                        case 'p':
+                        case 'P':
                             cell.setType(CellType.FLOOR);
                             monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection()));
                             break;
-                        case 't':
+                        case 's':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
                             break;
-//                        case 'k':
-//                            cell.setType(CellType.FLOOR);
-//                            new Key(cell);
+                        case 'd':
+                            cell.setType(CellType.FLOOR);
+                            new Door(cell);
+                            break;
+                        case 'k':
+                            cell.setType(CellType.FLOOR);
+                            new Key(cell);
+                            break;
+                        case 't':
+                            cell.setType(CellType.FLOOR);
+                            new Teleport(cell);
+                            break;
+                        case 'c':
+                            cell.setType(CellType.FLOOR);
+                            new Crate(cell);
+                            break;
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell, 10, 10, 10, 10));
