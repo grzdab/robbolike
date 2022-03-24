@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
@@ -42,17 +43,17 @@ public abstract class Monster extends Actor {
         return isReadyToFightLeft() || isReadyToFightRight() || isReadyToFightUp() || isReadyToFightDown();
     }
     public boolean isReadyToFightLeft() {
-        cell.getNeighbor(- 1, 0);
-        return cell.getType().equals(CellType.PLAYER);}
+        Cell nextCell = cell.getNeighbor(- 1, 0);
+        return nextCell.getActor() == GameMap.getPlayer();}
     public boolean isReadyToFightRight() {
-        cell.getNeighbor(1, 0);
-        return cell.getType().equals(CellType.PLAYER);}
+        Cell nextCell = cell.getNeighbor(1, 0);
+        return  nextCell.getActor() == GameMap.getPlayer();}
     public boolean isReadyToFightUp() {
-        cell.getNeighbor(0, 1);
-        return cell.getType().equals(CellType.PLAYER);}
+        Cell nextCell = cell.getNeighbor(0, 1);
+        return  nextCell.getActor() == GameMap.getPlayer();}
     public boolean isReadyToFightDown() {
-        cell.getNeighbor(0, -1);
-        return cell.getType().equals(CellType.PLAYER);}
+        Cell nextCell = cell.getNeighbor(0, -1);
+        return  nextCell.getActor() == GameMap.getPlayer();}
 
     @Override
     public void move(int dx, int dy) {

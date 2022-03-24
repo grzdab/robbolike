@@ -100,8 +100,8 @@ public class MapLoader {
                             new Crate(cell);
                             break;
                         case '@':
-                            cell.setType(CellType.PLAYER);
-                            map.setPlayer(new Player(cell, 10, 10, 10, 10));
+                            cell.setType(CellType.FLOOR);
+                            map.setPlayer(new Player(cell, 100, 10, 10, 10));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);

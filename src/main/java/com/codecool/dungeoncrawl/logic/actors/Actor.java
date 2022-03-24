@@ -55,22 +55,22 @@ public abstract class Actor implements Drawable {
 
     public void fight(Actor attacker, Actor defender) {
         System.out.println("FIGHT!");
-        while (isAlive(attacker, defender)) {
+        while (true) {
             if (!isDefence(attacker, defender)) {
                 defender.setHealth(defender.getHealth() - attacker.getAttack());
-                if (!isAlive(attacker, defender)) {
+                if (isDead(defender)) {
                     break;
                 } else if (!isDefence(defender, attacker)) {
                     attacker.setHealth((attacker.getHealth() - attacker.getAttack()));
-                    if (!isAlive(attacker, defender)) {
+                    if (isDead(attacker)) {
                         break;
                     }
                 }
             }
         }
     }
-    public boolean isAlive(Actor actor1, Actor actor2){
-        return actor1.getHealth() >= 0 || actor2.getHealth() >= 0;
+    public boolean isDead(Actor actor){
+        return actor.getHealth() <= 0;
     }
     public boolean isDefence(Actor actor1, Actor actor2){
         return actor1.getDefence() > actor2.getAttack();

@@ -21,9 +21,9 @@ public class Bear extends Monster {
     @Override
     public void moveMonster() {
         List<Integer> possibleDirections = new ArrayList<>();
-//        if (isReadyToFight()) {
-//            fight(this, GameMap.getPlayer());
-//        }
+        if (isReadyToFight()) {
+            fight(this, GameMap.getPlayer());
+        }
         boolean collision = false;
         if (!isCollisionLeft()) {
             possibleDirections.add(0);
