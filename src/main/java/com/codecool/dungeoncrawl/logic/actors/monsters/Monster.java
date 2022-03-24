@@ -9,8 +9,8 @@ import java.util.List;
 public abstract class Monster extends Actor {
     private static final List<Monster> monsters = null;
 
-    public Monster(Cell cell) {
-        super(cell);
+    public Monster(Cell cell, int health, int attack, int defence) {
+        super(cell, health, attack, defence);
     }
 
 
@@ -19,20 +19,28 @@ public abstract class Monster extends Actor {
 
     public boolean isCollisionLeft() {
         Cell nextCell = cell.getNeighbor(- 1, 0);
-        return nextCell.getType() == CellType.WALL;
+        return nextCell.getType() == CellType.WALL ||
+                nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
+                nextCell.getType() == CellType.MONSTER_SKELETON;
     }
 
     public boolean isCollisionRight() {
         Cell nextCell = cell.getNeighbor(1, 0);
-        return nextCell.getType() == CellType.WALL;
+        return nextCell.getType() == CellType.WALL ||
+                nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
+                nextCell.getType() == CellType.MONSTER_SKELETON;
     }
     public boolean isCollisionUp() {
         Cell nextCell = cell.getNeighbor(0, 1);
-        return nextCell.getType() == CellType.WALL;
+        return nextCell.getType() == CellType.WALL ||
+                nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
+                nextCell.getType() == CellType.MONSTER_SKELETON;
     }
     public boolean isCollisionDown() {
         Cell nextCell = cell.getNeighbor(0, -1);
-        return nextCell.getType() == CellType.WALL;
+        return nextCell.getType() == CellType.WALL ||
+                nextCell.getType() == CellType.MONSTER_BEAR || nextCell.getType() == CellType.MONSTER_SPIDER ||
+                nextCell.getType() == CellType.MONSTER_SKELETON;
     }
 
     @Override

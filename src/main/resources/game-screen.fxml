@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.codecool.dungeoncrawl.controllers.GameController">
+   <children>
+      <Canvas fx:id="canvas" height="640.0" layoutY="24.0" width="800.0" />
+      <VBox layoutX="800.0" layoutY="30.0" prefHeight="640.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="10.0" layoutY="170.0" prefHeight="37.0" prefWidth="201.0" />
+            <HBox prefHeight="29.0" prefWidth="201.0">
+               <children>
+                  <Label fx:id="expTitle" prefHeight="30.0" prefWidth="200.0" text="   EXP:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="expValue" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="42.0" prefWidth="201.0">
+               <children>
+                  <Label fx:id="healthTitle" prefHeight="39.0" prefWidth="178.0" text="   HP:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="healthValue" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="100">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="201.0">
+               <children>
+                  <Label fx:id="attackTitle" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0" text="   ATT:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="attackValue" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="92.0" prefHeight="29.0" prefWidth="201.0">
+               <children>
+                  <Label fx:id="defenceTitle" alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0" text="   DEF:">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="defenceValue" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label prefHeight="55.0" prefWidth="201.0" />
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Inventory">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tbInventory" prefHeight="247.0" prefWidth="158.0">
+              <columns>
+                <TableColumn fx:id="clItems" editable="false" prefWidth="199.88057855073703" sortable="false" text="Iterms" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <Label layoutX="828.0" layoutY="10.0" prefHeight="39.0" prefWidth="201.0" />
+   </children>
+</AnchorPane>
