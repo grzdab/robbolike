@@ -76,20 +76,20 @@ public class GameController<T> {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         isCollision();
-//        for (int x = 0; x < map.getWidth(); x++) {
-//            for (int y = 0; y < map.getHeight(); y++) {
-//                Cell cell = map.getCell(x, y);
-//                if (cell.getActor() != null) {
-//                    Tiles.drawTile(context, cell.getActor(), x, y);
-//                } else if (cell.getItem() != null) {
-//                    Tiles.drawTile(context, cell.getItem(), x, y);
-//                } else if (cell.getObstacle() != null) {
-//                    Tiles.drawTile(context, cell.getObstacle(), x, y);
-//                } else {
-//                    Tiles.drawTile(context, cell, x, y);
-//                }
-//            }
-//        }
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getActor() != null) {
+                    Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getObstacle() != null) {
+                    Tiles.drawTile(context, cell.getObstacle(), x, y);
+                } else {
+                    Tiles.drawTile(context, cell, x, y);
+                }
+            }
+        }
         healthValue.setText("" + map.getPlayer().getHealth());
     }
 
