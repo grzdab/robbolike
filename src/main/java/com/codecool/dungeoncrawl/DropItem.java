@@ -9,22 +9,25 @@ import com.codecool.dungeoncrawl.logic.items.Shield;
 import com.codecool.dungeoncrawl.logic.items.Sword;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class DropItem {
-    private List<String> dropItemList = new ArrayList<>();
-    public void addItemsToListDrop() {
-        dropItemList.add("sword");
-        dropItemList.add("shield");
-        dropItemList.add("bow");
-        dropItemList.add("axe");
-    }
+    private List<String> dropItemList = Arrays.asList("sword", "shield", "bow", "axe", "coin");
     int x;
     int y;
+
+//    public void addItemsToListDrop() {
+//        dropItemList.add("sword");
+//        dropItemList.add("shield");
+//        dropItemList.add("bow");
+//        dropItemList.add("axe");
+//    }
     public void dropItem(Actor actor, GameMap gameMap) {
-        if (dropItemList.isEmpty()) {
-            addItemsToListDrop();
-        }
+//        if (dropItemList.isEmpty()) {
+//            addItemsToListDrop();
+//        }
         x = actor.getX();
         y = actor.getY();
         Cell cell = gameMap.getCell(x, y);
@@ -33,11 +36,11 @@ public class DropItem {
     }
 
     private void putDroppedElement(Cell cell, String itemToDrop) {
-        if (itemToDrop == "sword") {
+        if (Objects.equals(itemToDrop, "sword")) {
             new Sword(cell);
-        } else if (itemToDrop == "shield") {
+        } else if (Objects.equals(itemToDrop, "shield")) {
             new Shield(cell);
-        } else if (itemToDrop == "bow") {
+        } else if (Objects.equals(itemToDrop, "bow")) {
             new Bow(cell);
         } else {
             new Axe(cell);

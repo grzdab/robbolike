@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Inventory {
     private final ObservableList<InventoryItem> inventory = FXCollections.observableArrayList();
@@ -16,7 +17,7 @@ public class Inventory {
     public boolean hasItem(String name)
     {
         for (InventoryItem item: inventory) {
-            if (item.getInventoryName() == name)
+            if (Objects.equals(item.getInventoryName(), name))
                 return true;
         }
         return false;
