@@ -134,13 +134,13 @@ public abstract class Actor implements Drawable {
 //                        MapLoader.monsters.remove(attacker);
 //                        attacker.getCell().setActor(null);
                             attacker.removeActorFromMap();
+                            cell.setType(CellType.FLOOR);
+                            new Coin(cell);
                             //  MapLoader.removeMonster((Monster)attacker);
                             attacker.removeActorFromMap();
                         } else if (attacker instanceof Player) {
 
 //                        attacker.removeActorFromMap();
-                            cell.setType(CellType.FLOOR);
-                            new Coin(cell);
                            //  MapLoader.removeMonster((Monster)attacker);
                             attacker.removeActorFromMap();
                         }
@@ -167,36 +167,7 @@ public abstract class Actor implements Drawable {
 
         return true;
     }
-//    private void randomItem(Actor attacker) {
-//        attacker.removeActorFromMap();
-//        int items  = item.randomItem();
-//        switch (items) {
-//            case 0:
-//                cell.setType(CellType.FLOOR);
-//                new Axe(cell);
-//                break;
-//            case 1:
-//                cell.setType(CellType.FLOOR);
-//                new Bow(cell);
-//                break;
-//            case 2:
-//                cell.setType(CellType.FLOOR);
-//                new Breastplate(cell);
-//                break;
-//            case 3:
-//                cell.setType(CellType.FLOOR);
-//                new Helmet(cell);
-//                break;
-//            case 4:
-//                cell.setType(CellType.FLOOR);
-//                new Shield(cell);
-//                break;
-//            case 5:
-//                cell.setType(CellType.FLOOR);
-//                new Sword(cell);
-//                break;
-//        }
-//    }
+
 
     private boolean checkCollision(Object object, int x, int y) {
 
