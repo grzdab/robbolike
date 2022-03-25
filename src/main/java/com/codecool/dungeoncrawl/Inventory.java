@@ -46,12 +46,17 @@ public class Inventory {
     private void moveNameIdsUp(int removedId)
     {
         //int i = removedId;
+        for (Map.Entry<String, Integer> entry : nameIds.entrySet()) {
+            if (entry.getValue() == removedId) {
+                nameIds.remove(entry.getKey());
+                break;
+            }
+        }
         for (int i = removedId; i < nameIds.size() - 1; ++i) {
             int movedId = i + 1;
             // String replacedName = null;
             String replacingName = null;
             for (Map.Entry<String, Integer> entry : nameIds.entrySet()) {
-
                 if (entry.getValue() == movedId) {
                     replacingName = entry.getKey();
                     nameIds.put(replacingName, i);
