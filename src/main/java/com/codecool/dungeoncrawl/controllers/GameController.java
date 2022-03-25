@@ -93,6 +93,32 @@ public class GameController {
     }
 
     private void refresh() {
+//        MapLoader.monstersMove();
+        context.setFill(Color.BLACK);
+        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getActor() != null) {
+                    Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getObstacle() != null) {
+                    Tiles.drawTile(context, cell.getObstacle(), x, y);
+                } else {
+                    Tiles.drawTile(context, cell, x, y);
+                }
+            }
+        }
+        Platform.runLater(() -> {
+            healthValue.setText("" + map.getPlayer().getHealth());
+            defenceValue.setText("" + map.getPlayer().getDefence());
+            attackValue.setText("" + map.getPlayer().getAttack());
+            expValue.setText("" + map.getPlayer().getExp());
+        });
+    }
+
+    private void refreshMonster() {
         MapLoader.monstersMove();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -120,6 +146,7 @@ public class GameController {
 
     public void handleGameStart(WindowEvent windowEvent) {
         refresh();
+        refreshMonster();
 
         Scene scene = canvas.getScene();
         // System.out.println(scene);
@@ -129,7 +156,7 @@ public class GameController {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                refresh();
+                refreshMonster();
             }
         }, 0, 700);
     }
