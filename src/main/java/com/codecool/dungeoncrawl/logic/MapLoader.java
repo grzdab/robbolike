@@ -52,15 +52,15 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));
+                            monsters.add(new Skeleton(cell, 10, 1, 0));
                             break;
                         case 'M':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
+                            monsters.add(new Bear(cell, 50, 10, 0));
                             break;
                         case 'P':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection()));
+                            monsters.add(new Spider(cell, 25, 5, 0));
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
@@ -108,7 +108,7 @@ public class MapLoader {
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection()));
+                            monsters.add(new Boss(cell, 100, 20, 0));
                             break;
                         case 'g':
                             cell.setType(CellType.GATE);
