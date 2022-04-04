@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Inventory {
     private final ObservableList<InventoryItem> inventory = FXCollections.observableArrayList();
@@ -16,7 +17,7 @@ public class Inventory {
     public boolean hasItem(String name)
     {
         for (InventoryItem item: inventory) {
-            if (item.getInventoryName() == name)
+            if (Objects.equals(item.getInventoryName(), name))
                 return true;
         }
         return false;
@@ -34,6 +35,7 @@ public class Inventory {
         }
         else
         {
+            System.out.println("Added " + item.getTileName());
             nameIds.put(item.getTileName(), nextId);
             nextId++;
             InventoryItem newItem = new InventoryItem(item.getTileName(), 0); // item.getPts()
@@ -45,23 +47,20 @@ public class Inventory {
     private void moveNameIdsUp(int removedId)
     {
         //int i = removedId;
-        for (int i = removedId; i < nameIds.size(); ++i) {
-            int replacingId = i;
-            int replacedId = replacingId + 1;
-            String replacedName = null;
+        for (Map.Entry<String, Integer> entry : nameIds.entrySet()) {
+            if (entry.getValue() == removedId) {
+                nameIds.remove(entry.getKey());
+                break;
+            }
+        }
+        for (int i = removedId; i < nameIds.size() - 1; ++i) {
+            int movedId = i + 1;
+            // String replacedName = null;
             String replacingName = null;
             for (Map.Entry<String, Integer> entry : nameIds.entrySet()) {
-
-                if (entry.getValue() == replacingId) {
-                    replacedName = entry.getKey();
-                }
-                if (entry.getValue() == replacedId) {
+                if (entry.getValue() == movedId) {
                     replacingName = entry.getKey();
-                }
-
-                if(replacedName != null && replacingName != null)
-                {
-                    nameIds.put(replacingName, replacingId);
+                    nameIds.put(replacingName, i);
                     break;
                 }
             }
@@ -91,6 +90,7 @@ public class Inventory {
                 nextId--;
             }
             else {
+                // inventory.remove(object);
                 inventory.set(nameIds.get(item.getTileName()), object);
             }
         }

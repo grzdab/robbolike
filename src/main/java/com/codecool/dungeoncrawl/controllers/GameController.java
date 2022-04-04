@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.Tiles;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -69,27 +70,55 @@ public class GameController {
 
     private void onKeyPressed(KeyEvent keyEvent) {
       //   System.out.println("Key pressed");
-        switch (keyEvent.getCode()) {
-            case UP:
-                map.getPlayer().move(0, -1);
-                refresh();
-                break;
-            case DOWN:
-                map.getPlayer().move(0, 1);
-                refresh();
-                break;
-            case LEFT:
-                map.getPlayer().move(-1, 0);
-                refresh();
-                break;
-            case RIGHT:
-                map.getPlayer().move(1,0);
-                refresh();
-                break;
+        if (map.getPlayer() != null) {
+            switch (keyEvent.getCode()) {
+                case UP:
+                    map.getPlayer().move(0, -1);
+                    refresh();
+                    break;
+                case DOWN:
+                    map.getPlayer().move(0, 1);
+                    refresh();
+                    break;
+                case LEFT:
+                    map.getPlayer().move(-1, 0);
+                    refresh();
+                    break;
+                case RIGHT:
+                    map.getPlayer().move(1, 0);
+                    refresh();
+                    break;
+            }
         }
     }
 
     private void refresh() {
+//        MapLoader.monstersMove();
+        context.setFill(Color.BLACK);
+        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getActor() != null) {
+                    Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getObstacle() != null) {
+                    Tiles.drawTile(context, cell.getObstacle(), x, y);
+                } else {
+                    Tiles.drawTile(context, cell, x, y);
+                }
+            }
+        }
+        Platform.runLater(() -> {
+            healthValue.setText("" + map.getPlayer().getHealth());
+            defenceValue.setText("" + map.getPlayer().getDefence());
+            attackValue.setText("" + map.getPlayer().getAttack());
+            expValue.setText("" + map.getPlayer().getExp());
+        });
+    }
+
+    private void refreshMonster() {
         MapLoader.monstersMove();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -107,11 +136,17 @@ public class GameController {
                 }
             }
         }
-        healthValue.setText("" + map.getPlayer().getHealth());
+        Platform.runLater(() -> {
+            healthValue.setText("" + map.getPlayer().getHealth());
+            defenceValue.setText("" + map.getPlayer().getDefence());
+            attackValue.setText("" + map.getPlayer().getAttack());
+            expValue.setText("" + map.getPlayer().getExp());
+        });
     }
 
     public void handleGameStart(WindowEvent windowEvent) {
         refresh();
+        refreshMonster();
 
         Scene scene = canvas.getScene();
         // System.out.println(scene);
@@ -121,7 +156,7 @@ public class GameController {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                refresh();
+                refreshMonster();
             }
         }, 0, 700);
     }
