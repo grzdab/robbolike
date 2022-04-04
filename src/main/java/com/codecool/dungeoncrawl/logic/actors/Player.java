@@ -27,4 +27,8 @@ public class Player extends Actor {
     public Inventory getInventory() {
         return inventory;
     }
+
+    public String getName() {
+        return "name - not implement. yet ;)";
+    }
 }
