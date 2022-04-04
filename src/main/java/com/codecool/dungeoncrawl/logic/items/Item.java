@@ -9,22 +9,23 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Item implements Drawable {
     private Cell cell;
+    private ItemType type;
 
 
 
-    public Item(Cell cell) {
+    public Item(Cell cell, ItemType type) {
         this.cell = cell;
         this.cell.setItem(this);
+        this.type = type;
     }
 
     protected Item() {
     }
 
-//    public int randomItem(){
-////        List<String> possibleItems = new ArrayList<>();
-////        possibleItems = List.of("Axe","Bow","Breastplate", "Helmet", "Shield", "Sword");
-//     return ThreadLocalRandom.current().nextInt(0, 6);
-//    }
+    public ItemType getType() {
+        return type;
+    }
+
     public Cell getCell() {
         return cell;
     }
