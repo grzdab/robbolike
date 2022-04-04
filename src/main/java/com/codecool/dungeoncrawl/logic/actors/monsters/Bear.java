@@ -13,9 +13,15 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
+    static final int MIN_EXP = 15;
+    static final int MAX_EXP = 21;
+    static final int LEFT_BOUND_DIRECTION = 0;
+    static final int RIGHT_BOUND_DIRECTION = 4;
 
-    public Bear(Cell cell, int health, int attack, int defence,int direction) {
-        super(cell, health, attack, defence, direction);
+    public Bear(Cell cell, int health, int attack, int defence) {
+        super(cell, health, attack, defence, ThreadLocalRandom.current()
+                .nextInt(LEFT_BOUND_DIRECTION, RIGHT_BOUND_DIRECTION),
+                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
     }
 
     @Override
@@ -77,10 +83,6 @@ public class Bear extends Monster {
                 cell = nextCell;
                 break;
         }
-    }
-
-    public static int monsterDirection(){
-        return ThreadLocalRandom.current().nextInt(0,4);
     }
 
     @Override

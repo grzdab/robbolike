@@ -4,8 +4,10 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 
 public class Boss extends Monster{
-    public Boss(Cell cell, int health, int attack, int defence, int direction) {
-        super(cell, health, attack, defence, direction);
+    static final int EXP = 25;
+    static final int DIRECTION = 0;
+    public Boss(Cell cell, int health, int attack, int defence) {
+        super(cell, health, attack, defence, DIRECTION, EXP);
     }
 
     @Override
