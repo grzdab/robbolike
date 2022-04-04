@@ -4,9 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Helmet extends Item {
     public Helmet(Cell cell) {
-        super(cell);
+        super(cell, ItemType.HELMET);
         int defence = 2;
-        boolean isWeapon = false;
     }
 
     @Override
