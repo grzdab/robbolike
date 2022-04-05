@@ -1,5 +1,7 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -14,11 +16,13 @@ public class MapSaver {
             System.out.println("No kurna nie udało się");
         }
         assert save != null;
-        save.println(game());
+        String mapString = mapString();
+        GameDatabaseManager.saveMap(mapString);
+        save.println(mapString);
         save.close();
     }
 
-    public static String game() {
+    public static String mapString() {
         int width = GameMap.getWidth();
         int height = GameMap.getHeight();
         Cell[][] cells = GameMap.getMap();
