@@ -66,7 +66,7 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell);
+                            new Sword(cell, ItemType.SWORD);
                             break;
                         case 'a':
                             cell.setType(CellType.FLOOR);
@@ -106,7 +106,7 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 100, 100, 100, 0));
+                            map.setPlayer(new Player(cell, 100, 100, 100, 0, ActorType.PLAYER));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);

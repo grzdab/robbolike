@@ -34,7 +34,7 @@ public class DropItem {
 
     private void putDroppedElement(Cell cell, String itemToDrop) {
         if (Objects.equals(itemToDrop, "sword")) {
-            new Sword(cell);
+            new Sword(cell, ItemType.SWORD);
         } else if (Objects.equals(itemToDrop, "shield")) {
             new Shield(cell, ItemType.SHIELD);
         } else if (Objects.equals(itemToDrop, "bow")) {

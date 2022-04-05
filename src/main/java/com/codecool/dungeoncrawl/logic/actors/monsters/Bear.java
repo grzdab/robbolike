@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

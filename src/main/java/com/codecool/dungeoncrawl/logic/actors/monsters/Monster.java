@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,7 +58,7 @@ public abstract class Monster extends Actor {
         return  nextCell.getActor() == GameMap.getPlayer();}
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int dx, int dy)  {
         super.move(dx, dy);
     }
 

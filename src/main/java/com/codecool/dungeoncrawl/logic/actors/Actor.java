@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 import javafx.application.Platform;
 
+import java.io.FileNotFoundException;
 import java.util.Objects;
 
 public abstract class Actor implements Drawable {
@@ -46,6 +47,7 @@ public abstract class Actor implements Drawable {
                 if(Objects.equals(nextCell.getItem().getTileName(), "key"))
                 {
                     System.out.println("Added key");
+                    MapSaver.saver();
                 }
             }
             takeItem(nextCell.getItem());
