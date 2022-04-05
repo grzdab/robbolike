@@ -28,6 +28,9 @@ public class Tiles {
         tileMap.put("player", new Tile(28, 10)); //@
         tileMap.put("playerAlt", new Tile(29, 10)); //@
 
+
+
+
         tileMap.put("hot_explosion0", new Tile(20, 17)); //
         tileMap.put("hot_explosion1", new Tile(21, 17)); //
         tileMap.put("hot_explosion2", new Tile(22, 17)); //

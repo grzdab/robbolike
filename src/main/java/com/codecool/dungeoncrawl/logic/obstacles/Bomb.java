@@ -1,14 +1,8 @@
 package com.codecool.dungeoncrawl.logic.obstacles;
 
-import com.codecool.dungeoncrawl.Tiles;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.GameMap;
-import com.codecool.dungeoncrawl.logic.MapLoader;
-import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public class Bomb extends Obstacle{
 
@@ -47,8 +41,13 @@ public class Bomb extends Obstacle{
     }
 
     public void explode(int step, GraphicsContext context) {
-        Explosion e = new Explosion(this.cell, step, context);
+        Explosion e = new Explosion(this.cell, step, context, "explode");
         e.explode();
+    }
+
+    public void destroyArea() {
+        cell.setObstacle(null);
+//        cell.setActor(null);
     }
 
 }
