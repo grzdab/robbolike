@@ -22,8 +22,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MapLoader {
     public static volatile List<Monster> monsters = new CopyOnWriteArrayList<>();
 
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+    public static GameMap loadMap(String fileName) {
+        InputStream is = MapLoader.class.getResourceAsStream("/" + fileName);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -115,6 +115,11 @@ public class MapLoader {
                         case 'g':
                             cell.setType(CellType.GATE);
                             break;
+                        case '*':
+                            cell.setType(CellType.FLOOR);
+                            new Coin(cell, ItemType.COIN);
+                            break;
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

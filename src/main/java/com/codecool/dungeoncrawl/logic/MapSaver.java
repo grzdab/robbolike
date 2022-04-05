@@ -2,15 +2,14 @@ package com.codecool.dungeoncrawl.logic;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MapSaver {
     public static void saver() {
         PrintWriter save = null;
 
         try {
-            save = new PrintWriter("save.txt");
+            System.out.println(System.getProperty("user.dir") + "/src/main/resources/save.txt");
+            save = new PrintWriter(System.getProperty("user.dir") + "/src/main/resources/save.txt");
         } catch (FileNotFoundException e) {
             System.out.println("No kurna nie udało się");
         }
@@ -19,95 +18,110 @@ public class MapSaver {
         save.close();
     }
 
-    public static List<String> game() {
+    public static String game() {
         int width = GameMap.getWidth();
-        int height = GameMap.getWidth();
+        int height = GameMap.getHeight();
         Cell[][] cells = GameMap.getMap();
 
-        List<String> map = new ArrayList<>();
+        StringBuilder mapString = new StringBuilder();
+        mapString.append("\n");
+        mapString.append(width);
+        mapString.append(" ");
+        mapString.append(height);
+        mapString.append("\n");
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
+                boolean omit = false;
                 Cell cell = cells[x][y];
-                if (cell.getType() == CellType.FLOOR) {
+                if (cell.getType() == CellType.FLOOR && cell.getActor() != null) {
+                    omit = true;
                     switch (cell.getActor().getActorType()) {
                         case SKELETON:
-                            map.add("S");
+                            mapString.append("S");
                             break;
                         case BEAR:
-                            map.add("M");
+                            mapString.append("M");
                             break;
                         case SPIDER:
-                            map.add("P");
+                            mapString.append("P");
                             break;
                         case PLAYER:
-                            map.add("@");
+                            mapString.append("@");
                             break;
                         case BOSS:
-                            map.add("B");
+                            mapString.append("B");
                             break;
                     }
+                }
+                if(cell.getType() == CellType.FLOOR && cell.getItem() != null) {
+                    omit = true;
                     switch (cell.getItem().getItemType()) {
                         case SWORD:
-                            map.add("s");
+                            mapString.append("s");
                             break;
                         case AXE:
-                            map.add("a");
+                            mapString.append("a");
                             break;
                         case BOW:
-                            map.add("b");
+                            mapString.append("b");
                             break;
                         case BREASTPLATE:
-                            map.add("e");
+                            mapString.append("e");
                             break;
                         case HELMET:
-                            map.add("h");
+                            mapString.append("h");
                             break;
                         case SHIELD:
-                            map.add("i");
+                            mapString.append("i");
                             break;
                         case KEY:
-                            map.add("k");
+                            mapString.append("k");
                             break;
+                        case COIN:
+                            mapString.append("*");
                     }
+                }
+                if(cell.getType() == CellType.FLOOR && cell.getObstacle() != null) {
+                    omit = true;
                     switch (cell.getObstacle().getObstaclesType()){
                         case DOOR:
-                            map.add("d");
+                            mapString.append("d");
                             break;
                         case TELEPORT:
-                            map.add("t");
+                            mapString.append("t");
                             break;
                         case CRATE:
-                            map.add("c");
+                            mapString.append("c");
                             break;
                     }
-                } else {
+                }
+
+                if (!omit) {
                     switch (cell.getType()) {
                         case EMPTY:
-                            map.add(" ");
+                            mapString.append(" ");
                             break;
                         case WALL:
-                            map.add("#");
+                            mapString.append("#");
                             break;
                         case ROCK:
-                            map.add("r");
+                            mapString.append("r");
                             break;
                         case FLOOR:
-                            map.add(".");
+                            mapString.append(".");
                             break;
                         case GRASS:
-                            map.add("_");
+                            mapString.append("_");
                             break;
                         case GATE:
-                            map.add("g");
+                            mapString.append("g");
                             break;
                     }
-
-//                        default:
-//                            throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                 }
             }
-            map.add("/n");
+            mapString.append("\n");
         }
-        return map;
+        System.out.println(mapString);
+        return mapString.toString();
     }
 }
