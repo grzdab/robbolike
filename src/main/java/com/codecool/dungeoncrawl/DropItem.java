@@ -36,9 +36,9 @@ public class DropItem {
         if (Objects.equals(itemToDrop, "sword")) {
             new Sword(cell);
         } else if (Objects.equals(itemToDrop, "shield")) {
-            new Shield(cell);
+            new Shield(cell, ItemType.SHIELD);
         } else if (Objects.equals(itemToDrop, "bow")) {
-            new Bow(cell);
+            new Bow(cell, ItemType.BOW);
         } else {
             new Axe(cell, ItemType.AXE);
         }

@@ -73,19 +73,19 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Bow(cell);
+                            new Bow(cell, ItemType.BOW);
                             break;
                         case 'e':
                             cell.setType(CellType.FLOOR);
-                            new Breastplate(cell);
+                            new Breastplate(cell, ItemType.BREASTPLATE);
                             break;
                         case 'h':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell);
+                            new Helmet(cell, ItemType.HELMET);
                             break;
                         case 'i':
                             cell.setType(CellType.FLOOR);
-                            new Shield(cell);
+                            new Shield(cell, ItemType.SHIELD);
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
@@ -93,7 +93,7 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
-                            new Key(cell);
+                            new Key(cell, ItemType.KEY);
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);

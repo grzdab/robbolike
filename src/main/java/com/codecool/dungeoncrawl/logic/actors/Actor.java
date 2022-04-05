@@ -141,7 +141,7 @@ public abstract class Actor implements Drawable {
 //                        attacker.getCell().setActor(null);
                             attacker.removeActorFromMap();
                             cell.setType(CellType.FLOOR);
-                            new Coin(cell);
+                            new Coin(cell, ItemType.COIN);
                             //  MapLoader.removeMonster((Monster)attacker);
                             attacker.removeActorFromMap();
                         } else if (attacker instanceof Player) {
@@ -180,7 +180,7 @@ public abstract class Actor implements Drawable {
         if (object instanceof Door) {
             if (((Player) this).getInventory().hasItem("key")) {
                 ((Door) object).open();
-                ((Player) this).getInventory().removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY)));
+                ((Player) this).getInventory().removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY), ItemType.KEY));
                 hasKey = false;
                 return true;
             } else {

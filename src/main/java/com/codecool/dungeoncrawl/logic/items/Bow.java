@@ -3,8 +3,8 @@ package com.codecool.dungeoncrawl.logic.items;
 import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Bow extends Item {
-    public Bow(Cell cell) {
-        super(cell);
+    public Bow(Cell cell, ItemType itemType) {
+        super(cell, itemType);
         int dmg = 3;
         boolean isWeapon = true;
     }

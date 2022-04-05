@@ -36,57 +36,49 @@ public class MapSaver {
                     Cell cell = cells[y][x];
                     if (cell.getType() == CellType.FLOOR) {
                         switch (cell.getActor().getActorType()) {
-                            case ActorType.SKELETON:
+                            case SKELETON:
                                 map.add("S");
                                 break;
-                            case ActorType.BEAR:
+                            case BEAR:
                                 map.add("M");
                                 break;
-                            case ActorType.SPIDER:
+                            case SPIDER:
                                 map.add("P");
                                 break;
-                            case ActorType.PLAYER:
+                            case PLAYER:
                                 map.add("@");
                                 break;
-                            case ActorType.BOSS:
+                            case BOSS:
                                 map.add("B");
                                 break;
                         }
-                        switch (cell.getItem().getItemType()){
-
-                    }
-
-                            case 's':
-                                cell.setType(CellType.FLOOR);
-                                new Sword(cell);
+                        switch (cell.getItem().getItemType()) {
+                            case SWORD:
+                                map.add("s");
                                 break;
-                            case 'a':
-                                cell.setType(CellType.FLOOR);
-                                new Axe(cell, ItemType.AXE);
+                            case AXE:
+                                map.add("a");
                                 break;
-                            case 'b':
-                                cell.setType(CellType.FLOOR);
-                                new Bow(cell);
+                            case BOW:
+                                map.add("b");
                                 break;
-                            case 'e':
-                                cell.setType(CellType.FLOOR);
-                                new Breastplate(cell);
+                            case BREASTPLATE:
+                                map.add("e");
                                 break;
-                            case 'h':
-                                cell.setType(CellType.FLOOR);
-                                new Helmet(cell);
+                            case HELMET:
+                                map.add("h");
                                 break;
-                            case 'i':
-                                cell.setType(CellType.FLOOR);
-                                new Shield(cell);
+                            case SHIELD:
+                                map.add("i");
                                 break;
+                            case KEY:
+                                map.add("k");
+                                break;
+                        }
+                        switch (){
                             case 'd':
                                 cell.setType(CellType.FLOOR);
                                 new Door(cell);
-                                break;
-                            case 'k':
-                                cell.setType(CellType.FLOOR);
-                                new Key(cell);
                                 break;
                             case 't':
                                 cell.setType(CellType.FLOOR);
@@ -99,22 +91,22 @@ public class MapSaver {
                         }
                     } else {
                         switch (cell.getType()) {
-                            case CellType.EMPTY:
+                            case EMPTY:
                                 map.add(" ");
                                 break;
-                            case CellType.WALL:
+                            case WALL:
                                 map.add("#");
                                 break;
-                            case CellType.ROCK:
+                            case ROCK:
                                 map.add("r");
                                 break;
-                            case CellType.FLOOR:
+                            case FLOOR:
                                 map.add(".");
                                 break;
-                            case CellType.GRASS:
+                            case GRASS:
                                 map.add("_");
                                 break;
-                            case CellType.GATE:
+                            case GATE:
                                 map.add("g");
                                 break;
                         }
@@ -124,6 +116,7 @@ public class MapSaver {
                     }
                 }
             }
+            map.add("/n");
         }
         return map;
     }
