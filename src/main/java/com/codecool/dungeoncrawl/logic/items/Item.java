@@ -9,12 +9,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Item implements Drawable {
     private Cell cell;
+    private ItemType itemType;
 
 
+    public ItemType getItemType() {
+        return itemType;
+    }
 
-    public Item(Cell cell) {
+    public Item(Cell cell, ItemType itemType) {
         this.cell = cell;
         this.cell.setItem(this);
+        this.itemType = itemType;
     }
 
     protected Item() {

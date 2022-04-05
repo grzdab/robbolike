@@ -3,10 +3,7 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.items.Axe;
-import com.codecool.dungeoncrawl.logic.items.Bow;
-import com.codecool.dungeoncrawl.logic.items.Shield;
-import com.codecool.dungeoncrawl.logic.items.Sword;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +40,7 @@ public class DropItem {
         } else if (Objects.equals(itemToDrop, "bow")) {
             new Bow(cell);
         } else {
-            new Axe(cell);
+            new Axe(cell, ItemType.AXE);
         }
     }
 

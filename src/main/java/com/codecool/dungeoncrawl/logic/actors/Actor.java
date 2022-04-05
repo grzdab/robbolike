@@ -17,13 +17,19 @@ public abstract class Actor implements Drawable {
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
     private Item item;
+    private ActorType actorType;
 
-    public Actor(Cell cell, int health, int attack, int defence) {
+    public ActorType getActorType() {
+        return actorType;
+    }
+
+    public Actor(Cell cell, int health, int attack, int defence, ActorType actorType) {
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.attack = attack;
         this.defence = defence;
+        this.actorType = actorType;
     }
 
     public void move(int dx, int dy) {

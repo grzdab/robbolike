@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Boss;
@@ -33,88 +34,93 @@ public class MapSaver {
             for (int x = 0; x < width; x++) {
                 if (x < width) {
                     Cell cell = cells[y][x];
-                    switch (cell.getType()) {
-                        case CellType.EMPTY:
-                            map.add(" ");
-                            break;
-                        case CellType.WALL:
-                            map.add("#");
-                            break;
-                        case CellType.ROCK:
-                            map.add("r");
-                            break;
-                        case CellType.FLOOR:
-                            map.add(".");
-                            break;
-                        case CellType.GRASS:
-                            map.add("_");
-                            break;
-                        case CellType.FLOOR:
-                            map.add("S");
-                            cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0, 0);
-                            break;
-                        case 'M':
-                            cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
-                            break;
-                        case 'P':
-                            cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection()));
-                            break;
-                        case 's':
-                            cell.setType(CellType.FLOOR);
-                            new Sword(cell);
-                            break;
-                        case 'a':
-                            cell.setType(CellType.FLOOR);
-                            new Axe(cell);
-                            break;
-                        case 'b':
-                            cell.setType(CellType.FLOOR);
-                            new Bow(cell);
-                            break;
-                        case 'e':
-                            cell.setType(CellType.FLOOR);
-                            new Breastplate(cell);
-                            break;
-                        case 'h':
-                            cell.setType(CellType.FLOOR);
-                            new Helmet(cell);
-                            break;
-                        case 'i':
-                            cell.setType(CellType.FLOOR);
-                            new Shield(cell);
-                            break;
-                        case 'd':
-                            cell.setType(CellType.FLOOR);
-                            new Door(cell);
-                            break;
-                        case 'k':
-                            cell.setType(CellType.FLOOR);
-                            new Key(cell);
-                            break;
-                        case 't':
-                            cell.setType(CellType.FLOOR);
-                            new Teleport(cell);
-                            break;
-                        case 'c':
-                            cell.setType(CellType.FLOOR);
-                            new Crate(cell);
-                            break;
-                        case '@':
-                            cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 100, 100, 100, 0));
-                            break;
-                        case 'B':
-                            cell.setType(CellType.FLOOR);
-                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection()));
-                            break;
-                        case CellType.GATE:
-                            map.add("g");
-                            break;
-                        default:
-                            throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
+                    if (cell.getType() == CellType.FLOOR) {
+                        switch (cell.getActor().getActorType()) {
+                            case ActorType.SKELETON:
+                                map.add("S");
+                                break;
+                            case ActorType.BEAR:
+                                map.add("M");
+                                break;
+                            case ActorType.SPIDER:
+                                map.add("P");
+                                break;
+                            case ActorType.PLAYER:
+                                map.add("@");
+                                break;
+                            case ActorType.BOSS:
+                                map.add("B");
+                                break;
+                        }
+                        switch (cell.getItem().getItemType()){
+
+                    }
+
+                            case 's':
+                                cell.setType(CellType.FLOOR);
+                                new Sword(cell);
+                                break;
+                            case 'a':
+                                cell.setType(CellType.FLOOR);
+                                new Axe(cell, ItemType.AXE);
+                                break;
+                            case 'b':
+                                cell.setType(CellType.FLOOR);
+                                new Bow(cell);
+                                break;
+                            case 'e':
+                                cell.setType(CellType.FLOOR);
+                                new Breastplate(cell);
+                                break;
+                            case 'h':
+                                cell.setType(CellType.FLOOR);
+                                new Helmet(cell);
+                                break;
+                            case 'i':
+                                cell.setType(CellType.FLOOR);
+                                new Shield(cell);
+                                break;
+                            case 'd':
+                                cell.setType(CellType.FLOOR);
+                                new Door(cell);
+                                break;
+                            case 'k':
+                                cell.setType(CellType.FLOOR);
+                                new Key(cell);
+                                break;
+                            case 't':
+                                cell.setType(CellType.FLOOR);
+                                new Teleport(cell);
+                                break;
+                            case 'c':
+                                cell.setType(CellType.FLOOR);
+                                new Crate(cell);
+                                break;
+                        }
+                    } else {
+                        switch (cell.getType()) {
+                            case CellType.EMPTY:
+                                map.add(" ");
+                                break;
+                            case CellType.WALL:
+                                map.add("#");
+                                break;
+                            case CellType.ROCK:
+                                map.add("r");
+                                break;
+                            case CellType.FLOOR:
+                                map.add(".");
+                                break;
+                            case CellType.GRASS:
+                                map.add("_");
+                                break;
+                            case CellType.GATE:
+                                map.add("g");
+                                break;
+                        }
+
+//                        default:
+//                            throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
                 }
             }

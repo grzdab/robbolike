@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.controllers.GameController;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
 
@@ -14,8 +15,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
 
-    public Bear(Cell cell, int health, int attack, int defence,int direction) {
-        super(cell, health, attack, defence, direction);
+    public Bear(Cell cell, int health, int attack, int defence, int direction, ActorType actorType) {
+        super(cell, health, attack, defence, direction, actorType);
     }
 
     @Override

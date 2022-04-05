@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
@@ -52,15 +53,15 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0, Bear.monsterDirection()));
+                            monsters.add(new Skeleton(cell, 10, 1, 0, 0, ActorType.SKELETON));
                             break;
                         case 'M':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection()));
+                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection(), ActorType.BEAR));
                             break;
                         case 'P':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection()));
+                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection(), ActorType.SPIDER));
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
@@ -68,7 +69,7 @@ public class MapLoader {
                             break;
                         case 'a':
                             cell.setType(CellType.FLOOR);
-                            new Axe(cell);
+                            new Axe(cell,ItemType.AXE);
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
@@ -108,7 +109,7 @@ public class MapLoader {
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection()));
+                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection(), ActorType.BOSS));
                             break;
                         case 'g':
                             cell.setType(CellType.GATE);

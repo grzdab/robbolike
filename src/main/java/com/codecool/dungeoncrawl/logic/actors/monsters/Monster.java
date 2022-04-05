@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public abstract class Monster extends Actor {
     private static final List<Monster> monsters = null;
     protected int direction;
 
-    public Monster(Cell cell, int health, int attack, int defence, int direction) {
-        super(cell, health, attack, defence);
+    public Monster(Cell cell, int health, int attack, int defence, int direction, ActorType actorType) {
+        super(cell, health, attack, defence, actorType);
         this.direction = direction;
     }
     public void moveMonster() {
