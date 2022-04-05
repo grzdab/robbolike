@@ -25,8 +25,20 @@ public class Tiles {
     }
 
     static {
-        tileMap.put("player", new Tile(30, 10)); //@
-        tileMap.put("playerAlt", new Tile(31, 10)); //@
+        tileMap.put("player", new Tile(28, 10)); //@
+        tileMap.put("playerAlt", new Tile(29, 10)); //@
+
+        tileMap.put("hot_explosion0", new Tile(20, 17)); //
+        tileMap.put("hot_explosion1", new Tile(21, 17)); //
+        tileMap.put("hot_explosion2", new Tile(22, 17)); //
+        tileMap.put("hot_explosion3", new Tile(23, 17)); //
+
+        tileMap.put("cold_explosion0", new Tile(20, 16)); //
+        tileMap.put("cold_explosion1", new Tile(21, 16)); //
+        tileMap.put("cold_explosion2", new Tile(22, 16)); //
+        tileMap.put("cold_explosion3", new Tile(23, 16)); //
+
+
 
         tileMap.put("empty", new Tile(0, 0)); //
         tileMap.put("wall", new Tile(10, 17)); //#
@@ -46,7 +58,7 @@ public class Tiles {
         tileMap.put("door", new Tile(3, 3)); // d
         tileMap.put("key", new Tile(17, 23)); //k
         tileMap.put("crate", new Tile(3, 5)); //c
-        tileMap.put("bomb", new Tile(13, 31)); //b
+        tileMap.put("bomb", new Tile(24, 16)); //o
         tileMap.put("sword", new Tile(4, 31)); // s
         tileMap.put("axe", new Tile(6, 29)); // a
         tileMap.put("bow", new Tile(8, 28)); // b

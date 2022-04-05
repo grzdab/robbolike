@@ -74,19 +74,19 @@ public class GameController {
         if (map.getPlayer() != null) {
             switch (keyEvent.getCode()) {
                 case UP:
-                    map.getPlayer().move(0, -1);
+                    map.getPlayer().move(0, -1, context);
                     refresh();
                     break;
                 case DOWN:
-                    map.getPlayer().move(0, 1);
+                    map.getPlayer().move(0, 1, context);
                     refresh();
                     break;
                 case LEFT:
-                    map.getPlayer().move(-1, 0);
+                    map.getPlayer().move(-1, 0, context);
                     refresh();
                     break;
                 case RIGHT:
-                    map.getPlayer().move(1, 0);
+                    map.getPlayer().move(1, 0, context);
                     refresh();
                     break;
             }

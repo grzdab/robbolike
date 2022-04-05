@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.List;
 
@@ -60,8 +61,8 @@ public abstract class Monster extends Actor {
         return  nextCell.getActor() == GameMap.getPlayer();}
 
     @Override
-    public void move(int dx, int dy) {
-        super.move(dx, dy);
+    public void move(int dx, int dy, GraphicsContext context) {
+        super.move(dx, dy, context);
     }
 
 

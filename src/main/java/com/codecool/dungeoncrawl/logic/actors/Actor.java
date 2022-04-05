@@ -3,12 +3,16 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.*;
+import com.codecool.dungeoncrawl.logic.obstacles.Bomb;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 import javafx.application.Platform;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Actor implements Drawable {
     protected volatile Cell cell;
@@ -18,6 +22,8 @@ public abstract class Actor implements Drawable {
     private boolean hasKey = false; // testowo przed implementacją inventory
     private Item item;
     private boolean swapTile;
+    Timer timer = new Timer();
+    GraphicsContext context;
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -27,8 +33,8 @@ public abstract class Actor implements Drawable {
         this.defence = defence;
     }
 
-    public void move(int dx, int dy) {
-
+    public void move(int dx, int dy, GraphicsContext context) {
+        this.context = context;
         if (health > 0) {
             Cell nextCell = cell.getNeighbor(dx, dy);
 
@@ -193,6 +199,9 @@ public abstract class Actor implements Drawable {
             return false;
         } else if (object instanceof Crate) {
             return ((Crate) object).move(x, y);
+        } else if (object instanceof Bomb) {
+            bombExplode((Bomb) object, context); // trigger only when hit with projectile!
+            // return ((Bomb) object).move(x, y);
         }
 
 //                    .removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY))
@@ -252,6 +261,22 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(null);
         MapLoader.monstersMove();
         // cell.setType(CellType.FLOOR);
+    }
+
+    private void bombExplode(Bomb bomb, GraphicsContext context) {
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int count = 0;
+            @Override
+            public void run() {
+                bomb.explode(count, context);
+                count++;
+                if (count > 3) {
+                    timer.cancel();
+                    timer.purge();
+                    return;
+                }
+            }
+        }, 0, 100);
     }
 
 }
