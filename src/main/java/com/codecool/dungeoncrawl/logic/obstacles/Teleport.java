@@ -6,8 +6,8 @@ public class Teleport extends Obstacle {
 
     private Cell cell;
 
-    public Teleport(Cell cell) {
-        super(cell);
+    public Teleport(Cell cell, ObstaclesType obstaclesType) {
+        super(cell, obstaclesType);
         this.cell = cell;
         this.cell.setObstacle(this);
     }

@@ -75,18 +75,15 @@ public class MapSaver {
                                 map.add("k");
                                 break;
                         }
-                        switch (){
-                            case 'd':
-                                cell.setType(CellType.FLOOR);
-                                new Door(cell);
+                        switch (cell.getObstacle().getObstaclesType()){
+                            case DOOR:
+                                map.add("d");
                                 break;
-                            case 't':
-                                cell.setType(CellType.FLOOR);
-                                new Teleport(cell);
+                            case TELEPORT:
+                                map.add("t");
                                 break;
-                            case 'c':
-                                cell.setType(CellType.FLOOR);
-                                new Crate(cell);
+                            case CRATE:
+                                map.add("c");
                                 break;
                         }
                     } else {

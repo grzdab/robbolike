@@ -10,6 +10,7 @@ import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.*;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
+import com.codecool.dungeoncrawl.logic.obstacles.ObstaclesType;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 
 
@@ -89,7 +90,7 @@ public class MapLoader {
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
-                            new Door(cell);
+                            new Door(cell, ObstaclesType.DOOR);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
@@ -97,11 +98,11 @@ public class MapLoader {
                             break;
                         case 't':
                             cell.setType(CellType.FLOOR);
-                            new Teleport(cell);
+                            new Teleport(cell, ObstaclesType.TELEPORT);
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);
-                            new Crate(cell);
+                            new Crate(cell, ObstaclesType.CRATE);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);

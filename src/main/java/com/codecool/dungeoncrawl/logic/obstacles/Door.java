@@ -6,8 +6,8 @@ public class Door extends Obstacle {
 
     private Cell cell;
 
-    public Door(Cell cell) {
-        super(cell);
+    public Door(Cell cell, ObstaclesType obstaclesType) {
+        super(cell, obstaclesType);
         this.cell = cell;
         this.cell.setObstacle(this);
     }

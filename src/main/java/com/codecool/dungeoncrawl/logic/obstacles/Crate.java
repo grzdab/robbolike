@@ -7,8 +7,8 @@ public class Crate extends Obstacle {
 
     private Cell cell;
 
-    public Crate(Cell cell) {
-        super(cell);
+    public Crate(Cell cell, ObstaclesType obstaclesType) {
+        super(cell, obstaclesType);
         this.cell = cell;
         this.cell.setObstacle(this);
     }
