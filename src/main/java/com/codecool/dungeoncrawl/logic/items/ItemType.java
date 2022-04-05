@@ -5,13 +5,17 @@ public enum ItemType {
     BIG_SHORT_RANGE_WEAPON(2),
     SMALL_LONG_RANGE_WEAPON(1),
     BIG_LONG_RANGE_WEAPON(2),
-    SHIELD(0),
+    SHIELD(1),
     HELMET(0),
     BREASTPLATE(0),
     PANTS(0),
     SHOES(0),
     GLOVES(0),
-    KEY(0);
+    COIN(0),
+    AXE(1),
+    BOW(2),
+    KEY(0),
+    PROJECTILE(0);
 
     private final int numberOfSlots;
 

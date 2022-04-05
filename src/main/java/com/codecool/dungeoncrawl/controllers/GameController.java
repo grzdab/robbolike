@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.Tiles;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -93,13 +94,16 @@ public class GameController {
     }
 
     private void refresh() {
-//        MapLoader.monstersMove();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
                 if (cell.getActor() != null) {
+                    if (cell.getActor() instanceof Player) {
+                        ((Player) cell.getActor()).setAltTileName();
+                    }
+
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
@@ -159,6 +163,19 @@ public class GameController {
                 refreshMonster();
             }
         }, 0, 700);
+
+//        timer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                refresCoin();
+//            }
+//        }, 0, 300);
+
+
+
+    }
+    private void refresCoin() {
+        System.out.println("test drugiego timera");
     }
 }
 

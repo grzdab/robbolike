@@ -22,6 +22,9 @@ public abstract class Item implements Drawable {
     protected Item() {
     }
 
+    public Item(Cell cell) {
+    }
+
     public ItemType getType() {
         return type;
     }

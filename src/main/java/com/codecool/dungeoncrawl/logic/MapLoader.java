@@ -94,9 +94,18 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
                             break;
-                        case 't':
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
                             cell.setType(CellType.FLOOR);
-                            new Teleport(cell);
+                            new Teleport(cell, Character.valueOf(line.charAt(x)));
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);

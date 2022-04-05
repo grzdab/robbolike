@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Axe extends Item {
     public Axe(Cell cell) {
-        super(cell);
+        super(cell, ItemType.AXE);
         int dmg = 11;
         boolean isWeapon = true;
     }
