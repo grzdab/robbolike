@@ -1,10 +1,10 @@
 package com.codecool.dungeoncrawl.logic.items;
 
 public enum ItemType {
-    SMALL_SHORT_RANGE_WEAPON(1),
-    BIG_SHORT_RANGE_WEAPON(2),
-    SMALL_LONG_RANGE_WEAPON(1),
-    BIG_LONG_RANGE_WEAPON(2),
+    SCREWDRIVER(1),
+    WRENCH(2),
+    SPRING(1),
+    TASER(2),
     SHIELD(0),
     HELMET(0),
     BREASTPLATE(0),

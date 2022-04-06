@@ -64,15 +64,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell);
+                            new Screwdriver(cell);
                             break;
                         case 'a':
                             cell.setType(CellType.FLOOR);
-                            new Axe(cell);
+                            new Wrench(cell);
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Bow(cell);
+                            new Taser(cell);
                             break;
                         case 'e':
                             cell.setType(CellType.FLOOR);

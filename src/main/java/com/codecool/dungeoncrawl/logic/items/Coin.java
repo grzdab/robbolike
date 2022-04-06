@@ -4,9 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Coin extends Item {
     public Coin(Cell cell) {
-        super(cell);
+        super(cell, ItemType.KEY);
         int dmg = 0;
-        boolean isWeapon = false;
     }
 
     @Override
