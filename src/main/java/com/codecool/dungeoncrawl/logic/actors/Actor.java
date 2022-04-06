@@ -3,12 +3,13 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.*;
-import com.codecool.dungeoncrawl.logic.obstacles.Crate;
-import com.codecool.dungeoncrawl.logic.obstacles.Door;
-import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
+import com.codecool.dungeoncrawl.logic.obstacles.*;
 import javafx.application.Platform;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Actor implements Drawable {
     protected volatile Cell cell;
@@ -18,6 +19,9 @@ public abstract class Actor implements Drawable {
     private boolean hasKey = false; // testowo przed implementacją inventory
     private Item item;
     private boolean swapTile;
+    Timer timer = new Timer();
+    GraphicsContext context;
+    private Cell srcCell;
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -27,8 +31,8 @@ public abstract class Actor implements Drawable {
         this.defence = defence;
     }
 
-    public void move(int dx, int dy) {
-
+    public void move(int dx, int dy, GraphicsContext context) {
+        this.context = context;
         if (health > 0) {
             Cell nextCell = cell.getNeighbor(dx, dy);
 
@@ -49,10 +53,13 @@ public abstract class Actor implements Drawable {
             } else if (nextCell.getObstacle() != null && nextCell.getObstacle() instanceof Teleport) {
                 Teleport teleport = (Teleport) nextCell.getObstacle();
                 Cell target = teleport.getTarget(this, dx, dy);
+                Cell source = cell;
                 if (target != null) {
+                    collapseActor(source);
                     nextCell = target;
                 } else {
                     nextCell = cell;
+
                 }
             } else if (nextCell.getObstacle() != null) {
                 if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;
@@ -62,6 +69,7 @@ public abstract class Actor implements Drawable {
             }
 
                 cell.setActor(null);
+                cell.setObstacle(null);
                 if (takeItem(nextCell.getItem())) {
                     cell.setItem(null);
                 }
@@ -193,6 +201,9 @@ public abstract class Actor implements Drawable {
             return false;
         } else if (object instanceof Crate) {
             return ((Crate) object).move(x, y);
+        } else if (object instanceof Bomb) {
+//            bombExplode((Bomb) object, context); // trigger only when hit with projectile!
+            return ((Bomb) object).move(x, y);
         }
 
 //                    .removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY))
@@ -252,6 +263,64 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(null);
         MapLoader.monstersMove();
         // cell.setType(CellType.FLOOR);
+    }
+
+    private void collapseActor(Cell source) {
+        Timer t = new Timer();
+            t.scheduleAtFixedRate(new TimerTask() {
+            int count = 0;
+            @Override
+            public void run() {
+                Explosion e = new Explosion(source, count, context, "collapse");
+                e.explode();
+                count++;
+                if (count > 3) {
+                    t.cancel();
+                    t.purge();
+                    source.setObstacle(null);
+                    return;
+                }
+            }
+        }, 0, 100);
+    }
+
+    private void spawnActor() {
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
+            int count = 0;
+            @Override
+            public void run() {
+                Explosion e = new Explosion(cell, count, context, "collapse");
+                e.explode();
+                count++;
+                if (count > 3) {
+                    t.cancel();
+                    t.purge();
+                    cell.setObstacle(null);
+                    return;
+                }
+            }
+        }, 0, 100);
+    }
+
+
+    private void bombExplode(Bomb bomb, GraphicsContext context) {
+        // to musi być wywalone z aktora, tutaj jest tylko testowo-tymczasowo
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int count = 0;
+            @Override
+            public void run() {
+                bomb.explode(count, context);
+                count++;
+                if (count > 3) {
+                    timer.cancel();
+                    timer.purge();
+                    bomb.destroyArea();
+                    return;
+                }
+            }
+        }, 0, 100);
     }
 
 }

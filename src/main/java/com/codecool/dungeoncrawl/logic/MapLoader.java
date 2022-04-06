@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.*;
+import com.codecool.dungeoncrawl.logic.obstacles.Bomb;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
@@ -101,6 +102,10 @@ public class MapLoader {
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             new Door(cell);
+                            break;
+                        case 'o':
+                            cell.setType(CellType.FLOOR);
+                            new Bomb(cell);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);

@@ -2,12 +2,16 @@ package com.codecool.dungeoncrawl.logic.obstacles;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import javafx.scene.canvas.GraphicsContext;
 
-public class Crate extends Obstacle {
+public class Bomb extends Obstacle{
 
     private Cell cell;
+    private String[] names = {"bomb"};
+    private int step = 0;
+    boolean explodes = false;
 
-    public Crate(Cell cell) {
+    public Bomb(Cell cell) {
         super(cell);
         this.cell = cell;
         this.cell.setObstacle(this);
@@ -15,7 +19,7 @@ public class Crate extends Obstacle {
 
     @Override
     public String getTileName() {
-        return "crate";
+        return "bomb";
     }
 
     public boolean move(int dx, int dy) {
@@ -30,10 +34,20 @@ public class Crate extends Obstacle {
             cell = nextCell;
             return true;
         } else {
-            System.out.println("No space to move the crate");
+            System.out.println("No space to move the bomb");
         }
 
         return false;
+    }
+
+    public void explode(int step, GraphicsContext context) {
+        Explosion e = new Explosion(this.cell, step, context, "explode");
+        e.explode();
+    }
+
+    public void destroyArea() {
+        cell.setObstacle(null);
+//        cell.setActor(null);
     }
 
 }
