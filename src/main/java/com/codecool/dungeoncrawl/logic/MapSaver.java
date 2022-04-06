@@ -1,11 +1,14 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
+import com.codecool.dungeoncrawl.dao.PlayerDaoJdbc;
+import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class MapSaver {
+
     public static void saver() {
         PrintWriter save = null;
 
@@ -17,7 +20,13 @@ public class MapSaver {
         }
         assert save != null;
         String mapString = mapString();
-        GameDatabaseManager.saveMap(mapString);
+        if (GameDatabaseManager.getPlayer(id) != null){
+            GameDatabaseManager.updatePlayer(GameMap.getPlayer());
+
+        } else {
+            GameDatabaseManager.savePlayer(GameMap.getPlayer());
+            GameDatabaseManager.saveMap(mapString);
+        }
         save.println(mapString);
         save.close();
     }

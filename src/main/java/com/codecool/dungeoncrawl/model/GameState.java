@@ -1,5 +1,7 @@
 package com.codecool.dungeoncrawl.model;
 
+import com.codecool.dungeoncrawl.logic.MapSaver;
+
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -25,6 +27,7 @@ public class GameState extends BaseModel {
     }
 
     public String getCurrentMap() {
+        currentMap = MapSaver.mapString();
         return currentMap;
     }
 

@@ -29,11 +29,21 @@ public class GameDatabaseManager {
     public static void saveMap(String mapString) {
         gameStateDao.add(new GameState(mapString, new Date(Instant.now().toEpochMilli()), null));
     }
+    public static PlayerModel getPlayer(int id){
+        return playerDao.get(id);
+    }
+
+    public static void updatePlayer(Player player){
+        PlayerModel model = new PlayerModel(player);
+        playerDao.update(model);
+    }
+
+
 
     private static DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         String dbName = "robbo";
-        String user = "postgers";
+        String user = "postgres";
         String password = "Odrodzenia33";
 
         dataSource.setDatabaseName(dbName);
