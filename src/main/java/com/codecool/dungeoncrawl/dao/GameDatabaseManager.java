@@ -37,6 +37,9 @@ public class GameDatabaseManager {
         PlayerModel model = new PlayerModel(player);
         playerDao.update(model);
     }
+    public static void updateMap(String mapString){
+        gameStateDao.update(new GameState(mapString, new Date(Instant.now().toEpochMilli()), null));
+    }
 
 
 

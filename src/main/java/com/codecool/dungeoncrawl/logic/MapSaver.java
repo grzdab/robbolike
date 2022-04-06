@@ -20,9 +20,10 @@ public class MapSaver {
         }
         assert save != null;
         String mapString = mapString();
+        int id = 1;
         if (GameDatabaseManager.getPlayer(id) != null){
             GameDatabaseManager.updatePlayer(GameMap.getPlayer());
-
+            GameDatabaseManager.updateMap(mapString);
         } else {
             GameDatabaseManager.savePlayer(GameMap.getPlayer());
             GameDatabaseManager.saveMap(mapString);
