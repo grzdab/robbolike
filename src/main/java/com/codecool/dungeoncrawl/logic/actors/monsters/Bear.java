@@ -21,10 +21,10 @@ public class Bear extends Monster {
     static final int LEFT_BOUND_DIRECTION = 0;
     static final int RIGHT_BOUND_DIRECTION = 4;
 
-    public Bear(Cell cell, int health, int attack, int defence, int direction, ActorType actorType) {
-        super(cell, health, attack, defence,direction, actorType, ThreadLocalRandom.current()
+    public Bear(Cell cell, int health, int attack, int defence, ActorType actorType) {
+        super(cell, health, attack, defence, ThreadLocalRandom.current()
                 .nextInt(LEFT_BOUND_DIRECTION, RIGHT_BOUND_DIRECTION),
-                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
+                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP), actorType);
     }
 
     @Override

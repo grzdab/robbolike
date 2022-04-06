@@ -38,6 +38,7 @@ public abstract class Actor implements Drawable {
         this.actorType = actorType;
     }
 
+
     public void move(int dx, int dy, GraphicsContext context) {
         this.context = context;
         if (health > 0) {
@@ -161,7 +162,7 @@ public abstract class Actor implements Drawable {
 //                        attacker.getCell().setActor(null);
                             attacker.removeActorFromMap();
                             cell.setType(CellType.FLOOR);
-                            new Coin(cell, ItemType.COIN);
+                            new Coin(cell);
                             //  MapLoader.removeMonster((Monster)attacker);
                             attacker.removeActorFromMap();
                         } else if (attacker instanceof Player) {
@@ -200,7 +201,7 @@ public abstract class Actor implements Drawable {
         if (object instanceof Door) {
             if (((Player) this).getInventory().hasItem("key")) {
                 ((Door) object).open();
-                ((Player) this).getInventory().removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY), ItemType.KEY));
+                ((Player) this).getInventory().removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY)));
                 hasKey = false;
                 return true;
             } else {

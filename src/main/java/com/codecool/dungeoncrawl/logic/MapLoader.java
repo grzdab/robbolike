@@ -55,15 +55,15 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0, 0, ActorType.SKELETON));
+                            monsters.add(new Skeleton(cell, 10, 1, 0, ActorType.SKELETON));
                             break;
                         case 'M':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0, Bear.monsterDirection(), ActorType.BEAR));
+                            monsters.add(new Bear(cell, 50, 10, 0, ActorType.BEAR));
                             break;
                         case 'P':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0, Spider.monsterDirection(), ActorType.SPIDER));
+                            monsters.add(new Spider(cell, 25, 5, 0, ActorType.SPIDER));
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
@@ -143,7 +143,7 @@ public class MapLoader {
                             break;
                         case '*':
                             cell.setType(CellType.FLOOR);
-                            new Coin(cell, ItemType.COIN);
+                            new Coin(cell);
                             break;
 
                         default:

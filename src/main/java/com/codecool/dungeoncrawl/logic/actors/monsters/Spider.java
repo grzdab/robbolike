@@ -14,9 +14,9 @@ public class Spider extends Monster {
     static final int RIGHT_BOUND_DIRECTION = 2;
 
     public Spider(Cell cell, int health, int attack, int defence, ActorType actorType) {
-        super(cell, health, attack, defence, actorType, ThreadLocalRandom.current().
+        super(cell, health, attack, defence, ThreadLocalRandom.current().
                         nextInt(LEFT_BOUND_DIRECTION, RIGHT_BOUND_DIRECTION),
-                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
+                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP), actorType);
     }
 
     public void moveMonster() {

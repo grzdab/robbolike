@@ -14,7 +14,7 @@ public class Skeleton extends Monster {
     static final int DIRECTION = 0;
 
     public Skeleton(Cell cell, int health, int attack, int defence, ActorType actorType) {
-        super(cell, health, attack, defence, DIRECTION, actorType, ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
+        super(cell, health, attack, defence, DIRECTION, ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP),  actorType);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Boss extends Monster{
     static final int EXP = 25;
     static final int DIRECTION = 0;
     public Boss(Cell cell, int health, int attack, int defence, ActorType actorType) {
-        super(cell, health, attack, defence, actorType, DIRECTION, EXP);
+        super(cell, health, attack, defence, DIRECTION, EXP, actorType);
     }
 
     @Override
