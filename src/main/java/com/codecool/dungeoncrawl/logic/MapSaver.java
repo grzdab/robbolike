@@ -93,6 +93,12 @@ public class MapSaver {
                             break;
                         case COIN:
                             mapString.append("*");
+                        case NUT:
+                            mapString.append("n");
+                        case RESISTOR:
+                            mapString.append("R");
+                        case SPRING:
+                            mapString.append("I");
                     }
                 }
                 if(cell.getType() == CellType.FLOOR && cell.getObstacle() != null) {
@@ -101,7 +107,7 @@ public class MapSaver {
                         case DOOR:
                             mapString.append("d");
                             break;
-                        case TELEPORT:
+                        case TELEPORT:// TU TRZEBA OGARNĄ!!!
                             mapString.append("t");
                             break;
                         case CRATE:
