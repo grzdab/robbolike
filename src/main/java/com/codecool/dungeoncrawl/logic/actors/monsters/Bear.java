@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import javafx.scene.canvas.GraphicsContext;
 
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class Bear extends Monster {
     }
 
     @Override
-    public void move(int dx, int dy) {
-        super.move(dx, dy);
+    public void move(int dx, int dy, GraphicsContext context) {
+        super.move(dx, dy, context);
     }
 }
