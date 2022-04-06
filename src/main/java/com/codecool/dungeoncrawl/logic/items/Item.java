@@ -40,7 +40,4 @@ public abstract class Item implements Drawable {
     public int getY() {
         return cell.getY();
     }
-    public ItemType getItemType() {
-        return itemType;
-    }
 }

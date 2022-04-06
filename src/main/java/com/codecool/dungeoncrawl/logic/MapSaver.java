@@ -69,14 +69,14 @@ public class MapSaver {
                 }
                 if(cell.getType() == CellType.FLOOR && cell.getItem() != null) {
                     omit = true;
-                    switch (cell.getItem().getItemType()) {
-                        case SWORD:
+                    switch (cell.getItem().getType()) {
+                        case SCREWDRIVER:
                             mapString.append("s");
                             break;
-                        case AXE:
+                        case WRENCH:
                             mapString.append("a");
                             break;
-                        case BOW:
+                        case TASER:
                             mapString.append("b");
                             break;
                         case BREASTPLATE:
@@ -107,6 +107,8 @@ public class MapSaver {
                         case CRATE:
                             mapString.append("c");
                             break;
+                        case BOMB:
+                            mapString.append("o");
                     }
                 }
 

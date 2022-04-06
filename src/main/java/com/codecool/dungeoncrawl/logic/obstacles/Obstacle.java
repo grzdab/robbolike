@@ -14,6 +14,8 @@ public abstract class Obstacle extends Item implements Drawable {
         this.cell.setObstacle(this);
         this.obstaclesType = obstaclesType;
     }
+    public Obstacle(Cell cell) {
+    }
 
     public ObstaclesType getObstaclesType() {
         return obstaclesType;

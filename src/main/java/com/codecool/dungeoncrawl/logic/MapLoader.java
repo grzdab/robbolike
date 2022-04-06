@@ -103,7 +103,7 @@ public class MapLoader {
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
-                            new Door(cell, ObstaclesType.DOOR);
+                            new Door(cell);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
@@ -124,11 +124,11 @@ public class MapLoader {
                         case '8':
                         case '9':
                             cell.setType(CellType.FLOOR);
-                            new Teleport(cell,ObstaclesType.TELEPORT, Character.valueOf(line.charAt(x)));
+                            new Teleport(cell, Character.valueOf(line.charAt(x)));
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);
-                            new Crate(cell, ObstaclesType.CRATE);
+                            new Crate(cell);
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
