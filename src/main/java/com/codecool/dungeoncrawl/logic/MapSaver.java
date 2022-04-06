@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
 import com.codecool.dungeoncrawl.dao.PlayerDaoJdbc;
+import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import java.io.FileNotFoundException;
@@ -107,8 +108,9 @@ public class MapSaver {
                         case DOOR:
                             mapString.append("d");
                             break;
-                        case TELEPORT:// TU TRZEBA OGARNĄ!!!
-                            mapString.append("t");
+                        case TELEPORT:
+                            Teleport teleport = (Teleport) cell.getObstacle();
+                            mapString.append(teleport.getMatch() - 48);
                             break;
                         case CRATE:
                             mapString.append("c");
