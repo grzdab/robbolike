@@ -1,9 +1,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
-import com.codecool.dungeoncrawl.dao.PlayerDaoJdbc;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
-import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
