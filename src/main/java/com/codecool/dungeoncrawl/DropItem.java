@@ -3,9 +3,12 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.items.Wrench;
+import com.codecool.dungeoncrawl.logic.items.Taser;
+import com.codecool.dungeoncrawl.logic.items.Shield;
+import com.codecool.dungeoncrawl.logic.items.Screwdriver;
 import com.codecool.dungeoncrawl.logic.items.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -34,13 +37,13 @@ public class DropItem {
 
     private void putDroppedElement(Cell cell, String itemToDrop) {
         if (Objects.equals(itemToDrop, "sword")) {
-            new Sword(cell, ItemType.SWORD);
+            new Screwdriver(cell);
         } else if (Objects.equals(itemToDrop, "shield")) {
-            new Shield(cell, ItemType.SHIELD);
+            new Shield(cell);
         } else if (Objects.equals(itemToDrop, "bow")) {
-            new Bow(cell, ItemType.BOW);
+            new Taser(cell);
         } else {
-            new Axe(cell, ItemType.AXE);
+            new Wrench(cell);
         }
     }
 

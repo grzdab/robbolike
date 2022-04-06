@@ -1,18 +1,22 @@
 package com.codecool.dungeoncrawl.logic.actors.monsters;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Spider extends Monster {
+    static final int MIN_EXP = 5;
+    static final int MAX_EXP = 11;
+    static final int LEFT_BOUND_DIRECTION = 0;
+    static final int RIGHT_BOUND_DIRECTION = 2;
 
-    public Spider(Cell cell, int health, int attack, int defence, int direction, ActorType actorType) {
-        super(cell, health, attack, defence, direction, actorType);
+    public Spider(Cell cell, int health, int attack, int defence, ActorType actorType) {
+        super(cell, health, attack, defence, actorType, ThreadLocalRandom.current().
+                        nextInt(LEFT_BOUND_DIRECTION, RIGHT_BOUND_DIRECTION),
+                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
     }
 
     public void moveMonster() {
@@ -47,10 +51,6 @@ public class Spider extends Monster {
                 System.out.println(getCell().getType());
                 this.removeActorFromMap();
         }
-    }
-
-    public static int monsterDirection(){
-        return ThreadLocalRandom.current().nextInt(0, 2);
     }
 
     @Override

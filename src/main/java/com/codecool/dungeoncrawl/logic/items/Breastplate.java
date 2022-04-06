@@ -3,10 +3,10 @@ package com.codecool.dungeoncrawl.logic.items;
 import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Breastplate extends Item {
-    public Breastplate(Cell cell, ItemType itemType) {
-        super(cell, itemType);
+
+    public Breastplate(Cell cell) {
+        super(cell, ItemType.BREASTPLATE);
         int defence = 4;
-        boolean isWeapon = false;
     }
 
     @Override

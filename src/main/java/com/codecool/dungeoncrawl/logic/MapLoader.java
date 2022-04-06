@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.logic.actors.monsters.Skeleton;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Spider;
 import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.*;
+import com.codecool.dungeoncrawl.logic.obstacles.Bomb;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
 import com.codecool.dungeoncrawl.logic.obstacles.ObstaclesType;
@@ -66,27 +67,39 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell, ItemType.SWORD);
+                            new Screwdriver(cell);
                             break;
                         case 'a':
                             cell.setType(CellType.FLOOR);
-                            new Axe(cell,ItemType.AXE);
+                            new Wrench(cell);
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Bow(cell, ItemType.BOW);
+                            new Taser(cell);
                             break;
                         case 'e':
                             cell.setType(CellType.FLOOR);
-                            new Breastplate(cell, ItemType.BREASTPLATE);
+                            new Breastplate(cell);
                             break;
                         case 'h':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell, ItemType.HELMET);
+                            new Helmet(cell);
                             break;
                         case 'i':
                             cell.setType(CellType.FLOOR);
-                            new Shield(cell, ItemType.SHIELD);
+                            new Shield(cell);
+                            break;
+                        case 'R':
+                            cell.setType(CellType.FLOOR);
+                            new Resistor(cell);
+                            break;
+                        case 'I':
+                            cell.setType(CellType.FLOOR);
+                            new Spring(cell);
+                            break;
+                        case 'n':
+                            cell.setType(CellType.FLOOR);
+                            new Nut(cell);
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
@@ -94,11 +107,24 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
-                            new Key(cell, ItemType.KEY);
+                            new Key(cell);
                             break;
-                        case 't':
+                        case 'o':
                             cell.setType(CellType.FLOOR);
-                            new Teleport(cell, ObstaclesType.TELEPORT);
+                            new Bomb(cell);
+                            break;
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            cell.setType(CellType.FLOOR);
+                            new Teleport(cell,ObstaclesType.TELEPORT, Character.valueOf(line.charAt(x)));
                             break;
                         case 'c':
                             cell.setType(CellType.FLOOR);
@@ -110,7 +136,7 @@ public class MapLoader {
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Boss(cell, 100, 20, 0, Spider.monsterDirection(), ActorType.BOSS));
+                            monsters.add(new Boss(cell, 100, 20, 0, ActorType.BOSS));
                             break;
                         case 'g':
                             cell.setType(CellType.GATE);

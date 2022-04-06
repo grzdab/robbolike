@@ -2,15 +2,14 @@ package com.codecool.dungeoncrawl.logic.items;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Bow extends Item {
-    public Bow(Cell cell, ItemType itemType) {
-        super(cell, itemType);
+public class Taser extends Item {
+    public Taser(Cell cell) {
+        super(cell, ItemType.TASER);
         int dmg = 3;
-        boolean isWeapon = true;
     }
 
     @Override
     public String getTileName() {
-        return "bow";
+        return "taser";
     }
 }

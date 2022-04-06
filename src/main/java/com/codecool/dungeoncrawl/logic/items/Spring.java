@@ -2,13 +2,14 @@ package com.codecool.dungeoncrawl.logic.items;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 
-public class Key extends Item {
-    public Key(Cell cell) {
-        super(cell, ItemType.KEY);
+public class Spring extends Item{
+    public Spring(Cell cell) {
+        super(cell, ItemType.SHIELD);
+        int dmg = 3;
     }
 
     @Override
     public String getTileName() {
-        return "key";
+        return "spring";
     }
 }

@@ -7,13 +7,23 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 public class Player extends Actor {
     private final Inventory inventory = new Inventory();
     private int exp;
+    private String name = "player";
+
     public Player(Cell cell, int health, int attack, int defence, int exp, ActorType actorType) {
-        super(cell, health, attack, defence, actorType);
+        super(cell, health, attack, defence,  actorType);
         this.exp = exp;
     }
 
     public String getTileName() {
-        return "player";
+        return name;
+    }
+
+    public void setAltTileName() {
+        name = name.equals("player")? "playerAlt" : "player";
+    }
+
+    public String getAlternateTileName() {
+        return "playerAlt";
     }
 
     public int getExp() {

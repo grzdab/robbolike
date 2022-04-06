@@ -7,8 +7,8 @@ import com.codecool.dungeoncrawl.logic.items.ItemType;
 
 public class Projectile extends Item implements Drawable {
 
-    public Projectile(Cell cell, ItemType itemType) {
-        super(cell, itemType);
+    public Projectile(Cell cell) {
+        super(cell, ItemType.KEY);
     }
 
     @Override
