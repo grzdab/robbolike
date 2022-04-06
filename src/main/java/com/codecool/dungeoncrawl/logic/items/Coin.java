@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Coin extends Item {
     public Coin(Cell cell) {
-        super(cell, ItemType.KEY);
+        super(cell, ItemType.COIN);
         int dmg = 0;
     }
 

@@ -11,6 +11,7 @@ public enum CellType {
     MONSTER_BOSS("boss"),
     GATE("gate"),
     PLAYER("player"),
+    PLAYER_ALT("playerAlt"),
     TELEPORT("teleport"),
     GRASS("grass");
 

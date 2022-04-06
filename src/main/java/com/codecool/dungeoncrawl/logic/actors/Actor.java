@@ -17,6 +17,7 @@ public abstract class Actor implements Drawable {
     private int attack;
     private boolean hasKey = false; // testowo przed implementacją inventory
     private Item item;
+    private boolean swapTile;
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -27,36 +28,45 @@ public abstract class Actor implements Drawable {
     }
 
     public void move(int dx, int dy) {
+
         if (health > 0) {
             Cell nextCell = cell.getNeighbor(dx, dy);
 
-        if (nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ) {
-            System.out.println("CANT WALK THROUGH THE WALLS OR ROCK!");
-            return;
-        } else if (nextCell.getItem() != null) {
-            if (this instanceof Player)
-            {
-                ((Player) this).getInventory().addItem(nextCell.getItem());
-                if(Objects.equals(nextCell.getItem().getTileName(), "key"))
+            if (nextCell.getType() == CellType.WALL || nextCell.getType() == CellType.ROCK ) {
+                System.out.println("CANT WALK THROUGH THE WALLS OR ROCK!");
+                return;
+            } else if (nextCell.getItem() != null) {
+                if (this instanceof Player)
                 {
-                    System.out.println("Added key");
+                    ((Player) this).getInventory().addItem(nextCell.getItem());
+                    if(Objects.equals(nextCell.getItem().getTileName(), "key"))
+                    {
+                        System.out.println("Added key");
+                    }
                 }
+                takeItem(nextCell.getItem());
+    //            editStats(nextCell);
+            } else if (nextCell.getObstacle() != null && nextCell.getObstacle() instanceof Teleport) {
+                Teleport teleport = (Teleport) nextCell.getObstacle();
+                Cell target = teleport.getTarget(this, dx, dy);
+                if (target != null) {
+                    nextCell = target;
+                } else {
+                    nextCell = cell;
+                }
+            } else if (nextCell.getObstacle() != null) {
+                if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;
+            } else if (nextCell.getActor() != null) {
+                checkCollision(nextCell.getActor(), dx, dy);
+                return;
             }
-            takeItem(nextCell.getItem());
-//            editStats(nextCell);
-        } else if (nextCell.getObstacle() != null) {
-            if (!checkCollision(nextCell.getObstacle(), dx, dy)) return;;
-        } else if (nextCell.getActor() != null) {
-            checkCollision(nextCell.getActor(), dx, dy);
-            return;
-        }
 
-            cell.setActor(null);
-            if (takeItem(nextCell.getItem())) {
-                cell.setItem(null);
-            }
-            nextCell.setActor(this);
-            cell = nextCell;
+                cell.setActor(null);
+                if (takeItem(nextCell.getItem())) {
+                    cell.setItem(null);
+                }
+                nextCell.setActor(this);
+                cell = nextCell;
         }
         else {
             System.out.println("Dead actor!");
@@ -183,25 +193,6 @@ public abstract class Actor implements Drawable {
             return false;
         } else if (object instanceof Crate) {
             return ((Crate) object).move(x, y);
-        } else if (object instanceof Teleport) {
-//            Cell thisTeleport = ((Teleport) object).getCell();
-            Cell[][] map = GameMap.getMap();
-//            int thisX = thisTeleport.??.getX();
-            int thisX = getCell().getX();
-//            System.out.println(thisX);
-            int thisY = getCell().getY();
-//            int thisY = thisTeleport.??.getY();
-//            System.out.println(thisY);
-            ((Player) this).removeActorFromMap();
-            if ((thisX == 6 || thisX == 5) && (thisY == 15 || thisY == 16)) {
-                cell.setX(14);
-                cell.setY(6);
-            } else {
-                cell.setX(5);
-                cell.setY(16);
-            }
-            ((Player) this).cell.setType(CellType.FLOOR);
-            return true;
         }
 
 //                    .removeItem(new Key(new Cell(null, 0, 0, CellType.EMPTY))

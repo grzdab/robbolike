@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl;
 
 import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public class Tiles {
     public static int TILE_WIDTH = 32;
+    public static int round = 0;
 
     private static Image tileset = new Image("/tiles.png", 543 * 2, 543 * 2, true, false);
     private static Map<String, Tile> tileMap = new HashMap<>();
@@ -23,7 +25,8 @@ public class Tiles {
     }
 
     static {
-        tileMap.put("player", new Tile(27, 0)); //@
+        tileMap.put("player", new Tile(30, 10)); //@
+        tileMap.put("playerAlt", new Tile(31, 10)); //@
 
         tileMap.put("empty", new Tile(0, 0)); //
         tileMap.put("wall", new Tile(10, 17)); //#
@@ -37,7 +40,7 @@ public class Tiles {
         tileMap.put("spider", new Tile(28,5)); // P
         tileMap.put("bear", new Tile(30,8)); // M
 
-        tileMap.put("teleport", new Tile(19, 18)); //t
+        tileMap.put("teleport", new Tile(19, 18)); //0-9
         tileMap.put("exit", new Tile(17, 31)); //e
         tileMap.put("pistol", new Tile(5, 31)); //p
         tileMap.put("door", new Tile(3, 3)); // d

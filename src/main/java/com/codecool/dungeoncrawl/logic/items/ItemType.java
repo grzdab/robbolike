@@ -11,7 +11,11 @@ public enum ItemType {
     PANTS(0),
     SHOES(0),
     GLOVES(0),
-    KEY(0);
+    COIN(0),
+    AXE(1),
+    BOW(2),
+    KEY(0),
+    PROJECTILE(0);
 
     private final int numberOfSlots;
 
