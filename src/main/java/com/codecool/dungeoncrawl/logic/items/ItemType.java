@@ -8,14 +8,11 @@ public enum ItemType {
     SHIELD(0),
     HELMET(0),
     BREASTPLATE(0),
-    PANTS(0),
-    SHOES(0),
-    GLOVES(0),
     COIN(0),
-    AXE(1),
-    BOW(2),
     KEY(0),
-    PROJECTILE(0);
+    PROJECTILE(0),
+    NUT(0),
+    RESISTOR(0);
 
     private final int numberOfSlots;
 

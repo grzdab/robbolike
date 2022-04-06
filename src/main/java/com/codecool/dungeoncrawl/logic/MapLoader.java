@@ -86,6 +86,18 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Shield(cell);
                             break;
+                        case 'R':
+                            cell.setType(CellType.FLOOR);
+                            new Resistor(cell);
+                            break;
+                        case 'I':
+                            cell.setType(CellType.FLOOR);
+                            new Spring(cell);
+                            break;
+                        case 'n':
+                            cell.setType(CellType.FLOOR);
+                            new Nut(cell);
+                            break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             new Door(cell);

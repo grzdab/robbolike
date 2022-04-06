@@ -25,6 +25,8 @@ public class Tiles {
     }
 
     static {
+        // i - prawo lewo
+        // j - góra dół
         tileMap.put("player", new Tile(30, 10)); //@
         tileMap.put("playerAlt", new Tile(31, 10)); //@
 
@@ -47,14 +49,17 @@ public class Tiles {
         tileMap.put("key", new Tile(17, 23)); //k
         tileMap.put("crate", new Tile(3, 5)); //c
         tileMap.put("bomb", new Tile(13, 31)); //b
-        tileMap.put("screwdriver", new Tile(4, 31)); // s
-        tileMap.put("wrench", new Tile(6, 29)); // a
-        tileMap.put("taser", new Tile(8, 28)); // b
-        tileMap.put("breastplate", new Tile(4, 23)); // e
-        tileMap.put("helmet", new Tile(2, 22)); // h
+        tileMap.put("screwdriver", new Tile(29, 26)); // s
+        tileMap.put("wrench", new Tile(30, 26)); // a
+        tileMap.put("taser", new Tile(31, 26)); // b
+        tileMap.put("breastplate", new Tile(27, 27)); // e
+        tileMap.put("helmet", new Tile(28, 27)); // h
         tileMap.put("shield", new Tile(5, 26)); // i
         tileMap.put("boss", new Tile(25,8)); // B
         tileMap.put("coin", new Tile(22,4));//$
+        tileMap.put("resistor", new Tile(27, 26));//R
+        tileMap.put("spring", new Tile(28, 26));//I
+        tileMap.put("nut", new Tile(26, 26));//n
 
     }
 
