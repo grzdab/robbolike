@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.*;
 import com.codecool.dungeoncrawl.logic.obstacles.*;
+import com.codecool.dungeoncrawl.logic.projectiles.Projectile;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -22,6 +23,7 @@ public abstract class Actor implements Drawable {
     Timer timer = new Timer();
     GraphicsContext context;
     private Cell srcCell;
+    private int shots = 3; // to powinno być docelowo brane jakoś z inventory tak jak klucz?
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -29,6 +31,10 @@ public abstract class Actor implements Drawable {
         this.health = health;
         this.attack = attack;
         this.defence = defence;
+    }
+
+    public Actor(Cell cell, char vector) {
+        // constructor for projectile
     }
 
     public void move(int dx, int dy, GraphicsContext context) {
@@ -100,6 +106,16 @@ public abstract class Actor implements Drawable {
 //
 //        }
 //    }
+
+    public void shoot(int x, int y, GraphicsContext context, char vector) {
+        Cell nextCell = cell.getNeighbor(x, y);
+        if (shots > 0) {
+            nextCell.setActor(new Projectile(nextCell, vector));
+        } else {
+            System.out.println("YOU HAVE NO AMMO TO SHOOT");
+        }
+
+    }
 
     public void fight(Actor attacker, Actor defender) {
         System.out.println("FIGHT!");
@@ -283,26 +299,6 @@ public abstract class Actor implements Drawable {
             }
         }, 0, 100);
     }
-
-    private void spawnActor() {
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
-            int count = 0;
-            @Override
-            public void run() {
-                Explosion e = new Explosion(cell, count, context, "collapse");
-                e.explode();
-                count++;
-                if (count > 3) {
-                    t.cancel();
-                    t.purge();
-                    cell.setObstacle(null);
-                    return;
-                }
-            }
-        }, 0, 100);
-    }
-
 
     private void bombExplode(Bomb bomb, GraphicsContext context) {
         // to musi być wywalone z aktora, tutaj jest tylko testowo-tymczasowo

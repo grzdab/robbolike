@@ -89,6 +89,20 @@ public class GameController {
                     map.getPlayer().move(1, 0, context);
                     refresh();
                     break;
+                case W:
+                    map.getPlayer().shoot(0,-1,context, 'v');
+                    break;
+                case S:
+                    map.getPlayer().shoot(0,1,context, 'v');
+                    break;
+                case A:
+                    map.getPlayer().shoot(-1,0,context, 'h');
+                    break;
+                case D:
+                    map.getPlayer().shoot(1,0,context, 'h');
+                    break;
+
+
             }
         }
     }
