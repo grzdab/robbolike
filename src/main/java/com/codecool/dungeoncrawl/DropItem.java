@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DropItem {
-    private List<String> dropItemList = Arrays.asList("sword", "shield", "bow", "axe", "coin");
+    private static List<String> dropItemList = Arrays.asList("screwdriver", "shield", "resistor", "taser", "coin");
     int x;
     int y;
 
@@ -23,30 +23,30 @@ public class DropItem {
 //        dropItemList.add("bow");
 //        dropItemList.add("axe");
 //    }
-    public void dropItem(Actor actor, GameMap gameMap) {
+    public static void dropItem(Actor actor) {
 //        if (dropItemList.isEmpty()) {
 //            addItemsToListDrop();
 //        }
-        x = actor.getX();
-        y = actor.getY();
-        Cell cell = gameMap.getCell(x, y);
+        int x = actor.getX();
+        int y = actor.getY();
+        Cell cell = GameMap.getCell(x, y);
         String itemToDrop = getElementToDrop();
         putDroppedElement(cell, itemToDrop);
     }
 
-    private void putDroppedElement(Cell cell, String itemToDrop) {
-        if (Objects.equals(itemToDrop, "sword")) {
+    private static void putDroppedElement(Cell cell, String itemToDrop) {
+        if (Objects.equals(itemToDrop, "screwdriver")) {
             new Screwdriver(cell);
         } else if (Objects.equals(itemToDrop, "shield")) {
             new Shield(cell);
-        } else if (Objects.equals(itemToDrop, "bow")) {
+        } else if (Objects.equals(itemToDrop, "taser")) {
             new Taser(cell);
         } else {
             new Wrench(cell);
         }
     }
 
-    public String getElementToDrop() {
+    public static String getElementToDrop() {
         int index = (int)(Math.random() * dropItemList.size());
         String itemToDrop = dropItemList.get(index);
         return itemToDrop;
