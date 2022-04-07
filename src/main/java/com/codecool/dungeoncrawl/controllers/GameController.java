@@ -177,7 +177,7 @@ public class GameController {
 
     public void handleGameStart(GameMode gameMode) {///TUTAJ!!!!!!!!!
         if(gameMode.equals(GameMode.NEW_GAME)) {
-            map = MapLoader.loadMap("map.txt");
+            map = MapLoader.loadMap("level00.txt");
             tbInventory.setItems(map.getPlayer().getInventory().getInventory());
         } else {
             String fileName = String.valueOf(GameDatabaseManager.getMap(1));
