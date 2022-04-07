@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Spring extends Item{
     public Spring(Cell cell) {
-        super(cell, ItemType.SHIELD);
+        super(cell, ItemType.SPRING);
         int dmg = 3;
     }
 

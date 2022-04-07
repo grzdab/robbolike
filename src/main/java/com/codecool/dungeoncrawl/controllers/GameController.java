@@ -20,11 +20,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
+import java.io.FileNotFoundException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameController {
-    GameMap map = MapLoader.loadMap();
+    GameMap map = MapLoader.loadMap("map.txt");
     @FXML
     Canvas canvas;
     GraphicsContext context;

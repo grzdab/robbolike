@@ -4,5 +4,6 @@ public enum ActorType {
     SKELETON,
     BEAR,
     SPIDER,
+    BOSS,
     PLAYER
 }

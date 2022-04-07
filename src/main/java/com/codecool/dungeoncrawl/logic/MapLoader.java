@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Bear;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
@@ -10,6 +11,7 @@ import com.codecool.dungeoncrawl.logic.actors.monsters.*;
 import com.codecool.dungeoncrawl.logic.obstacles.Bomb;
 import com.codecool.dungeoncrawl.logic.obstacles.Crate;
 import com.codecool.dungeoncrawl.logic.obstacles.Door;
+import com.codecool.dungeoncrawl.logic.obstacles.ObstaclesType;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
 
 
@@ -21,8 +23,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MapLoader {
     public static volatile List<Monster> monsters = new CopyOnWriteArrayList<>();
 
-    public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+    public static GameMap loadMap(String fileName) {
+        InputStream is = MapLoader.class.getResourceAsStream("/" + fileName);
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -53,15 +55,15 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Skeleton(cell, 10, 1, 0));
+                            monsters.add(new Skeleton(cell, 10, 1, 0, ActorType.SKELETON));
                             break;
                         case 'M':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Bear(cell, 50, 10, 0));
+                            monsters.add(new Bear(cell, 50, 10, 0, ActorType.BEAR));
                             break;
                         case 'P':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Spider(cell, 25, 5, 0));
+                            monsters.add(new Spider(cell, 25, 5, 0, ActorType.SPIDER));
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
@@ -103,13 +105,13 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Door(cell);
                             break;
-                        case 'o':
-                            cell.setType(CellType.FLOOR);
-                            new Bomb(cell);
-                            break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
+                            break;
+                        case 'o':
+                            cell.setType(CellType.FLOOR);
+                            new Bomb(cell);
                             break;
                         case '0':
                         case '1':
@@ -130,15 +132,20 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 100, 100, 100, 0));
+                            map.setPlayer(new Player(cell, 100, 100, 100, 0, ActorType.PLAYER));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
-                            monsters.add(new Boss(cell, 100, 20, 0));
+                            monsters.add(new Boss(cell, 100, 20, 0, ActorType.BOSS));
                             break;
                         case 'g':
                             cell.setType(CellType.GATE);
                             break;
+                        case '*':
+                            cell.setType(CellType.FLOOR);
+                            new Coin(cell);
+                            break;
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

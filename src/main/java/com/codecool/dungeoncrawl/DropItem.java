@@ -3,7 +3,13 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+
 import com.codecool.dungeoncrawl.logic.actors.monsters.*;
+import com.codecool.dungeoncrawl.logic.items.Wrench;
+import com.codecool.dungeoncrawl.logic.items.Taser;
+import com.codecool.dungeoncrawl.logic.items.Shield;
+import com.codecool.dungeoncrawl.logic.items.Screwdriver;
+
 import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.util.Arrays;

@@ -5,14 +5,9 @@ public enum CellType {
     FLOOR("floor"),
     WALL("wall"),
     ROCK("rock"),
-    MONSTER_SPIDER("spider"),
-    MONSTER_BEAR("bear"),
-    MONSTER_SKELETON("skeleton"),
-    MONSTER_BOSS("boss"),
     GATE("gate"),
-    PLAYER("player"),
+//    PLAYER("player"),
     PLAYER_ALT("playerAlt"),
-    TELEPORT("teleport"),
     GRASS("grass");
 
     private final String tileName;
