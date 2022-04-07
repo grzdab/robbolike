@@ -42,9 +42,9 @@ public class InventoryDaoJdbc implements InventoryDao {
     @Override
     public void update(InventoryModel inventory) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE inventory" +
+            String sql = "UPDATE inventory " +
                     "SET breastplate = ?, coin = ?, helmet = ?, key = ?, nut = ?, resistor = ?, shield = ?, " +
-                    "screwdriver = ?, spring = ?, taser = ?, wrench = ?) " +
+                    "screwdriver = ?, spring = ?, taser = ?, wrench = ?" +
                     "WHERE player_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, inventory.getBreastplate());

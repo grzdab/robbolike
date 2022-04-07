@@ -29,7 +29,25 @@ public class HelloController {
             stage.setTitle("Dungeon Crawl");
             stage.setScene(scene);
             GameController gameController = fxmlLoader.getController();
-            stage.setOnShown(gameController::handleGameStart);
+            stage.setOnShown((element) -> gameController.handleGameStart(GameMode.NEW_GAME));
+            stage.show();
+            Stage oldStage = (Stage) gameTitle.getScene().getWindow();
+            oldStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onLoadButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloController.class.getResource("/game-screen.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Dungeon Crawl");
+            stage.setScene(scene);
+            GameController gameControllerLoad = fxmlLoader.getController();
+            stage.setOnShown((element) -> gameControllerLoad.handleGameStart(GameMode.LOAD_GAME));
             stage.show();
             Stage oldStage = (Stage) gameTitle.getScene().getWindow();
             oldStage.close();

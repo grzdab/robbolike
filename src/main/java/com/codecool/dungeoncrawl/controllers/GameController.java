@@ -25,7 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameController {
-    GameMap map = MapLoader.loadMap("map.txt");
+    GameMap map;
     @FXML
     Canvas canvas;
     GraphicsContext context;
@@ -61,7 +61,6 @@ public class GameController {
         // System.out.println(context);
         clItems.setCellValueFactory(new PropertyValueFactory<>("inventoryName"));
         clCount.setCellValueFactory(new PropertyValueFactory<>("inventoryCount"));
-        tbInventory.setItems(map.getPlayer().getInventory().getInventory());
     }
 
     @FXML
@@ -149,10 +148,15 @@ public class GameController {
         });
     }
 
-    public void handleGameStart(WindowEvent windowEvent) {
+    public void handleGameStart(GameMode gameMode) {///TUTAJ!!!!!!!!!
+        if(gameMode.equals(GameMode.NEW_GAME)) {
+            map = MapLoader.loadMap("map.txt");
+        } else {
+            map = MapLoader.loadMap("save.txt");
+        }
+        tbInventory.setItems(map.getPlayer().getInventory().getInventory());
         refresh();
         refreshMonster();
-
         Scene scene = canvas.getScene();
         // System.out.println(scene);
         scene.getRoot().requestFocus();

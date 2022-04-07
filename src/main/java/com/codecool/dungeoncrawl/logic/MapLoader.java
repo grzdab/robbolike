@@ -132,7 +132,7 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell, 100, 100, 100, 0, ActorType.PLAYER));
+                            map.setPlayer(new Player(cell, 100, 100, 100, 0, ActorType.PLAYER,1));
                             break;
                         case 'B':
                             cell.setType(CellType.FLOOR);
