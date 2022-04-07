@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.model.GameState;
 import com.codecool.dungeoncrawl.model.PlayerModel;
 import org.postgresql.ds.PGSimpleDataSource;
-//import org.postgresql.ds.PGSimpleDataSource;
+
 
 import javax.sql.DataSource;
 import java.sql.Date;
