@@ -23,7 +23,7 @@ public abstract class Actor implements Drawable {
     Timer timer = new Timer();
     GraphicsContext context;
     private Cell srcCell;
-    private int shots = 3; // to powinno być docelowo brane jakoś z inventory tak jak klucz?
+    private int shots = 10; // to powinno być docelowo brane jakoś z inventory tak jak klucz?
 
     public Actor(Cell cell, int health, int attack, int defence) {
         this.cell = cell;
@@ -33,7 +33,7 @@ public abstract class Actor implements Drawable {
         this.defence = defence;
     }
 
-    public Actor(Cell cell, char vector) {
+    public Actor(Cell cell, String vector) {
         // constructor for projectile
     }
 
@@ -107,10 +107,13 @@ public abstract class Actor implements Drawable {
 //        }
 //    }
 
-    public void shoot(int x, int y, GraphicsContext context, char vector) {
+    public void shoot(int x, int y, GraphicsContext context, String vector) {
         Cell nextCell = cell.getNeighbor(x, y);
         if (shots > 0) {
-            nextCell.setActor(new Projectile(nextCell, vector));
+            Projectile projectile = new Projectile(cell, vector, context);
+            nextCell.setProjectile(projectile);
+            projectile.run();
+            shots --;
         } else {
             System.out.println("YOU HAVE NO AMMO TO SHOOT");
         }
@@ -283,21 +286,22 @@ public abstract class Actor implements Drawable {
 
     private void collapseActor(Cell source) {
         Timer t = new Timer();
-            t.scheduleAtFixedRate(new TimerTask() {
-            int count = 0;
+        t.scheduleAtFixedRate(new TimerTask() {
+            int frames = 0;
             @Override
             public void run() {
-                Explosion e = new Explosion(source, count, context, "collapse");
+                Explosion e = new Explosion(source, frames, context, "collapse");
                 e.explode();
-                count++;
-                if (count > 3) {
+                System.out.println("e");
+                frames++;
+                if (frames > 3) {
                     t.cancel();
                     t.purge();
                     source.setObstacle(null);
                     return;
                 }
             }
-        }, 0, 100);
+        }, 0, 800);
     }
 
     private void bombExplode(Bomb bomb, GraphicsContext context) {

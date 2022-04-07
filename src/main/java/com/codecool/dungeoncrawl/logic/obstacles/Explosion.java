@@ -12,11 +12,11 @@ public class Explosion extends Obstacle {
     private String type;
     private String[] explosionTiles = {"hot_explosion0","hot_explosion1","hot_explosion2","hot_explosion3"};
     private String[] collapseTiles = {"cold_explosion0","cold_explosion1","cold_explosion2","cold_explosion3"};
-    private int step;
+    private int frame;
 
-    public Explosion(Cell cell, int step, GraphicsContext context, String type) {
+    public Explosion(Cell cell, int frame, GraphicsContext context, String type) {
         super(cell);
-        this.step = step;
+        this.frame = frame;
         this.cell = cell;
         this.cell.setObstacle(this);
         this.context = context;
@@ -26,9 +26,9 @@ public class Explosion extends Obstacle {
     @Override
     public String getTileName() {
         if (type.equals("explode")) {
-            return explosionTiles[step];
+            return explosionTiles[frame];
         } else {
-            return collapseTiles[step];
+            return collapseTiles[frame];
         }
     }
 
