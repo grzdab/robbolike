@@ -12,7 +12,7 @@ public class PlayerModel extends BaseModel {
     private int def;
     private int x;
     private int y;
-    private List inventory;
+//    private List inventory;
     private int id;
 
     public PlayerModel(String playerName, int x, int y) {
@@ -29,7 +29,7 @@ public class PlayerModel extends BaseModel {
         this.hp = player.getHealth();
         this.att = player.getAttack();
         this.def = player.getDefence();
-        this.inventory = player.getInventory().getInventory();
+//        this.inventory = player.getInventory().getInventory();
 
     }
 
@@ -100,11 +100,11 @@ public class PlayerModel extends BaseModel {
         this.def = def;
     }
 
-    public List getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List inventory) {
-        this.inventory = inventory;
-    }
+//    public List getInventory() {
+//        return inventory;
+//    }
+//
+//    public void setInventory(List inventory) {
+//        this.inventory = inventory;
+//    }
 }

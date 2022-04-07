@@ -8,10 +8,12 @@ public class Player extends Actor {
     private final Inventory inventory = new Inventory();
     private int exp;
     private String name = "player";
+    private int playerId;
 
-    public Player(Cell cell, int health, int attack, int defence, int exp, ActorType actorType) {
+    public Player(Cell cell, int health, int attack, int defence, int exp, ActorType actorType, int playerId) {
         super(cell, health, attack, defence,  actorType);
         this.exp = exp;
+        this.playerId = playerId;
     }
 
     public String getTileName() {
@@ -40,5 +42,9 @@ public class Player extends Actor {
 
     public String getName() {
         return "name - not implement. yet ;)";
+    }
+
+    public int getPlayerId() {
+        return playerId;
     }
 }

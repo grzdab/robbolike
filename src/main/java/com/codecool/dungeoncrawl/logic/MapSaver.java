@@ -1,9 +1,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
-import com.codecool.dungeoncrawl.dao.PlayerDaoJdbc;
 import com.codecool.dungeoncrawl.logic.obstacles.Teleport;
-import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -19,15 +17,17 @@ public class MapSaver {
         } catch (FileNotFoundException e) {
             System.out.println("No kurna nie udało się");
         }
-        assert save != null;
+
         String mapString = mapString();
         int id = 1;
         if (GameDatabaseManager.getPlayer(id) != null){
             GameDatabaseManager.updatePlayer(GameMap.getPlayer());
             GameDatabaseManager.updateMap(mapString);
+            GameDatabaseManager.updateInvenotry(GameMap.getPlayer());
         } else {
             GameDatabaseManager.savePlayer(GameMap.getPlayer());
             GameDatabaseManager.saveMap(mapString);
+            GameDatabaseManager.saveInventory(GameMap.getPlayer());
         }
         save.println(mapString);
         save.close();

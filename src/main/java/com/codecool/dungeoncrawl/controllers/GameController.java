@@ -2,12 +2,17 @@ package com.codecool.dungeoncrawl.controllers;
 
 import com.codecool.dungeoncrawl.InventoryItem;
 import com.codecool.dungeoncrawl.Tiles;
+import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.obstacles.Obstacle;
+import com.codecool.dungeoncrawl.model.InventoryModel;
 import com.codecool.dungeoncrawl.logic.projectiles.Projectile;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -26,7 +31,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameController {
-    GameMap map = MapLoader.loadMap("map.txt");
+    GameMap map;
+    InventoryModel inventoryModel;
     @FXML
     Canvas canvas;
     GraphicsContext context;
@@ -62,7 +68,7 @@ public class GameController {
         // System.out.println(context);
         clItems.setCellValueFactory(new PropertyValueFactory<>("inventoryName"));
         clCount.setCellValueFactory(new PropertyValueFactory<>("inventoryCount"));
-        tbInventory.setItems(map.getPlayer().getInventory().getInventory());
+//        tbInventory.setItems(map.getPlayer().getInventory().getInventory());
     }
 
     @FXML
@@ -168,10 +174,49 @@ public class GameController {
 
     }
 
-    public void handleGameStart(WindowEvent windowEvent) {
+
+    public void handleGameStart(GameMode gameMode) {///TUTAJ!!!!!!!!!
+        if(gameMode.equals(GameMode.NEW_GAME)) {
+            map = MapLoader.loadMap("map.txt");
+            tbInventory.setItems(map.getPlayer().getInventory().getInventory());
+        } else {
+            String fileName = String.valueOf(GameDatabaseManager.getMap(1));
+            map = MapLoader.loadMap("save.txt");
+
+            InventoryModel inventory = GameDatabaseManager.getInventory(1);
+            ObservableList<InventoryItem> inventoryItems = FXCollections.observableArrayList();
+            InventoryItem breastplate = new InventoryItem("breastplate", 0);
+            inventoryItems.add(breastplate);
+            breastplate.setInventoryCount(inventory.getBreastplate());
+            InventoryItem coin = new InventoryItem("coin", 0);
+            inventoryItems.add(coin);
+            coin.setInventoryCount(inventory.getCoin());
+            InventoryItem helmet = new InventoryItem("helmet", 0);
+            inventoryItems.add(helmet);
+            helmet.setInventoryCount(inventory.getHelmet());
+            InventoryItem key = new InventoryItem("key", 0);
+            inventoryItems.add(key);
+            key.setInventoryCount(inventory.getKey());
+            InventoryItem nut = new InventoryItem("nut", 0);
+            inventoryItems.add(nut);
+            nut.setInventoryCount(inventory.getNut());
+            InventoryItem resistor = new InventoryItem("resistor", 0);
+            inventoryItems.add(resistor);
+            resistor.setInventoryCount(inventory.getResistor());
+            InventoryItem shield = new InventoryItem("shield", 0);
+            inventoryItems.add(shield);
+            shield.setInventoryCount(inventory.getShield());
+            InventoryItem taser = new InventoryItem("taser", 0);
+            inventoryItems.add(taser);
+            taser.setInventoryCount(inventory.getTaser());
+            InventoryItem wrench = new InventoryItem("wrench", 0);
+            inventoryItems.add(wrench);
+            wrench.setInventoryCount(inventory.getWrench());
+            tbInventory.setItems(inventoryItems);
+
+        }
         refresh();
         refreshMonster();
-
         Scene scene = canvas.getScene();
         // System.out.println(scene);
         scene.getRoot().requestFocus();
