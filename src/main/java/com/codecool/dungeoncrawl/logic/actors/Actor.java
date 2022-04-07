@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
+import com.codecool.dungeoncrawl.DropItem;
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.*;
@@ -7,6 +8,8 @@ import com.codecool.dungeoncrawl.logic.obstacles.*;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 
+
+import java.util.List;
 import java.io.FileNotFoundException;
 import java.util.Objects;
 import java.util.Timer;
@@ -162,7 +165,7 @@ public abstract class Actor implements Drawable {
 //                        attacker.getCell().setActor(null);
                             attacker.removeActorFromMap();
                             cell.setType(CellType.FLOOR);
-                            new Coin(cell);
+                            DropItem.dropItem(attacker);
                             //  MapLoader.removeMonster((Monster)attacker);
                             attacker.removeActorFromMap();
                         } else if (attacker instanceof Player) {

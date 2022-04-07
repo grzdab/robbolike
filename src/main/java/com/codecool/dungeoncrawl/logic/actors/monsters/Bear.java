@@ -11,11 +11,13 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
+    public static final List<String> monsterDrop = Arrays.asList("taser", "nut");
     static final int MIN_EXP = 15;
     static final int MAX_EXP = 21;
     static final int LEFT_BOUND_DIRECTION = 0;
@@ -98,5 +100,9 @@ public class Bear extends Monster {
     @Override
     public void move(int dx, int dy, GraphicsContext context) {
         super.move(dx, dy, context);
+    }
+
+    public static List<String> getMonsterDrop() {
+        return monsterDrop;
     }
 }
