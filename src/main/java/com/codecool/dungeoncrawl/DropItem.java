@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.monsters.Boss;
+import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
 import com.codecool.dungeoncrawl.logic.items.Wrench;
 import com.codecool.dungeoncrawl.logic.items.Taser;
 import com.codecool.dungeoncrawl.logic.items.Shield;
@@ -14,8 +16,6 @@ import java.util.Objects;
 
 public class DropItem {
     private static List<String> dropItemList = Arrays.asList("screwdriver", "shield", "resistor", "taser", "coin");
-    int x;
-    int y;
 
 //    public void addItemsToListDrop() {
 //        dropItemList.add("sword");
@@ -29,8 +29,10 @@ public class DropItem {
 //        }
         int x = actor.getX();
         int y = actor.getY();
+        System.out.println(actor.getClass().getSimpleName());
+        Class<? extends Actor> monsterEachDrop = actor.getClass();
         Cell cell = GameMap.getCell(x, y);
-        String itemToDrop = getElementToDrop();
+        String itemToDrop = getElementToDrop(monsterEachDrop);
         putDroppedElement(cell, itemToDrop);
     }
 
@@ -46,7 +48,9 @@ public class DropItem {
         }
     }
 
-    public static String getElementToDrop() {
+    public static String getElementToDrop(Class<? extends Actor> monsterEachDrop) {
+//        List<String> a = monsterEachDrop.getMonsterDrop();
+//        int index = (int)(Math.random() * a.size());
         int index = (int)(Math.random() * dropItemList.size());
         String itemToDrop = dropItemList.get(index);
         return itemToDrop;

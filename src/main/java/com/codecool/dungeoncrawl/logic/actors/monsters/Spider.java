@@ -3,9 +3,12 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Spider extends Monster {
+    public final List<String> monsterDrop = Arrays.asList();
     static final int MIN_EXP = 5;
     static final int MAX_EXP = 11;
     static final int LEFT_BOUND_DIRECTION = 0;
@@ -54,6 +57,10 @@ public class Spider extends Monster {
     @Override
     public String getTileName() {
         return "spider";
+    }
+
+    public List<String> getMonsterDrop() {
+        return monsterDrop;
     }
 }
 

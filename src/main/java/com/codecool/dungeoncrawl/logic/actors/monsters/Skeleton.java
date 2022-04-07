@@ -3,9 +3,12 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Skeleton extends Monster {
+    public final List<String> monsterDrop = Arrays.asList();
     static final int MIN_EXP = 0;
     static final int MAX_EXP = 6;
     static final int DIRECTION = 0;
@@ -24,5 +27,9 @@ public class Skeleton extends Monster {
         if (isReadyToFight()) {
             fight(this, GameMap.getPlayer());
         }
+    }
+
+    public List<String> getMonsterDrop() {
+        return monsterDrop;
     }
 }

@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.logic.obstacles.*;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
