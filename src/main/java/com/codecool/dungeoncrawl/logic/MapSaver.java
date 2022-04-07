@@ -23,10 +23,11 @@ public class MapSaver {
         if (GameDatabaseManager.getPlayer(id) != null){
             GameDatabaseManager.updatePlayer(GameMap.getPlayer());
             GameDatabaseManager.updateMap(mapString);
-            GameDatabaseManager.saveInventory(GameMap.getPlayer());
+            GameDatabaseManager.updateInvenotry(GameMap.getPlayer());
         } else {
             GameDatabaseManager.savePlayer(GameMap.getPlayer());
             GameDatabaseManager.saveMap(mapString);
+            GameDatabaseManager.saveInventory(GameMap.getPlayer());
         }
         save.println(mapString);
         save.close();

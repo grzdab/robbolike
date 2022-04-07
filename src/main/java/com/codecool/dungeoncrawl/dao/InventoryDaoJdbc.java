@@ -18,19 +18,20 @@ public class InventoryDaoJdbc implements InventoryDao {
     @Override
     public void add(InventoryModel inventory) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO inventory (breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO inventory (player_id, breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, inventory.getBreastplate());
-            statement.setInt(2, inventory.getCoin());
-            statement.setInt(3, inventory.getHelmet());
-            statement.setInt(4, inventory.getKey());
-            statement.setInt(5, inventory.getNut());
-            statement.setInt(6, inventory.getResistor());
-            statement.setInt(7, inventory.getShield());
-            statement.setInt(8, inventory.getScrewdriver());
-            statement.setInt(9, inventory.getSpring());
-            statement.setInt(10, inventory.getTaser());
-            statement.setInt(11, inventory.getWrench());
+            statement.setInt(1, inventory.getPlayerId());
+            statement.setInt(2, inventory.getBreastplate());
+            statement.setInt(3, inventory.getCoin());
+            statement.setInt(4, inventory.getHelmet());
+            statement.setInt(5, inventory.getKey());
+            statement.setInt(6, inventory.getNut());
+            statement.setInt(7, inventory.getResistor());
+            statement.setInt(8, inventory.getShield());
+            statement.setInt(9, inventory.getScrewdriver());
+            statement.setInt(10, inventory.getSpring());
+            statement.setInt(11, inventory.getTaser());
+            statement.setInt(12, inventory.getWrench());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -60,7 +61,7 @@ public class InventoryDaoJdbc implements InventoryDao {
             statement.setInt(9, inventory.getSpring());
             statement.setInt(10, inventory.getTaser());
             statement.setInt(11, inventory.getWrench());
-            statement.setInt(12, inventory.getPlayer_id());
+            statement.setInt(12, inventory.getPlayerId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -73,7 +74,6 @@ public class InventoryDaoJdbc implements InventoryDao {
     @Override
     public InventoryModel get(int id) {
 
-        int player_id = 0;
         int breastplate = 0, coin = 0, helmet = 0, key = 0, nut = 0, resistor = 0, shield = 0, screwdriver = 0,
                 spring = 0, taser = 0, wrench = 0;
         try (Connection conn = dataSource.getConnection()) {
@@ -81,8 +81,7 @@ public class InventoryDaoJdbc implements InventoryDao {
                     "FROM inventory where player_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
-            statement.executeQuery();
-            ResultSet resultSet = statement.getGeneratedKeys();
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 breastplate = resultSet.getInt("breastplate");
                 coin = resultSet.getInt("coin");
@@ -100,7 +99,7 @@ public class InventoryDaoJdbc implements InventoryDao {
             return null;
         }
 
-        return new InventoryModel(player_id, breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench);
+        return new InventoryModel(id, breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench);
     }
     @Override
     public List<InventoryModel> getAll() {

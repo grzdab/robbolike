@@ -40,7 +40,7 @@ public class GameStateDaoJdbc implements GameStateDao {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE game_state " +
                     "SET current_map = ?,  saved_at = ?" +
-                    "WHERE player_id  = ?";
+                    "WHERE player_id  = ?;";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, state.getCurrentMap());
             statement.setDate(2, state.getSavedAt());
@@ -48,8 +48,15 @@ public class GameStateDaoJdbc implements GameStateDao {
             statement.setInt(3, 1);
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
-            resultSet.next();
-            state.setId(resultSet.getInt(1));
+            String sql2 = "SELECT id FROM game_state WHERE player_id = ?";
+            PreparedStatement st = conn.prepareStatement(sql2);
+            st.setInt(1, 1);
+            ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                // Error
+                throw new RuntimeException("Error in ResultSet in GamStateJdbC in 58 line or so");
+            }
+            state.setId(rs.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -58,21 +65,20 @@ public class GameStateDaoJdbc implements GameStateDao {
     @Override
     public GameState get(int id) {
         String current_map = "";
-        Date saved_at = null;
+//        Date saved_at = null;
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM game_state WHERE player_id = ?";
+            String sql = "SELECT current_map FROM game_state WHERE player_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
-            statement.executeQuery();
-            ResultSet resultSet = statement.getGeneratedKeys();
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 current_map = resultSet.getString("current_map");
-                saved_at = resultSet.getDate("saved_at");
+//                saved_at = resultSet.getDate("saved_at");
             }
         } catch (SQLException e) {
             return null;
         }
-        return new GameState(current_map, saved_at);
+        return new GameState(current_map);
     }
 
 

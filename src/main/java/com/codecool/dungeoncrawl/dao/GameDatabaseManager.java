@@ -34,13 +34,15 @@ public class GameDatabaseManager {
     }
 
     public static void saveInventory(Player player){
-        InventoryModel model = new InventoryModel(player.getInventory().getInventory());
+        InventoryModel model = new InventoryModel(player.getInventory().getInventory(), player.getPlayerId());
         inventoryDao.add(model);
     }
 
     public static PlayerModel getPlayer(int id){
         return playerDao.get(id);
     }
+    public static GameState getMap(int id){return gameStateDao.get(id);}
+    public static InventoryModel getInventory(int id) {return inventoryDao.get(id);}
 
     public static void updatePlayer(Player player){
         PlayerModel model = new PlayerModel(player);
@@ -49,7 +51,11 @@ public class GameDatabaseManager {
     public static void updateMap(String mapString){
         gameStateDao.update(new GameState(mapString, new Date(Instant.now().toEpochMilli()), null));
     }
-//    public static void updateInvenotry()
+    public static void updateInvenotry(Player player){
+        InventoryModel model = new InventoryModel(player.getInventory().getInventory(), player.getPlayerId());
+        inventoryDao.update(model);
+    }
+
 
 
 

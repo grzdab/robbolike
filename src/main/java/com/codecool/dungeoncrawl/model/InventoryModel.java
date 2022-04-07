@@ -4,7 +4,8 @@ import com.codecool.dungeoncrawl.InventoryItem;
 import javafx.collections.ObservableList;
 
 public class InventoryModel extends BaseModel {
-    private int player_id;
+//    private PlayerModel player;
+    private  int playerId;
     private int breastplate;
     private int coin;
     private int helmet;
@@ -17,12 +18,12 @@ public class InventoryModel extends BaseModel {
     private int taser;
     private int wrench;
 
-    public InventoryModel(int player_id) {
-        this.player_id = player_id;
-    }
+//    public InventoryModel(PlayerModel player) {
+//        this.player = player;
+//    }
 
-    public InventoryModel(int player_id, int breastplate, int coin, int helmet, int key, int nut, int resistor, int shield, int screwdriver, int spring, int taser, int wrench) {
-        this.player_id = player_id;
+    public InventoryModel(int playerId, int breastplate, int coin, int helmet, int key, int nut, int resistor, int shield, int screwdriver, int spring, int taser, int wrench) {
+        this.playerId = playerId;
         this.breastplate = breastplate;
         this.coin = coin;
         this.helmet = helmet;
@@ -36,12 +37,13 @@ public class InventoryModel extends BaseModel {
         this.wrench = wrench;
     }
 
-    public InventoryModel(ObservableList<InventoryItem> inventory) {
+    public InventoryModel(ObservableList<InventoryItem> inventory, int playerId) {
+        this.playerId = playerId;
         for(InventoryItem item : inventory) {
             switch (item.getInventoryName()) {
-                case "player_id":
-                    this.player_id += item.getInventoryCount();
-                    break;
+//                case "player_id":
+//                    this.player += getPlayer();
+//                    break;
                 case "breastplate":
                     this.breastplate += item.getInventoryCount();
                     break;
@@ -70,18 +72,22 @@ public class InventoryModel extends BaseModel {
                     this.spring += item.getInventoryCount();
                     break;
                 case "taser":
-                    this.taser += item.inventoryCount;
+                    this.taser += item.getInventoryCount();
                     break;
                 case "wrench":
-                    this.wrench += item.inventoryCount;
+                    this.wrench += item.getInventoryCount();
                     break;
             }
         }
     }
 
-    public int getPlayer_id() {
-        return player_id;
+    public int getPlayerId() {
+        return playerId;
     }
+
+//    public PlayerModel getPlayer() {
+//        return player;
+//    }
 
     public int getBreastplate() {
         return breastplate;

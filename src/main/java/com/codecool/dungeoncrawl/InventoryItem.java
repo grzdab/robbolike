@@ -41,5 +41,9 @@ public class InventoryItem {
     public void removeOne() {
         this.inventoryCount--;
     }
+
+    public void setInventoryCount(Integer inventoryCount) {
+        this.inventoryCount = inventoryCount;
+    }
 }
 
