@@ -45,6 +45,9 @@ public class Teleport extends Obstacle {
                 }
             }
         }
+        if (matchingTeleport == null) {
+            matchingTeleport = this;
+        }
 
         //check if theres space to transfer to the matching teleport
         if (matchingTeleport != null) {

@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.projectiles.Projectile;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -90,6 +91,18 @@ public class GameController {
                     map.getPlayer().move(1, 0, context);
                     refresh();
                     break;
+                case W:
+                    map.getPlayer().shoot(0,-1,context, "up");
+                    break;
+                case S:
+                    map.getPlayer().shoot(0,1,context, "down");
+                    break;
+                case A:
+                    map.getPlayer().shoot(-1,0,context, "left");
+                    break;
+                case D:
+                    map.getPlayer().shoot(1,0,context, "right");
+                    break;
             }
         }
     }
@@ -108,6 +121,8 @@ public class GameController {
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getProjectile() != null) {
+                    Tiles.drawTile(context, cell.getProjectile(), x, y);
                 } else if (cell.getObstacle() != null) {
                     Tiles.drawTile(context, cell.getObstacle(), x, y);
                 } else {
@@ -124,29 +139,33 @@ public class GameController {
     }
 
     private void refreshMonster() {
-        MapLoader.monstersMove();
-        context.setFill(Color.BLACK);
-        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Cell cell = map.getCell(x, y);
-                if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x, y);
-                } else if (cell.getItem() != null) {
-                    Tiles.drawTile(context, cell.getItem(), x, y);
-                } else if (cell.getObstacle() != null) {
-                    Tiles.drawTile(context, cell.getObstacle(), x, y);
-                } else {
-                    Tiles.drawTile(context, cell, x, y);
+
+            MapLoader.monstersMove();
+            context.setFill(Color.BLACK);
+            context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            for (int x = 0; x < map.getWidth(); x++) {
+                for (int y = 0; y < map.getHeight(); y++) {
+                    Cell cell = map.getCell(x, y);
+                    if (cell.getActor() != null) {
+                        Tiles.drawTile(context, cell.getActor(), x, y);
+                    } else if (cell.getItem() != null) {
+                        Tiles.drawTile(context, cell.getItem(), x, y);
+                    } else if (cell.getProjectile() != null) {
+                        Tiles.drawTile(context, cell.getProjectile(), x, y);
+                    } else if (cell.getObstacle() != null) {
+                        Tiles.drawTile(context, cell.getObstacle(), x, y);
+                    } else {
+                        Tiles.drawTile(context, cell, x, y);
+                    }
                 }
             }
-        }
-        Platform.runLater(() -> {
-            healthValue.setText("" + map.getPlayer().getHealth());
-            defenceValue.setText("" + map.getPlayer().getDefence());
-            attackValue.setText("" + map.getPlayer().getAttack());
-            expValue.setText("" + map.getPlayer().getExp());
-        });
+            Platform.runLater(() -> {
+                healthValue.setText("" + map.getPlayer().getHealth());
+                defenceValue.setText("" + map.getPlayer().getDefence());
+                attackValue.setText("" + map.getPlayer().getAttack());
+                expValue.setText("" + map.getPlayer().getExp());
+            });
+
     }
 
     public void handleGameStart(WindowEvent windowEvent) {
