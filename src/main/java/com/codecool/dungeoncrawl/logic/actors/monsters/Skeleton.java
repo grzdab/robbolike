@@ -6,9 +6,12 @@ import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.actors.ActorType;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Skeleton extends Monster {
+    public static final List<String> monsterDrop = Arrays.asList("shield", "helmet", "screwdriver");
     static final int MIN_EXP = 0;
     static final int MAX_EXP = 6;
     static final int DIRECTION = 0;
@@ -27,5 +30,9 @@ public class Skeleton extends Monster {
         if (isReadyToFight()) {
             fight(this, GameMap.getPlayer());
         }
+    }
+
+    public static List<String> getMonsterDrop() {
+        return monsterDrop;
     }
 }
