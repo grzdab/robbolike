@@ -11,7 +11,7 @@ public class Teleport extends Obstacle {
     private final int match;
 
     public Teleport(Cell cell, int match) {
-        super(cell);
+        super(cell, ObstaclesType.TELEPORT);
         this.cell = cell;
         this.match = match;
         this.cell.setObstacle(this);

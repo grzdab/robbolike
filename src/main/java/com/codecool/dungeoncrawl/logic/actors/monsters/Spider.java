@@ -2,6 +2,8 @@ package com.codecool.dungeoncrawl.logic.actors.monsters;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,10 +13,10 @@ public class Spider extends Monster {
     static final int LEFT_BOUND_DIRECTION = 0;
     static final int RIGHT_BOUND_DIRECTION = 2;
 
-    public Spider(Cell cell, int health, int attack, int defence) {
+    public Spider(Cell cell, int health, int attack, int defence, ActorType actorType) {
         super(cell, health, attack, defence, ThreadLocalRandom.current().
                         nextInt(LEFT_BOUND_DIRECTION, RIGHT_BOUND_DIRECTION),
-                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP));
+                ThreadLocalRandom.current().nextInt(MIN_EXP, MAX_EXP), actorType);
     }
 
     public void moveMonster() {

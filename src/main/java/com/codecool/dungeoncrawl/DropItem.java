@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.logic.items.Wrench;
 import com.codecool.dungeoncrawl.logic.items.Taser;
 import com.codecool.dungeoncrawl.logic.items.Shield;
 import com.codecool.dungeoncrawl.logic.items.Screwdriver;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.util.Arrays;
 import java.util.List;

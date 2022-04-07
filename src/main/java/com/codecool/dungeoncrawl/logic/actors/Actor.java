@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.logic.obstacles.*;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.FileNotFoundException;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,14 +23,21 @@ public abstract class Actor implements Drawable {
     Timer timer = new Timer();
     GraphicsContext context;
     private Cell srcCell;
+    private ActorType actorType;
 
-    public Actor(Cell cell, int health, int attack, int defence) {
+    public ActorType getActorType() {
+        return actorType;
+    }
+
+    public Actor(Cell cell, int health, int attack, int defence, ActorType actorType) {
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.attack = attack;
         this.defence = defence;
+        this.actorType = actorType;
     }
+
 
     public void move(int dx, int dy, GraphicsContext context) {
         this.context = context;
@@ -46,6 +54,7 @@ public abstract class Actor implements Drawable {
                     if(Objects.equals(nextCell.getItem().getTileName(), "key"))
                     {
                         System.out.println("Added key");
+                        MapSaver.saver();
                     }
                 }
                 takeItem(nextCell.getItem());

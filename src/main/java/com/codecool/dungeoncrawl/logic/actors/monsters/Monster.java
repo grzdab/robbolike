@@ -4,21 +4,23 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.ActorType;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Monster extends Actor {
     private static final List<Monster> monsters = null;
     protected int direction;
     protected int exp;
 
-    public int getExp() {
-        return exp;
-    }
 
-    public Monster(Cell cell, int health, int attack, int defence, int direction, int exp) {
-        super(cell, health, attack, defence);
+
+    public Monster(Cell cell, int health, int attack, int defence, int direction, int exp, ActorType actorType) {
+        super(cell, health, attack, defence, actorType);
         this.direction = direction;
         this.exp = exp;
     }
@@ -60,6 +62,9 @@ public abstract class Monster extends Actor {
         Cell nextCell = cell.getNeighbor(0, -1);
         return  nextCell.getActor() == GameMap.getPlayer();}
 
+    public int getExp() {
+        return exp;
+    }
     @Override
     public void move(int dx, int dy, GraphicsContext context) {
         super.move(dx, dy, context);

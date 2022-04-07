@@ -12,7 +12,7 @@ public class Bomb extends Obstacle{
     boolean explodes = false;
 
     public Bomb(Cell cell) {
-        super(cell);
+        super(cell, ObstaclesType.BOMB);
         this.cell = cell;
         this.cell.setObstacle(this);
     }

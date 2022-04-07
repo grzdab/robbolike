@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Nut extends Item {
     public Nut(Cell cell) {
-        super(cell, ItemType.SHIELD);
+        super(cell, ItemType.NUT);
         int dmg = 3;
     }
 

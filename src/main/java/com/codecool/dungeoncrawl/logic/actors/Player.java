@@ -9,8 +9,8 @@ public class Player extends Actor {
     private int exp;
     private String name = "player";
 
-    public Player(Cell cell, int health, int attack, int defence, int exp) {
-        super(cell, health, attack, defence);
+    public Player(Cell cell, int health, int attack, int defence, int exp, ActorType actorType) {
+        super(cell, health, attack, defence,  actorType);
         this.exp = exp;
     }
 
@@ -36,5 +36,9 @@ public class Player extends Actor {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public String getName() {
+        return "name - not implement. yet ;)";
     }
 }
