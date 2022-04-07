@@ -104,7 +104,13 @@ public class Projectile extends Actor implements Runnable {
 
     private void move() {
         Cell nextCell = cell.getNeighbor(vectorX, vectorY);
-        if (nextCell.getObstacle() != null) {
+
+        if (nextCell.getItem() != null) {
+            t.cancel();
+            t.purge();
+            cell.setProjectile(null);
+            explode(cell);
+        } else if (nextCell.getObstacle() != null) {
             t.cancel();
             t.purge();
             if (nextCell.getObstacle() instanceof Bomb) {
@@ -116,7 +122,12 @@ public class Projectile extends Actor implements Runnable {
                 cell.setProjectile(null);
                 explode(cell);
             }
-
+        } else if (nextCell.getActor() != null) {
+            t.cancel();
+            t.purge();
+            cell.setProjectile(null);
+            nextCell.setActor(null);
+            explode(nextCell);
         } else {
             if (nextCell.getType() == CellType.WALL) {
                 cell.setProjectile(null);

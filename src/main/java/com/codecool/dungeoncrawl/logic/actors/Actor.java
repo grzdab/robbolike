@@ -313,7 +313,7 @@ public abstract class Actor implements Drawable {
                     return;
                 }
             }
-        }, 0, 800);
+        }, 0, 300);
     }
 
     private void bombExplode(Bomb bomb, GraphicsContext context) {

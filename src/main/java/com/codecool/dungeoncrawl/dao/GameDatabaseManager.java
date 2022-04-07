@@ -47,11 +47,13 @@ public class GameDatabaseManager {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         String dbName = "robbo";
         String user = "postgres";
-        String password = "Odrodzenia33";
+        //String password = "Odrodzenia33";
+        String password = "postgres";
 
         dataSource.setDatabaseName(dbName);
         dataSource.setUser(user);
         dataSource.setPassword(password);
+        dataSource.setPortNumbers(new int[]{5433});
 
         System.out.println("Trying to connect");
         dataSource.getConnection().close();
