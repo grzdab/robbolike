@@ -1,6 +1,8 @@
 package com.codecool.dungeoncrawl.dao;
 
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.model.InventoryModel;
+import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -58,7 +60,7 @@ public class InventoryDaoJdbc implements InventoryDao {
             statement.setInt(9, inventory.getSpring());
             statement.setInt(10, inventory.getTaser());
             statement.setInt(11, inventory.getWrench());
-            statement.setInt(12, inventory.getId());
+            statement.setInt(12, inventory.getPlayer_id());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -70,9 +72,36 @@ public class InventoryDaoJdbc implements InventoryDao {
 
     @Override
     public InventoryModel get(int id) {
-        return null;
-    }
 
+        int player_id = 0;
+        int breastplate = 0, coin = 0, helmet = 0, key = 0, nut = 0, resistor = 0, shield = 0, screwdriver = 0,
+                spring = 0, taser = 0, wrench = 0;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench " +
+                    "FROM inventory where player_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, id);
+            statement.executeQuery();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            while (resultSet.next()) {
+                breastplate = resultSet.getInt("breastplate");
+                coin = resultSet.getInt("coin");
+                helmet = resultSet.getInt("helmet");
+                key = resultSet.getInt("key");
+                nut = resultSet.getInt("nut");
+                resistor = resultSet.getInt("resistor");
+                shield = resultSet.getInt("shield");
+                screwdriver = resultSet.getInt("screwdriver");
+                spring = resultSet.getInt("spring");
+                taser = resultSet.getInt("taser");
+                wrench = resultSet.getInt("wrench");
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+
+        return new InventoryModel(player_id, breastplate, coin, helmet, key, nut, resistor, shield, screwdriver, spring, taser, wrench);
+    }
     @Override
     public List<InventoryModel> getAll() {
         return null;

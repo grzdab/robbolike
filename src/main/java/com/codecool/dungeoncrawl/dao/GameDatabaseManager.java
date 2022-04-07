@@ -1,18 +1,16 @@
 package com.codecool.dungeoncrawl.dao;
 
-import com.codecool.dungeoncrawl.Inventory;
+
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.model.GameState;
 import com.codecool.dungeoncrawl.model.InventoryModel;
 import com.codecool.dungeoncrawl.model.PlayerModel;
 import org.postgresql.ds.PGSimpleDataSource;
-//import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.Instant;
-import java.util.List;
 
 public class GameDatabaseManager {
     private static PlayerDao playerDao;
@@ -23,6 +21,7 @@ public class GameDatabaseManager {
         DataSource dataSource = connect();
         playerDao = new PlayerDaoJdbc(dataSource);
         gameStateDao = new GameStateDaoJdbc(dataSource);
+        inventoryDao = new InventoryDaoJdbc(dataSource);
     }
 
     public static void savePlayer(Player player) {
@@ -33,10 +32,12 @@ public class GameDatabaseManager {
     public static void saveMap(String mapString) {
         gameStateDao.add(new GameState(mapString, new Date(Instant.now().toEpochMilli()), null));
     }
-//    public static void saveInvenotry(Player player){
-//        InventoryModel model = new InventoryModel(player.getPlayerId(), player.getInventory());
-//        inventoryDao.add(model);
-//    }
+
+    public static void saveInventory(Player player){
+        InventoryModel model = new InventoryModel(player.getInventory().getInventory());
+        inventoryDao.add(model);
+    }
+
     public static PlayerModel getPlayer(int id){
         return playerDao.get(id);
     }
@@ -54,9 +55,9 @@ public class GameDatabaseManager {
 
     private static DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        String dbName = "robbo";
-        String user = "postgres";
-        String password = "Odrodzenia33";
+        String dbName ="robbo";// "PSQL_USER_NAME";
+        String user = "postgres";//"PSQL_PASSWORD";
+        String password = "Odrodzenia33";//"PSQL_DB_NAME";
 
         dataSource.setDatabaseName(dbName);
         dataSource.setUser(user);

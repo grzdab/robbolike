@@ -17,13 +17,13 @@ public class MapSaver {
         } catch (FileNotFoundException e) {
             System.out.println("No kurna nie udało się");
         }
-        assert save != null;
+
         String mapString = mapString();
         int id = 1;
         if (GameDatabaseManager.getPlayer(id) != null){
             GameDatabaseManager.updatePlayer(GameMap.getPlayer());
             GameDatabaseManager.updateMap(mapString);
-//            GameDatabaseManager.
+            GameDatabaseManager.saveInventory(GameMap.getPlayer());
         } else {
             GameDatabaseManager.savePlayer(GameMap.getPlayer());
             GameDatabaseManager.saveMap(mapString);

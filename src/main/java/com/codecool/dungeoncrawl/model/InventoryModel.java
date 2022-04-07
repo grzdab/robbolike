@@ -1,7 +1,10 @@
 package com.codecool.dungeoncrawl.model;
 
+import com.codecool.dungeoncrawl.InventoryItem;
+import javafx.collections.ObservableList;
+
 public class InventoryModel extends BaseModel {
-    private int id;
+    private int player_id;
     private int breastplate;
     private int coin;
     private int helmet;
@@ -14,12 +17,12 @@ public class InventoryModel extends BaseModel {
     private int taser;
     private int wrench;
 
-    public InventoryModel(int id) {
-        this.id = id;
+    public InventoryModel(int player_id) {
+        this.player_id = player_id;
     }
 
-    public InventoryModel(int id, int breastplate, int coin, int helmet, int key, int nut, int resistor, int shield, int screwdriver, int spring, int taser, int wrench) {
-        this.id = id;
+    public InventoryModel(int player_id, int breastplate, int coin, int helmet, int key, int nut, int resistor, int shield, int screwdriver, int spring, int taser, int wrench) {
+        this.player_id = player_id;
         this.breastplate = breastplate;
         this.coin = coin;
         this.helmet = helmet;
@@ -33,27 +36,60 @@ public class InventoryModel extends BaseModel {
         this.wrench = wrench;
     }
 
-    @Override
-    public int getId() {
-        return id;
+    public InventoryModel(ObservableList<InventoryItem> inventory) {
+        for(InventoryItem item : inventory) {
+            switch (item.getInventoryName()) {
+                case "player_id":
+                    this.player_id += item.getInventoryCount();
+                    break;
+                case "breastplate":
+                    this.breastplate += item.getInventoryCount();
+                    break;
+                case "coin":
+                    this.coin += item.getInventoryCount();
+                    break;
+                case "helmet":
+                    this.helmet += item.getInventoryCount();
+                    break;
+                case "key":
+                    this.key += item.getInventoryCount();
+                    break;
+                case "nut":
+                    this.nut += item.getInventoryCount();
+                    break;
+                case "resistor":
+                    this.resistor += item.getInventoryCount();
+                    break;
+                case "shield":
+                    this.shield += item.getInventoryCount();
+                    break;
+                case "screwdriver":
+                    this.screwdriver += item.getInventoryCount();
+                    break;
+                case "spring":
+                    this.spring += item.getInventoryCount();
+                    break;
+                case "taser":
+                    this.taser += item.inventoryCount;
+                    break;
+                case "wrench":
+                    this.wrench += item.inventoryCount;
+                    break;
+            }
+        }
+    }
+
+    public int getPlayer_id() {
+        return player_id;
     }
 
     public int getBreastplate() {
         return breastplate;
     }
 
-    public void setBreastplate(int breastplate) {
-        this.breastplate = breastplate;
-    }
-
     public int getCoin() {
         return coin;
     }
-
-    public void setCoin(int coin) {
-        this.coin = coin;
-    }
-
     public int getHelmet() {
         return helmet;
     }
@@ -65,35 +101,15 @@ public class InventoryModel extends BaseModel {
     public int getKey() {
         return key;
     }
-
-    public void setKey(int key) {
-        this.key = key;
-    }
-
     public int getNut() {
         return nut;
     }
-
-    public void setNut(int nut) {
-        this.nut = nut;
-    }
-
     public int getResistor() {
         return resistor;
     }
-
-    public void setResistor(int resistor) {
-        this.resistor = resistor;
-    }
-
     public int getShield() {
         return shield;
     }
-
-    public void setShield(int shield) {
-        this.shield = shield;
-    }
-
     public int getScrewdriver() {
         return screwdriver;
     }
@@ -105,24 +121,12 @@ public class InventoryModel extends BaseModel {
     public int getSpring() {
         return spring;
     }
-
-    public void setSpring(int spring) {
-        this.spring = spring;
-    }
-
     public int getTaser() {
         return taser;
-    }
-
-    public void setTaser(int taser) {
-        this.taser = taser;
     }
 
     public int getWrench() {
         return wrench;
     }
 
-    public void setWrench(int wrench) {
-        this.wrench = wrench;
-    }
 }
