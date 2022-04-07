@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Skeleton extends Monster {
-    public final List<String> monsterDrop = Arrays.asList();
+    public static final List<String> monsterDrop = Arrays.asList("shield", "helmet", "screwdriver");
     static final int MIN_EXP = 0;
     static final int MAX_EXP = 6;
     static final int DIRECTION = 0;
@@ -29,7 +29,7 @@ public class Skeleton extends Monster {
         }
     }
 
-    public List<String> getMonsterDrop() {
+    public static List<String> getMonsterDrop() {
         return monsterDrop;
     }
 }

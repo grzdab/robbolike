@@ -3,12 +3,8 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Boss;
-import com.codecool.dungeoncrawl.logic.actors.monsters.Monster;
-import com.codecool.dungeoncrawl.logic.items.Wrench;
-import com.codecool.dungeoncrawl.logic.items.Taser;
-import com.codecool.dungeoncrawl.logic.items.Shield;
-import com.codecool.dungeoncrawl.logic.items.Screwdriver;
+import com.codecool.dungeoncrawl.logic.actors.monsters.*;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +28,7 @@ public class DropItem {
         System.out.println(actor.getClass().getSimpleName());
         Class<? extends Actor> monsterEachDrop = actor.getClass();
         Cell cell = GameMap.getCell(x, y);
-        String itemToDrop = getElementToDrop(monsterEachDrop);
+        String itemToDrop = getElementToDrop(actor);
         putDroppedElement(cell, itemToDrop);
     }
 
@@ -43,16 +39,44 @@ public class DropItem {
             new Shield(cell);
         } else if (Objects.equals(itemToDrop, "taser")) {
             new Taser(cell);
+        } else if (Objects.equals(itemToDrop, "breastplate")) {
+            new Breastplate(cell);
+        } else if (Objects.equals(itemToDrop, "helmet")) {
+            new Helmet(cell);
+        } else if (Objects.equals(itemToDrop, "nut")) {
+            new Nut(cell);
         } else {
             new Wrench(cell);
         }
     }
 
-    public static String getElementToDrop(Class<? extends Actor> monsterEachDrop) {
+    public static String getElementToDrop(Actor actor) {
 //        List<String> a = monsterEachDrop.getMonsterDrop();
-//        int index = (int)(Math.random() * a.size());
-        int index = (int)(Math.random() * dropItemList.size());
-        String itemToDrop = dropItemList.get(index);
-        return itemToDrop;
+
+        if (actor instanceof Boss) {
+            List<String> monsterDrop = Boss.getMonsterDrop();
+            return getElementByIndex(monsterDrop);
+        } else if (actor instanceof Bear) {
+            List<String> monsterDrop = Bear.getMonsterDrop();
+            return getElementByIndex(monsterDrop);
+        } else if (actor instanceof Skeleton) {
+            List<String> monsterDrop = Skeleton.getMonsterDrop();
+            return getElementByIndex(monsterDrop);
+        } else if (actor instanceof Spider) {
+            List<String> monsterDrop = Spider.getMonsterDrop();
+            return getElementByIndex(monsterDrop);
+        }
+
+        return null;
+    }
+
+    public static int getRandomIndex(List<String> monsterDrop) {
+        int index = (int)(Math.random() * monsterDrop.size());
+        return index;
+    }
+
+    public static String getElementByIndex(List<String> monsterDrop) {
+        int index = getRandomIndex(monsterDrop);
+        return monsterDrop.get(index);
     }
 }

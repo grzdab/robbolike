@@ -15,7 +15,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Monster {
-    public final List<String> monsterDrop = Arrays.asList();
+    public static final List<String> monsterDrop = Arrays.asList("taser", "nut");
     static final int MIN_EXP = 15;
     static final int MAX_EXP = 21;
     static final int LEFT_BOUND_DIRECTION = 0;
@@ -98,7 +98,7 @@ public class Bear extends Monster {
         super.move(dx, dy, context);
     }
 
-    public List<String> getMonsterDrop() {
+    public static List<String> getMonsterDrop() {
         return monsterDrop;
     }
 }
