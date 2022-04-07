@@ -45,6 +45,10 @@ public class Cell implements Drawable {
         return actor;
     }
 
+    public void setProjectile(Projectile projectile) {
+        this.projectile = projectile;
+    }
+
     public Item getItem() {
         return item;
     }
@@ -54,7 +58,7 @@ public class Cell implements Drawable {
     }
 
     public Projectile getProjectile() {
-        return projectile;
+        return this.projectile;
     }
 
     public Cell getNeighbor(int dx, int dy) {

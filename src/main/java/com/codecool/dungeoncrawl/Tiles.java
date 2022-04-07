@@ -28,8 +28,10 @@ public class Tiles {
         tileMap.put("player", new Tile(28, 10)); //@
         tileMap.put("playerAlt", new Tile(29, 10)); //@
 
-
-
+        tileMap.put("shotH1", new Tile(29, 27));
+        tileMap.put("shotH2", new Tile(30, 27));
+        tileMap.put("shotV1", new Tile(29, 28));
+        tileMap.put("shotV2", new Tile(30, 28));
 
         tileMap.put("hot_explosion0", new Tile(20, 17)); //
         tileMap.put("hot_explosion1", new Tile(21, 17)); //
@@ -53,7 +55,6 @@ public class Tiles {
         tileMap.put("rock", new Tile(2,11)); // r
         tileMap.put("gate", new Tile(18,10)); //g
         tileMap.put("grass", new Tile(6,0));//_
-
 
         tileMap.put("skeleton", new Tile(29, 6)); //S
         tileMap.put("spider", new Tile(28,5)); // P

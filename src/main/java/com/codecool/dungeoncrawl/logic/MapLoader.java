@@ -146,6 +146,9 @@ public class MapLoader {
                             new Coin(cell);
                             break;
 
+                        case 'w':
+                            cell.setType(CellType.FLOOR);
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

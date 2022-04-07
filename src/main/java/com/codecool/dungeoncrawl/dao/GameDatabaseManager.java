@@ -1,6 +1,5 @@
 package com.codecool.dungeoncrawl.dao;
 
-
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.model.GameState;
 import com.codecool.dungeoncrawl.model.InventoryModel;
@@ -61,9 +60,9 @@ public class GameDatabaseManager {
 
     private static DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        String dbName ="robbo";// "PSQL_USER_NAME";
-        String user = "postgres";//"PSQL_PASSWORD";
-        String password = "Odrodzenia33";//"PSQL_DB_NAME";
+        String dbName = "robbo";
+        String user = "postgres";
+        String password = "Odrodzenia33";
 
         dataSource.setDatabaseName(dbName);
         dataSource.setUser(user);
